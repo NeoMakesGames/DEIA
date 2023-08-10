@@ -3,18 +3,22 @@
 @tailwind utilities;
 
 body{
-  background-color: rgb(255, 254, 210);
+  background-color: rgb(32, 7, 102);
 }
 
 h1{
   align-content: center;
-  width: 100%;
+  text-align: center;
   justify-content: center;
+  font-size: xx-large;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 200;
+  color: white;
   
 }
 
 .barra {
-  background-color: blue;
+  background-color: rgb(255, 255, 255);
   width: 100%;
   
 }
