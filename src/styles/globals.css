@@ -1,6 +1,7 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
 @tailwind utilities;
+ */
 
 body{
   background-color: rgb(32, 7, 102);
@@ -21,4 +22,7 @@ h1{
   background-color: rgb(255, 255, 255);
   width: 100%;
   
+}
+.btn{
+  @apply rounded-full;
 }
