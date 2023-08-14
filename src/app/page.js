@@ -5,8 +5,7 @@ export default function Home() {
   return (
    <div>
      <Barra />
-     <h1>Deia</h1>
-     <button class="btn">ola</button>
+    
    </div>
   )
 }
