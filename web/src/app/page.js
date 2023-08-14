@@ -1,11 +1,11 @@
 import Barra from './componentes/nav_bar'
-import Auth from "./Auth"
+import Reg from "./hooks/Registration"
 
 export default function Home() {
   return (
    <div>
-     <Barra />
-    
+
+    <Reg/>
    </div>
   )
 }
