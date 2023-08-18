@@ -1,5 +1,5 @@
 import Barra from './componentes/nav_bar'
-import Auth from "./Auth"
+
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 export default function Home() {
@@ -10,15 +10,23 @@ export default function Home() {
         <nav>
           <ul>
             <li>
-              <Link to="/">Inicio</Link>
+              <Link to="/software">Inicio</Link>
             </li>
             <li>
               <Link to="/about">Acerca de</Link>
             </li>
           </ul>
         </nav>
-
-     </div>
+  
+    <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/software">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
     </Router>
     </div>
   )
