@@ -6,8 +6,11 @@ export default function Barra(){
     <nav className="barra">
         <div>
         <span className="">DEIA</span>
-        <h1>hola</h1>
+        
         </div>
-        <button className="btn btn-primary">Log in</button>
+        <button><a >Log in</a></button>
+        <button><a  href=".\paginas\software.js">Software</a></button>
+        <button><a  href=".\paginas\about.js">Sobre el proyecto</a></button>
+        
     </nav>
 )};
