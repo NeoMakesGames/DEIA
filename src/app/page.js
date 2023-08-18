@@ -1,6 +1,7 @@
+"use client";
 import Barra from './componentes/nav_bar'
-
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import About from '@/app/paginas/about'
 
 export default function Home() {
   return (
