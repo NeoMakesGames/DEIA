@@ -6,7 +6,7 @@ export default function Home() {
    <div>
      <Barra />
      <h1>Deia</h1>
-     <button class="btn">ola</button>
+     <button className="btn">ola</button>
    </div>
   )
 }
