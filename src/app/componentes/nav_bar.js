@@ -9,8 +9,8 @@ export default function Barra(){
         
         </div>
         <button><a >Log in</a></button>
-        <button><a  href=".\paginas\software.js">Software</a></button>
-        <button><a  href=".\paginas\about.js">Sobre el proyecto</a></button>
+        <button><a  >Software</a></button>
+        <button><a>Sobre el proyecto</a></button>
         
     </nav>
 )};
