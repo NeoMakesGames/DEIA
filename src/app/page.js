@@ -1,12 +1,11 @@
 "use client";
 import Barra from './componentes/nav_bar'
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import About from "./paginas/about";
+import HomePage from "./paginas/home";
 
 export default function Home() {
   return (
-    <BrowserRouter>
-    <h1>hola gente</h1>
-    </BrowserRouter>
-  )
+    <h1>hola</h1>
+  );
 }
