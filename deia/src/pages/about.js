@@ -1,10 +1,9 @@
 import Navbar from "@/components/navbar"
-export default function Software(){
+export default function About(){
     return(
         <main>
             <Navbar/>
-            Software
+            About
         </main>
-        
     )
 }
