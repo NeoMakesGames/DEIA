@@ -1,7 +1,11 @@
 import Image from 'next/image'
+import Navbar from './components/navbar'
+import paginaPrincipal from './pages/index'
 
 export default function Home() {
   return (
-    <h1>deia</h1>
+    <main>
+      <Navbar/>
+    </main>
   )
 }
