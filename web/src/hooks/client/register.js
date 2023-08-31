@@ -1,12 +1,11 @@
 "use client";
-    import pb from "../../lib/pocketbase";
+    import pb from "@/../public/lib/pocketbase.js";
     import { useForm } from "react-hook-form";
 
-    export default function RegisterForm() {
+    export default function registerForm() {
         const {register, handleSubmit} = useForm();
         async function reg (data){
             const record = await pb.collection("users").create(data);
-            console.log(pb.authStore.isValid);
         }
 
         return (

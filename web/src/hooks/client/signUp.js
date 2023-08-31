@@ -6,7 +6,6 @@ export default function RegisterForm() {
     const {register, handleSubmit} = useForm();
     async function sUp (data){
         const record = await pb.collection(users).authWithPassword(data);
-        console.log(pb.authStore.isValid);
     }
 
     return (
