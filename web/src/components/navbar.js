@@ -19,6 +19,7 @@ export default function Navbar(){
           <li><Link href="/software">Software</Link></li>
           <li><Link href="/about">About</Link></li>
           <li><Link href="/perfil">perfil</Link></li>
+          <li><Link href="/login">Log in</Link></li>
 
         </ul>
       </div>
@@ -33,6 +34,7 @@ export default function Navbar(){
       <li><Link href="/software">Software</Link></li>
       <li><Link href="/about">About</Link></li>
       <li><Link href="/perfil">perfil</Link></li>
+      <li><Link href="/login">Log in</Link></li>
       
     </ul>
     

@@ -1,16 +1,16 @@
 "use client";
-    import pb from "@/../public/lib/pocketbase.js";
-    import { useForm } from "react-hook-form";
+import pb from "@/../public/lib/pocketbase.js";
+import { useForm } from "react-hook-form";
 
-    export default function registerForm() {
-        const {register, handleSubmit} = useForm();
-        async function reg (data){
-            const record = await pb.collection("users").create(data);
-        }
+export default function registerForm() {
+    const {register, handleSubmit} = useForm();
+    async function reg (data){
+        const record = await pb.collection("users").create(data);
+    }
 
-        return (
-
-        <>
+    return (
+        <div>
+            {/* <h1>Ingrese datos plis</h1> */}
         <form onSubmit={handleSubmit(reg)}>
             <label htmlFor="logIn-name"> Usuario: <input id='logIn-username' type='text' placeholder='Nombre' {...register("username")}/> </label>
             <label htmlFor="logIn-name"> Nombre: <input id='logIn-name' type='text' placeholder='Nombre' {...register("name")}/> </label>
@@ -20,6 +20,7 @@
             <label htmlFor="logIn-passCo"> Confirmar Contraseña: <input id='logIn-passCo' type='password' placeholder='********' {...register("passwordConfirm")}/> </label>
             <button type='submit'>Registrarse</button>
         </form>
-        </>
+        </div>
         
-        )}
+    )
+}

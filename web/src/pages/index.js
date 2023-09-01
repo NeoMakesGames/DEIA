@@ -9,12 +9,12 @@ export default function Home() {
   return (
     <main>
       <Navbar/>
-      <div class="hero min-h-screen bg-base-200">
-  <div class="hero-content text-center">
-    <div class="max-w-md">
-      <h1 class="text-5xl font-bold">DEIA</h1>
-      <p class="py-6">Continuamos generando este proyecto, pero en unos meses va a ser mejor.</p>
-      <button class="btn btn-primary">Get Started</button>
+      <div className="hero min-h-screen bg-base-200">
+  <div className="hero-content text-center">
+    <div className="max-w-md">
+      <h1 className="text-5xl font-bold">DEIA</h1>
+      <p className="py-6">Continuamos generando este proyecto, pero en unos meses va a ser mejor.</p>
+      <button classNameName="btn btn-primary"><Link href="/login">Get Started</Link></button>
     </div>
   </div>
 </div>
