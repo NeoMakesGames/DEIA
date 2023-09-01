@@ -6,9 +6,8 @@ export default function Login(){
         <main>
             <Navbar/>
                 <div className="bg-secondary w-100 p-10">
-            {/* <h1>Login</h1> */}
-            <registerForm />
-            
+                    <h1>Login</h1>
+                    <registerForm />
                 </div>
         </main>
     )
