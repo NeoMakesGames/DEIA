@@ -1,4 +1,4 @@
-import pb from "../../lib/pocketbase";
+import pb from "@/../public/lib/pocketbase.js";
 
 export default function logout() {
 <>

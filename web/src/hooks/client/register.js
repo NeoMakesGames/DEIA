@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 
 export default function registerForm() {
     const {register, handleSubmit} = useForm();
+
     async function reg (data){
         const record = await pb.collection("users").create(data);
     }
