@@ -1,6 +1,8 @@
 import Navbar from "@/components/navbar"
 import { useForm } from "react-hook-form";
 import pb from  "@/../public/lib/pocketbase.js";
+import { registration } from "@/hooks/server/server.hooks";
+
 export default function Login(){
 
     const {register, handleSubmit} = useForm();
@@ -8,7 +10,7 @@ export default function Login(){
     async function reg (data){
         console.log(data);
         try{
-            const record = await pb.collection("users").create(data);
+            registration(data);
         }catch(e)
         {
             console.log(e)
@@ -25,8 +27,6 @@ export default function Login(){
                      <div className="w-1/2">   
                         <image src="LOGO.png"/>
                     </div>
-
-                    {/* registro */}
 
                     <div>
                         <form onSubmit={handleSubmit(reg)} className="grid grid-col-1 place-items-center justify-self-center text-primary">
