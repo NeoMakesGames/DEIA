@@ -39,6 +39,7 @@ export default function Login(){
                             <label htmlFor="logIn-passCo"> Confirmar Contraseña: <br/><input id='logIn-passCo' type='password' placeholder='********' className="input p-1 w-fit"{...register("passwordConfirm")}/> </label>
                             <button type='submit' className="btn btn-lg m-4">Registrarse</button>
                         </form>
+                        <a href="" className="text-primary">Eres representante de una insitucion?</a>
                     </div>
                         </div>
                     </div>
