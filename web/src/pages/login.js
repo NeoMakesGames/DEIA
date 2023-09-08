@@ -18,10 +18,18 @@ export default function Login(){
     return(
         <main>
             <Navbar/>
-                <div className=" w-screen flex  h-screen bg-gradient-to-r from-secondary-900 to-secondary-100 ">
-                    
-                    <div className=" bg-neutral flex justify-center flex-auto mx-36" >
-                        <form onSubmit={handleSubmit(reg)} className="grid grid-col-1 place-items-center justify-self-center grow md:grow-0 text-primary">
+                <div className=" min-h-screen p-40 bg-gradient-to-r from-red-900 to-yellow-100 ">
+                    <div className=" container mx-auto " >
+                        <div className="flex w-8/12 rounded-xl mx-auto bg-neutral shadow-xl">
+
+                     <div className="w-1/2">   
+                        <image src="LOGO.png"/>
+                    </div>
+
+                    {/* registro */}
+
+                    <div>
+                        <form onSubmit={handleSubmit(reg)} className="grid grid-col-1 place-items-center justify-self-center text-primary">
                             <h1 className="p-6 font-mono font-bold text-4xl text-center text-primary ">Sign up</h1>
                             <label htmlFor="logIn-name"> Usuario: <br/> <input id='logIn-username' type='text' placeholder='Nombre' className="input p-1 max-w-fit " {...register("username")}/> </label>
                             <label htmlFor="logIn-name"> Nombre: <br/><input id='logIn-name' type='text' placeholder='Nombre' className="input p-1 w-fit"{...register("name")}/> </label>
@@ -31,6 +39,8 @@ export default function Login(){
                             <label htmlFor="logIn-passCo"> Confirmar Contraseña: <br/><input id='logIn-passCo' type='password' placeholder='********' className="input p-1 w-fit"{...register("passwordConfirm")}/> </label>
                             <button type='submit' className="btn btn-lg m-4">Registrarse</button>
                         </form>
+                    </div>
+                        </div>
                     </div>
                 </div>
         </main>
