@@ -25,7 +25,7 @@ export default function Login(){
                         <div className="flex w-8/12 rounded-xl mx-auto bg-neutral shadow-xl">
 
                      <div className="w-1/2">   
-                        <image src="LOGO.png"/>
+                        <image />
                     </div>
 
                     <div>
