@@ -37,11 +37,39 @@ const pacientes = [
     }
   }
 ];
+
+function createDivsFromArray(Pacientes) {
+  console.log('esto deberia funcionar');
+  // Get a reference to the container where you want to append the divs
+  const container = document.getElementById("container"); // Replace "container" with your container's ID or use another method to select the container element.
+
+  // Loop through the array and create a new div for each item
+  for (let i = 0; i < Pacientes.length; i++) {
+    // Create a new div element
+    const newDiv = document.createElement("div");
+
+    // Set the content of the div to the array item
+    newDiv.textContent = array[i];
+
+    // Append the div to the container
+    container.appendChild(newDiv);
+  }
+}
+
+/*const listPacientes = pacientes.map((datosPaciente)=>
+<li key={datosPaciente.Nombre}>
+  {datosPaciente.Nombre}
+</li>);
+*/
 const showPacientes = () => {
 pacientes.forEach(datosPaciente => {
     console.log({datosPaciente});
-    
   });
+}
+
+const handleClick = () =>{
+  console.log('hola juli'); 
+  
 }
 
 
@@ -67,6 +95,7 @@ export default function Perfil() {
           <button className="btn btn-secondary-300" onClick={showPacientes}>
             Mostrar Pacientes
           </button>
+          <button onClick={createDivsFromArray}>Click me</button>
 
         </div>
       </div>
