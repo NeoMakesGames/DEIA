@@ -6,8 +6,8 @@ export default function registerForm() {
     const {register, handleSubmit} = useForm();
 
     async function reg (data){
-        const record = await pb.collection("users").create(data);
-    }
+        const record = await pb.collection("administradores").create(data);
+        console.log(record);
 
     return (
         <div>
@@ -24,4 +24,4 @@ export default function registerForm() {
         </div>
         
     )
-}
+}}
