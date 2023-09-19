@@ -1,6 +1,6 @@
 import Navbar from "@/components/navbar";
 import { Alice } from "next/font/google";
-import React, { useState } from "react";
+import React, { useState, createElement } from "react";
 
 
  /* console.log("render boton");
@@ -37,7 +37,7 @@ const pacientes = [
     }
   }
 ];
-
+/* ESTA PRUEBA SOLO LOGRA MOSTRAR EN CONSOLA LOS ARRAYS
 function createDivsFromArray(Pacientes) {
   console.log('esto deberia funcionar');
   // Get a reference to the container where you want to append the divs
@@ -54,8 +54,17 @@ function createDivsFromArray(Pacientes) {
     // Append the div to the container
     container.appendChild(newDiv);
   }
-}
+}*/
+function crearDiv(){
+  var div = document.createElement('div');
+  div.id = "container";
+  div.textContent = {pacientes};
+  div.classList.add('bg-yellow-400', 'card', 'p-4', 'm-4', 'w-1/4');
+  //div.innerHTML = document.getElementById('container');
+  document.body.appendChild(div);
+  
 
+}
 /*const listPacientes = pacientes.map((datosPaciente)=>
 <li key={datosPaciente.Nombre}>
   {datosPaciente.Nombre}
@@ -63,7 +72,9 @@ function createDivsFromArray(Pacientes) {
 */
 const showPacientes = () => {
 pacientes.forEach(datosPaciente => {
+    
     console.log({datosPaciente});
+    crearDiv();
   });
 }
 
@@ -95,7 +106,8 @@ export default function Perfil() {
           <button className="btn btn-secondary-300" onClick={showPacientes}>
             Mostrar Pacientes
           </button>
-          <button onClick={createDivsFromArray}>Click me</button>
+          <button onClick={crearDiv}>Click me</button>
+         <div id="container">container</div>
 
         </div>
       </div>
