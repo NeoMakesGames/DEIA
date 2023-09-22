@@ -2,6 +2,7 @@ import Navbar from "@/components/navbar"
 import { useForm } from "react-hook-form";
 import pb from  "@/../public/lib/pocketbase.js";
 import { registration } from "@/hooks/server/server.hooks";
+import { signIn } from "next-auth/react";
 
 export default function Login(){
 
@@ -29,7 +30,7 @@ export default function Login(){
                     </div>
 
                     <div>
-                        <form onSubmit={handleSubmit(reg)} className="grid grid-col-1 place-items-center justify-self-center text-primary">
+                        <form onSubmit={() => { signIn }} className="grid grid-col-1 place-items-center justify-self-center text-primary">
                             <h1 className="p-6 font-mono font-bold text-4xl text-center text-primary ">Sign up</h1>
                             <label htmlFor="logIn-name"> Usuario: <br/> <input id='logIn-username' type='text' placeholder='Nombre' className="input p-1 max-w-fit " {...register("username")}/> </label>
                             <label htmlFor="logIn-name"> Nombre: <br/><input id='logIn-name' type='text' placeholder='Nombre' className="input p-1 w-fit"{...register("name")}/> </label>
