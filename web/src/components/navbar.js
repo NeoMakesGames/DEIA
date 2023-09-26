@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Navbar(){
     return(
-            <div className="drawer">
+            <div className="drawer z-40">
   <input id="my-drawer-3" type="checkbox" className="drawer-toggle" /> 
   <div className="drawer-content flex flex-col">
 
@@ -16,6 +16,13 @@ export default function Navbar(){
       <div className="flex-none hidden lg:block">
         <ul className= "menu menu-horizontal">
          
+          <li><div class="dropdown dropdown-hover dropdown-left dropdown-bottom">
+  <label tabindex="0" >Hover</label> 
+  <ul tabindex="0" class="dropdown-content  z-[1] menu p-2  bg-red-500 rounded-box w-52">
+    <li><a>Item 1</a></li>
+    <li><a>Item 2</a></li>
+  </ul>
+</div></li>
           <li><Link href="/software">Software</Link></li>
           <li><Link href="/about">About</Link></li>
           <li><Link href="/perfil">perfil</Link></li>

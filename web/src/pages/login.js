@@ -21,17 +21,17 @@ export default function Login(){
     return(
         <main>
             <Navbar/>
-                <div className=" min-h-screen p-40 bg-gradient-to-r from-red-900 to-yellow-100 ">
+                <div className=" min-h-screen p-40 bg-primary-100 ">
                     <div className=" container mx-auto " >
                         <div className="flex w-8/12 rounded-xl mx-auto bg-neutral shadow-xl">
 
                      <div className="w-1/2">   
-                        <image />
+                       
                     </div>
 
                     <div>
-                        <form onSubmit={() => { signIn }} className="grid grid-col-1 place-items-center justify-self-center text-primary">
-                            <h1 className="p-6 font-mono font-bold text-4xl text-center text-primary ">Sign up</h1>
+                        <form onSubmit={() => { signIn }} className="grid grid-col-1 place-items-center justify-self-center text-primary-500">
+                            <h1 className="p-6 font-mono font-bold text-4xl text-center text-yellow-500 ">Sign up</h1>
                             <label htmlFor="logIn-name"> Usuario: <br/> <input id='logIn-username' type='text' placeholder='Nombre' className="input p-1 max-w-fit " {...register("username")}/> </label>
                             <label htmlFor="logIn-name"> Nombre: <br/><input id='logIn-name' type='text' placeholder='Nombre' className="input p-1 w-fit"{...register("name")}/> </label>
                             <label htmlFor="logIn-surName"> Apellido: <br/><input id='logIn-surName' type='text' placeholder='Apellido' className="input p-1 w-fit"{...register("surName")}/> </label>

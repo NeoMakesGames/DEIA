@@ -59,26 +59,26 @@ function createDivsFromArray(Pacientes) {
   }
 }*/
 
+//ESTE ES EL QUE FUNCIONA
+// function crearDiv(id) {
+//   var div = document.createElement('div');
+//   div.id = "container";
 
-function crearDiv(id) {
-  var div = document.createElement('div');
-  div.id = "container";
+//   // Use filter to find the patient with the matching id
+//   const paciente = pacientes[id];
+//   const datos = paciente.datosPaciente;
+//   console.log({paciente:paciente, pacientes:pacientes})
 
-  // Use filter to find the patient with the matching id
-  const paciente = pacientes[id];
-  const datos = paciente.datosPaciente;
-  console.log({paciente:paciente, pacientes:pacientes})
+//   // Check if a matching patient was found
+//   if (paciente) {
+//     div.textContent = "Nombre: " + datos.Nombre + " Apellido: " + datos.Apellido + " Edad: " + datos.Edad;
+//   } else {
+//     div.textContent = "Paciente no encontrado";
+//   }
 
-  // Check if a matching patient was found
-  if (paciente) {
-    div.textContent = "Nombre: " + datos.Nombre + " \nApellido: " + datos.Apellido + " \nEdad: " + datos.Edad;
-  } else {
-    div.textContent = "Paciente no encontrado";
-  }
-
-  div.classList.add('bg-red-400', 'card', 'p-4', 'm-4', 'w-1/4');
-  document.body.appendChild(div);
-}
+//   div.classList.add('bg-neutral-600', 'card', 'p-4', 'm-4', 'w-1/4');
+//   document.body.appendChild(div);
+// }
 /*const listPacientes = pacientes.map((datosPaciente)=>
 <li key={datosPaciente.Nombre}>
   {datosPaciente.Nombre}
@@ -105,8 +105,8 @@ export default function Perfil() {
   // console.log(pacientes);
   return (
     <main>
-      <Navbar />
       {/* <h1></h1> */}
+      <Navbar />
       <div className="flex w-full p-4">
         <div className="grid  flex-grow card bg-base-300 rounded-box place-items-center">
           <h1 className="card card-title p-8 h-full">Perfil</h1>
