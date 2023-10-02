@@ -21,7 +21,7 @@ export default function Login(){
     return(
         <main>
             <Navbar/>
-                <div className=" min-h-screen p-40 bg-primary-100 ">
+                <div className=" min-h-screen p-40 bg-base-300 ">
                     <div className=" container mx-auto " >
                         <div className="flex w-8/12 rounded-xl mx-auto bg-neutral shadow-xl">
 
