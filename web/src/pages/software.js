@@ -201,13 +201,12 @@ const showPacientes = () => {
   });
 };
 
-// const [Data, setData] = useState(pacientes.datosPaciente);
-
-// const sortData = () => {
-//   const sortedData = [...Data];
-//   sortedData.sort((a,b) => a[0].localeCompare(b[0]));
-//   setData(sortedData);
-// }
+//const [Data, setData] = useState(pacientes.datosPaciente);
+//const sortData = () => {
+//  const sortedData = [...Data];
+//  sortedData.sort((a,b) => a[0].localeCompare(b[0]));
+//  setData(sortedData);
+//}
 
 export default function Software() {
 
@@ -218,7 +217,7 @@ export default function Software() {
       <div className="flex">
 
         {/* Avatar o Perfil*/}
-      <div className="h-sreen grow bg-pink-400  w-3/12">
+      <div className="h-sreen grow bg-base-300  w-3/12">
        <h1 className="text-blue-900 text-2xl font-bold p-4">Pacientes</h1>
         
          
@@ -230,7 +229,7 @@ export default function Software() {
         </select> */}
       </div>
 
-        <div className="overflow-x-auto flex w-full">
+        <div className="overflow-x-auto flex w-full bg-neutral-100">
           <div className="table p-4  w-full  ">
           <thread className="text-xl"> {/*TABLA*/}
                 <th>Nombre</th>
@@ -243,7 +242,7 @@ export default function Software() {
                 <tbody className=" flex ">   
                 <tr className="hover w-full">
                   <td>
-                    <div tabIndex="0" className="collapse bg-base-300">
+                    <div tabIndex="0" className="collapse">
                     <span className="collapse-title text-md font-medium"> {p.datosPaciente.Nombre}  {p.datosPaciente.Apellido}  {p.datosPaciente.Mail}</span>
                     <div className="collapse-content">
                       <button className="btn btn-sm">Editar</button>

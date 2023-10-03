@@ -23,6 +23,7 @@
     "tfjs": "^0.6.0"
   },
   "devDependencies": {
-    "daisyui": "^3.6.3"
+    "daisyui": "^3.6.3",
+    "tailwindcss-animated": "^1.0.1"
   }
 }

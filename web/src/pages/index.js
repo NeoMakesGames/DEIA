@@ -14,7 +14,12 @@ export default function Home() {
     <main>
       <Navbar/>
   
-      <div className="hero min-h-screen bg-base-300 flex justify-center">
+      <div className="hero min-h-screen h-screen
+    bg-gradient-to-r
+    from-blue-100
+    via-white-500
+    to-base-500
+    background-animate flex justify-center">
 
         <div className="hero-content text-left">
           <div className="w-full">
@@ -26,8 +31,12 @@ export default function Home() {
         </div>
         <div className="avatar">
             {/* ACA DEBE IR EL LOGO */}
-        <div className="w-96 flex p-4 bg-red-400 rounded-full"></div>
+        <div className="w-96 flex p-4 bg-red-400 rounded-full shadow-2xl"></div>
         </div>
+      </div>
+
+      <div>
+        <div></div>
       </div>
     </main>
   )

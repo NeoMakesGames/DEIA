@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Navbar(){
     return(
-            <div className="drawer z-40">
+            <div className="drawer z-40 shadow-md">
   <input id="my-drawer-3" type="checkbox" className="drawer-toggle" /> 
   <div className="drawer-content flex flex-col">
 
