@@ -22,16 +22,16 @@ export default function Home() {
     background-animate flex justify-center">
 
         <div className="hero-content text-left">
-          <div className="w-full">
+          <div className="w-full px-4">
             <h1 className="text-5xl font-bold">DEIA</h1>
-            <p className="py-6">Continuamos generando este proyecto, pero en unos meses va a ser mejor.</p>
+            <p className="py-6 ">Continuamos generando este proyecto, pero en unos meses va a ser mejor.</p>
             <button className="btn btn-primary"><Link href="/login">Get Started</Link></button>
             <button className="btn bg-accent" onClick={ () => {signIn()}}>Enviar/Login con auth</button>
           </div>
         </div>
-        <div className="avatar">
+        <div className="avatar p-4">
             {/* ACA DEBE IR EL LOGO */}
-        <div className="w-96 flex p-4 bg-red-400 rounded-full shadow-2xl"></div>
+        <div className="w-96 flex bg-red-400 rounded-full shadow-2xl"></div>
         </div>
       </div>
 
