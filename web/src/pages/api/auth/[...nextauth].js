@@ -1,14 +1,12 @@
 import pb from "@/../public/lib/pocketbase";
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from "next-auth/providers/google";
+//import EmailProvider from "next-auth/providers/email";
 
 export default NextAuth({
     strategy: 'jwt',
     providers: [
-
-
         CredentialsProvider({
 
             name: 'user and password',
@@ -18,24 +16,21 @@ export default NextAuth({
                 password: {  label: "Password", type: "password", placeholder: "Password" }
             },
             async authorize(credentials, req) {
-                console.log("true")
-                const {email, password} = credentials
-                const res = await pb.collection("administradores").authWithPassowrd(email, password);
-                if (res.status === 200) {
-                    console.log("true");
-                    return res;
+                const {email, password} = credentials;
+                const user = { id: "1", name: "J Smith", email: "jsmith@example.com" }
+                //const res = await pb.collection("administradores").getOne(id="yosruyz2pyf5lrl");
+                if (user) {
+                     return user;
                 } else {
-                    console.log("false");
                     return null;
                 }
             },
         }),
 
-
-        GithubProvider({
-            clientId:"Iv1.a0b25d7caf93c402",
-            clientSecret:"80a905433713416d037efbd4a383437f5b2cf0c3",
-        }),
+        GoogleProvider({
+            clientId:"19266694660-0ldq17qloaplorcoofd02s9dvjubcfg1.apps.googleusercontent.com",
+            clientSecret:"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",
+        }), 
     ],
     pages: {
        //signIn: '/auth/signin',
