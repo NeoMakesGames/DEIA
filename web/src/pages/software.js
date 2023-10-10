@@ -205,15 +205,15 @@ const pacientes = [
   
    const data = pacientes;
 
-  
+  //  esto funciona
     const [message, setmessage] = useState('');
 
       const handleChange = (event) => {
         console.log(message);
-        alert('el nombre es' +{message});
+        
       }
 
-      
+     // ESTO NO FUNCA 
    if (handleChange() != null) {
        data.filter((h) => h.include(handleChange()));
       console.log("hiciste una busqueda");
@@ -227,10 +227,10 @@ const pacientes = [
       <Navbar />
       <div className="flex">
         {/* Avatar o Perfil*/}
-        <div className="h-screen grow bg-base-300  w-3/12">
+        <div className="h-11/12 grow bg-base-300 p-4  w-3/12">
           <h1 className="text-blue-900 text-2xl font-bold p-4">Pacientes</h1>
           {/* SEARCH */}
-          <input type="text" id="message" name="message" onChange={(e) => setmessage(e.target.value)} value={message} placeholder="Nombre del paciente" className="input input-bordered w-full max-w-xs"/>
+          <input type="text" id="message" name="message" onChange={(event) => setmessage(event.target.value)} value={message} placeholder="Nombre del paciente" className="input input-bordered w-full max-w-xs"/>
           <h1>{message}</h1>
         
         </div>
@@ -238,45 +238,60 @@ const pacientes = [
         <div className="overflow-x-auto flex w-screen h-screen bg-neutral-100">
           <div className="p-4">
             <table className="table">
-              <thead className="text-xl">
+              <thead className="text-lg">
                 <th>Nombre</th>
                 <th>Mail</th>
               </thead>
 
-              <tbody className=" flex table-auto">
-                {data &&
+              
+                {/* {data &&
                   data.map((d) => {
                     console.log("la lista se rendriza")
                     return (
                       <div>
                         <tr className="hover w-full table-auto">
                           <td>
-                              <span>{d.datosPaciente.Nombre}{d.datosPaciente.Apellido}{d.datosPaciente.Mail}</span>
+                              <span>{d.datosPaciente.Nombre}{d.datosPaciente.Apellido}</span>
                               <div className="collapse-content">
                                 <button className="btn btn-sm">Editar</button>
                               </div>
                           </td>
-                          
-                        </tr> 
-                        {/* {data.map ((d) => {
+                          <td>
+                              <span>{d.datosPaciente.Mail}</span>
+
+                          </td>
+                        </tr>  */}
+                        {data.map ((d) => {
                           console.log("lista renderizada");
                           return(
-                         <tr className="p-4 table-auto hover w-full flex ">
-                           <td>
-                      <span> {d.datosPaciente.Nombre}  {d.datosPaciente.Apellido}  {d.datosPaciente.Mail}
-                      <div className="collapse-content">
-                                <button className="btn btn-sm">Editar</button>
-                              </div>
-                      </span>
-                      </td>
-                      </tr> 
 
+                          <div>
+                            <tbody>
+                              <tr className="p-4 table-auto hover:bg-yellow-500  w-full flex ">
+                                <td>
+                                  <div tabIndex="0" className="collapse  bg-primary-300 w-screen">
+                                  <span className="collapse-title flex"> {d.datosPaciente.Nombre}  {d.datosPaciente.Apellido} 
+                                    <div className="collapse-content">
+                                    <button className="btn btn-sm">Editar</button>
+                                    </div>
+                                    
+                                   </span>
+                                   </div>
+                                </td>
+                                <td>
+                                  <div>
+                                  <span className="justify-self-end"> {d.datosPaciente.Mail}</span>
+                                  </div>
+                                </td>
+                              </tr> 
+                            </tbody>
+                          </div>
                           )
-                        })} */}
-                        </div>
-                        )})}
+                        })} 
+                        {/* </div> */}
+                        {/* )})} */}
                   
-              </tbody>
+              
             </table>
           </div>
         </div>
