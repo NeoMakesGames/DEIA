@@ -27,6 +27,8 @@ export default function Home() {
             <p className="py-6 ">Continuamos generando este proyecto, pero en unos meses va a ser mejor.</p>
             <button className="btn btn-primary"><Link href="/login">Get Started</Link></button>
             <button className="btn bg-accent" onClick={ () => {signIn("")}}>Enviar/Login con auth</button>
+            <input type="date" className="btn"/>
+        
           </div>
         </div>
         <div className="avatar p-4">
