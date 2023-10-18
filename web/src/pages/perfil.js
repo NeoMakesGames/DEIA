@@ -1,7 +1,8 @@
 import Navbar from "@/components/navbar";
 import { Alice } from "next/font/google";
 import React, { useState, createElement } from "react";
-
+import { user } from "@/../public/lib/pocketbase";
+import { searchFor } from "./hooks/server/server.hooks";
 
  /* console.log("render boton");
    const [Boton, setBoton] = useState('desactivado');
@@ -101,7 +102,7 @@ const handleClick = () =>{
 
 
 export default function Perfil() {
-  console.log("render app");
+  console.log(user);
   // console.log(pacientes);
   return (
     <main>
@@ -111,7 +112,10 @@ export default function Perfil() {
         <div className="grid  flex-grow card bg-base-300 rounded-box place-items-center">
           <h1 className="card card-title p-8 h-full">Perfil</h1>
           <div className="p-4">
-            <button className="btn btn-secondary-300 btn-wide " >Ver Pacientes</button>
+            {/* Ju, con user.item (username, mail, etc) agarras lo que necesites. 
+            El tema de cuando se puede acceder al perfil o no, es un simple if statement */}
+            <h1>{user.username}</h1>
+            <button className="btn btn-secondary-300 btn-wide " onClick={() => searchFor("esp", "med2246")} >Ver Pacientes</button>
             
           </div>
         </div>
