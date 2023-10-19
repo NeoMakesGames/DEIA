@@ -1,70 +1,70 @@
-import { pb } from  "@/../public/lib/pocketbase.js";
-//import { useSession } from "next-auth/react";
+import pb from  "@/../public/lib/pocketbase.js";
+import { stringify } from "postcss";
 
+//Funciones del AUTH.
 
-const register = (data, adm) => {
-    (async () => {
-        if(adm){
-            try{
-                const user = await pb.collection('Administradores').create(data);
-                return user;
-            }catch(e)
-            {
-                console.log(e);
-                return null;
-            }
-        }
-        else{
-            try{
-                const user = await pb.collection('Medicos').create(data);
-                return user;   
-            }catch(e)
-            {
-                console.log(e);
-                return null;
-            }
-        }  
-    })();
-};
-
-const signUp = (userdata) => {
-    (async () => {
-        try{
-            const med = await pb.collection("Medicos").authWithPassword(userdata);
-            const adm = await pb.collection("Administradores").authWithPassword(userdata);
-        }catch(e){
-            console.log(e);
-        }
-        if(med.status === 200){
-            return med;
-        }
-        else if(adm.status === 200){
-            return adm;
-        }
-        console.log("error");
-        return null;
-
-    })
+async function reGister(userdata) {
+    try{
+        await pb.collection('adm').create(userdata);
+        //Crea un nuevo registro.
+        await pb.collection("adm").authWithPassword(userdata.username, userdata.password);
+        //Logea y devuelve el usuario en conjunto con un token de auth.
+    }catch(e)
+    {
+        console.log(e.response);
+        //catchea el error, devuelve al front algo para transmitir al usuario.
+    } 
 }
 
+async function logIn (userdata) {
+    try{
+        await pb.collection("adm").authWithPassword(userdata.username, userdata.password); 
+        //Logea y devuelve el usuario en conjunto con un token de auth.
+    }
+    catch(e)
+    {
+        console.log(e);
+        //catchea el error, devuelve al front algo para transmiir al usuario.
+    }
+}
 
-const logout = () => {
-    pb.authStore.clear;
-    return null;
+async function oAuth (providers)
+{
+    try{
+        const authData = await pb.collection('adm').authWithOAuth2({provider:{providers}, redirectUrl: "http://127.0.0.1:8090/api/oauth2-redirect" });
+    }
+    catch(e){
+        console.log(e);
+    }
+}
+
+async function logOut() {
+    await pb.authStore.clear();
+    //Limpia/Borra el token de auth.
 };
 
-const deleteAccount = () => {
-    id = pb.authStore.user.id;
-    (async () => {
-        const del = await pb.collection('users').delete(id.toString());
-        
-        if(del.staus === 200)
-        {
-            return null;
-        }
-        console.error("no se ha podido eliminar el usuario");
-        return null; 
+async function deleteAccount() {
+    try
+    {
+        const del = await pb.collection('adm').delete(pb.authStore.model.id);
+        //Elimina el registro de la tabla, cuyo id coincida con el del modelo del auth.
+    }
+    catch(e)
+    {
+        console.error(e);
+    }
+};
+
+//------------------->
+
+// Busquda de datos en las tablas
+
+async function searchFor(about, username) {
+    const records = await pb.collection(about).getFullList({
+        sort: 'medico = ' + toString({username})
     });
-};
+    console.log(records)
+    return records
+}
 
-export {register, signUp, logout, deleteAccount};
+export {reGister, logIn, oAuth, logOut, deleteAccount, searchFor};

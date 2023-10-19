@@ -3,11 +3,7 @@ import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import Navbar from '@/components/navbar'
 import {useEffect, useState} from 'react';
-import {getSession, signIn} from "next-auth/react";
-import pb from '@/../public/lib/pocketbase.js';
-
 const inter = Inter({ subsets: ['latin'] });
-
 export default function Home() {
   
   return (
@@ -28,7 +24,7 @@ export default function Home() {
             <button className="btn btn-primary"><Link href="/login">Get Started</Link></button>
             <button className="btn bg-accent" onClick={ () => {signIn("")}}>Enviar/Login con auth</button>
             <input type="date" className="btn"/>
-        
+
           </div>
         </div>
         <div className="avatar p-4">

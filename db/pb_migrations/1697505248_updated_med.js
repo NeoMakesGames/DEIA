@@ -1,28 +1,13 @@
 /// <reference path="../pb_data/types.d.ts" />
 migrate((db) => {
   const dao = new Dao(db)
-  const collection = dao.findCollectionByNameOrId("tku69umguhbyd5w")
+  const collection = dao.findCollectionByNameOrId("18rwv2dimceonqa")
 
   // add
   collection.schema.addField(new SchemaField({
     "system": false,
-    "id": "nl7avwks",
-    "name": "mail",
-    "type": "email",
-    "required": false,
-    "presentable": false,
-    "unique": false,
-    "options": {
-      "exceptDomains": null,
-      "onlyDomains": null
-    }
-  }))
-
-  // add
-  collection.schema.addField(new SchemaField({
-    "system": false,
-    "id": "hrcdumoe",
-    "name": "Password",
+    "id": "r7ad3amj",
+    "name": "surName",
     "type": "text",
     "required": false,
     "presentable": false,
@@ -34,16 +19,34 @@ migrate((db) => {
     }
   }))
 
+  // add
+  collection.schema.addField(new SchemaField({
+    "system": false,
+    "id": "rwopvhz4",
+    "name": "institucion",
+    "type": "relation",
+    "required": false,
+    "presentable": false,
+    "unique": false,
+    "options": {
+      "collectionId": "4szxpkekszun71w",
+      "cascadeDelete": false,
+      "minSelect": null,
+      "maxSelect": 1,
+      "displayFields": null
+    }
+  }))
+
   return dao.saveCollection(collection)
 }, (db) => {
   const dao = new Dao(db)
-  const collection = dao.findCollectionByNameOrId("tku69umguhbyd5w")
+  const collection = dao.findCollectionByNameOrId("18rwv2dimceonqa")
 
   // remove
-  collection.schema.removeField("nl7avwks")
+  collection.schema.removeField("r7ad3amj")
 
   // remove
-  collection.schema.removeField("hrcdumoe")
+  collection.schema.removeField("rwopvhz4")
 
   return dao.saveCollection(collection)
 })

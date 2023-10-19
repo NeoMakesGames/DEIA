@@ -1,19 +1,17 @@
 import PocketBase from 'pocketbase';
+//import de module
 
 const pb = new PocketBase('http://127.0.0.1:8090');
+//conexion a la db
 
-try{
-    console.log("Conexion Establecida.", pb);
-    const record = await pb.collection("administradores").getOne("123456789012345");
+export const user = pb.authStore.model;
+//Datos del user
+export const sessionToken = pb.authStore.token;
+//Token del auth
 
-    if (record.status === 200) {
-        console.log("true");
-    } else {
-        console.log(record.isLoaded);
-    }
+//console.log(user, sessionToken, pb)
+//checkeo de que todo ok
 
-}catch(e)
-{
-    console.log(e);
-}
 export default pb;
+//Export de la conexión.
+//No me acuerdo pq se necesita exportar asi, investigar o Vigi.

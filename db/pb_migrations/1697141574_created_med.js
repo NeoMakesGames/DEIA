@@ -1,16 +1,16 @@
 /// <reference path="../pb_data/types.d.ts" />
 migrate((db) => {
   const collection = new Collection({
-    "id": "p73ka4tcpg8ncvn",
-    "created": "2023-10-10 21:48:41.455Z",
-    "updated": "2023-10-10 21:48:41.455Z",
-    "name": "Medicos",
+    "id": "18rwv2dimceonqa",
+    "created": "2023-10-12 20:12:54.482Z",
+    "updated": "2023-10-12 20:12:54.482Z",
+    "name": "med",
     "type": "auth",
     "system": false,
     "schema": [
       {
         "system": false,
-        "id": "0ywvokty",
+        "id": "dgheihwq",
         "name": "name",
         "type": "text",
         "required": false,
@@ -24,7 +24,7 @@ migrate((db) => {
       },
       {
         "system": false,
-        "id": "clhvtlja",
+        "id": "oq0ffzvz",
         "name": "avatar",
         "type": "file",
         "required": false,
@@ -43,44 +43,12 @@ migrate((db) => {
           "thumbs": null,
           "protected": false
         }
-      },
-      {
-        "system": false,
-        "id": "hstapv2b",
-        "name": "Instituciones",
-        "type": "relation",
-        "required": false,
-        "presentable": false,
-        "unique": false,
-        "options": {
-          "collectionId": "q6k9rr3wemi9jvt",
-          "cascadeDelete": false,
-          "minSelect": null,
-          "maxSelect": 1,
-          "displayFields": null
-        }
-      },
-      {
-        "system": false,
-        "id": "miloxtkw",
-        "name": "Espirometrias",
-        "type": "relation",
-        "required": false,
-        "presentable": false,
-        "unique": false,
-        "options": {
-          "collectionId": "88g41jj0woddpnz",
-          "cascadeDelete": false,
-          "minSelect": null,
-          "maxSelect": 1,
-          "displayFields": null
-        }
       }
     ],
     "indexes": [],
-    "listRule": "",
+    "listRule": "id = @request.auth.id",
     "viewRule": "id = @request.auth.id",
-    "createRule": null,
+    "createRule": "",
     "updateRule": "id = @request.auth.id",
     "deleteRule": "id = @request.auth.id",
     "options": {
@@ -98,7 +66,7 @@ migrate((db) => {
   return Dao(db).saveCollection(collection);
 }, (db) => {
   const dao = new Dao(db);
-  const collection = dao.findCollectionByNameOrId("p73ka4tcpg8ncvn");
+  const collection = dao.findCollectionByNameOrId("18rwv2dimceonqa");
 
   return dao.deleteCollection(collection);
 })

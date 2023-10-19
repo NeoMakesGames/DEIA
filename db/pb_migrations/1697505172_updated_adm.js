@@ -3,16 +3,28 @@ migrate((db) => {
   const dao = new Dao(db)
   const collection = dao.findCollectionByNameOrId("_pb_users_auth_")
 
-  collection.listRule = ""
-  collection.createRule = null
+  // remove
+  collection.schema.removeField("xdq2cekn")
 
   return dao.saveCollection(collection)
 }, (db) => {
   const dao = new Dao(db)
   const collection = dao.findCollectionByNameOrId("_pb_users_auth_")
 
-  collection.listRule = null
-  collection.createRule = ""
+  // add
+  collection.schema.addField(new SchemaField({
+    "system": false,
+    "id": "xdq2cekn",
+    "name": "mail",
+    "type": "email",
+    "required": false,
+    "presentable": false,
+    "unique": false,
+    "options": {
+      "exceptDomains": null,
+      "onlyDomains": null
+    }
+  }))
 
   return dao.saveCollection(collection)
 })
