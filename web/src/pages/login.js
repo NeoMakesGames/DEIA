@@ -12,16 +12,27 @@ export default function Login() {
   return (
     <main>
       <Navbar />
-      <section className="min-h-screen flex items-center justify-center bg-base-300">
-        
-          {/* CONTIENE AL LOGIN */}
-            <div className="bg-cyan-300 flex">
-          {/* CONTIENE AL FORM*/}
-            
-          {/* CONTIENE A LA IMAGEN */}
-            </div>
-          
-        </section>
+      <section className="min-h-screen bg-base-300 flex items-center justify-center">
+        {/*     login container*/}
+        <div className="bg-base-100 flex max-w-6xl shadow-lg">
+          {/*     form container*/}
+          <div className="sm:w-1/2 p-5 px-16 mt-6 ">
+            <h2 className="font-bold text-2xl text-center text-secondary">Login</h2>
+
+            <form className="flex flex-col gap-4">
+                <input className="p-2 input mt-8" type="text" name="email" placeholder="Email"/>
+                <input className="p-2 input" type="password" name="password" placeholder="Password"/>
+                <button className="btn bg-secondary border-none text-base-100">Login</button>
+            </form>
+
+          </div>
+          {/*     image container*/}
+          <div className="w-1/2 sm:block hidden">
+            <div className="bg-gradient-to-t from-black to-transparent z-10">Deia</div>
+            <img  className="object-scale-down" src="/imgLogin.jpg" alt="ola" />
+          </div>
+        </div>
+      </section>
       
     </main>
   );
