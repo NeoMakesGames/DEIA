@@ -28,7 +28,7 @@ export default function Home() {
         </div>
         <div className="avatar p-4">
             {/* ACA DEBE IR EL LOGO */}
-        <div className="w-96 flex bg-red-400 rounded-full shadow-2xl"></div>
+        {/*<img src="/logoMinimalista.jpg" className="w-40 h-40" alt=""/>*/}
         </div>
       </div>
 

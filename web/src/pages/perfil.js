@@ -3,6 +3,7 @@ import { Alice } from "next/font/google";
 import React, { useState, createElement } from "react";
 import { user } from "@/../public/lib/pocketbase";
 import { searchFor } from "./hooks/server/server.hooks";
+import Login from "./login";
 
  /* console.log("render boton");
    const [Boton, setBoton] = useState('desactivado');
@@ -12,7 +13,7 @@ import { searchFor } from "./hooks/server/server.hooks";
        console.log('activado');
    };
 */
-const pacientes = [
+/*const pacientes = [
   {
     datosPaciente: {
       id: 1,
@@ -40,51 +41,9 @@ const pacientes = [
       Mail: "alice@example.com"
     }
   }
-];
-/* ESTA PRUEBA SOLO LOGRA MOSTRAR EN CONSOLA LOS ARRAYS
-function createDivsFromArray(Pacientes) {
-  console.log('esto deberia funcionar');
-  // Get a reference to the container where you want to append the divs
-  const container = document.getElementById("container"); // Replace "container" with your container's ID or use another method to select the container element.
+];*/
 
-  // Loop through the array and create a new div for each item
-  for (let i = 0; i < Pacientes.length; i++) {
-    // Create a new div element
-    const newDiv = document.createElement("div");
 
-    // Set the content of the div to the array item
-    newDiv.textContent = array[i];
-
-    // Append the div to the container
-    container.appendChild(newDiv);
-  }
-}*/
-
-//ESTE ES EL QUE FUNCIONA
-// function crearDiv(id) {
-//   var div = document.createElement('div');
-//   div.id = "container";
-
-//   // Use filter to find the patient with the matching id
-//   const paciente = pacientes[id];
-//   const datos = paciente.datosPaciente;
-//   console.log({paciente:paciente, pacientes:pacientes})
-
-//   // Check if a matching patient was found
-//   if (paciente) {
-//     div.textContent = "Nombre: " + datos.Nombre + " Apellido: " + datos.Apellido + " Edad: " + datos.Edad;
-//   } else {
-//     div.textContent = "Paciente no encontrado";
-//   }
-
-//   div.classList.add('bg-neutral-600', 'card', 'p-4', 'm-4', 'w-1/4');
-//   document.body.appendChild(div);
-// }
-/*const listPacientes = pacientes.map((datosPaciente)=>
-<li key={datosPaciente.Nombre}>
-  {datosPaciente.Nombre}
-</li>);
-*/
 const showPacientes = () => {
   var i = 0;
 pacientes.forEach(pacienteMostrar => {
@@ -108,31 +67,32 @@ export default function Perfil() {
     <main>
       {/* <h1></h1> */}
       <Navbar />
-      <div className="flex w-full p-4">
-        <div className="grid  flex-grow card bg-base-300 rounded-box place-items-center">
-          <h1 className="card card-title p-8 h-full">Perfil</h1>
-          <div className="p-4">
-            {/* Ju, con user.item (username, mail, etc) agarras lo que necesites. 
-            El tema de cuando se puede acceder al perfil o no, es un simple if statement */}
-            <h1>{user.username}</h1>
-            <button className="btn btn-secondary-300 btn-wide " onClick={() => searchFor("esp", "med2246")} >Ver Pacientes</button>
-            
-          </div>
-        </div>
-
-        <div className="divider divider-horizontal"></div>
-        <div className="grid  flex-grow card bg-base-300 rounded-box place-items-center">
-          <h1 className="card card-title p-8 h-full">Historial</h1>
-          <div className="p-4">
-          <button className="btn btn-secondary-300  btn-wide " onClick={showPacientes}>
-            Mostrar Pacientes
-          </button>
-         </div>
-
-        </div>
-      </div>
+      <Login/>
     </main>
   );
 }
+      // <div className="flex w-full p-4">
+      //   <div className="grid  flex-grow card bg-base-300 rounded-box place-items-center">
+      //     <h1 className="card card-title p-8 h-full">Perfil</h1>
+      //     <div className="p-4">
+      //       {/* Ju, con user.item (username, mail, etc) agarras lo que necesites. 
+      //       El tema de cuando se puede acceder al perfil o no, es un simple if statement */}
+      //       <h1>{user.username}</h1>
+      //       <button className="btn btn-secondary-300 btn-wide " onClick={() => searchFor("esp", "med2246")} >Ver Pacientes</button>
+            
+      //     </div>
+      //   </div>
+
+      //   <div className="divider divider-horizontal"></div>
+      //   <div className="grid  flex-grow card bg-base-300 rounded-box place-items-center">
+      //     <h1 className="card card-title p-8 h-full">Historial</h1>
+      //     <div className="p-4">
+      //     <button className="btn btn-secondary-300  btn-wide " onClick={showPacientes}>
+      //       Mostrar Pacientes
+      //     </button>
+      //    </div>
+
+      //   </div>
+      // </div>
 
 // const element = <Perfil persona="Adrian"/>;

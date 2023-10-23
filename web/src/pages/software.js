@@ -41,6 +41,12 @@ export default function Software() {
   }, []);
   //rederizamos la vista
 
+  const [isShowingComponents, setisShowingComponents] = useState(false);
+
+  const toggleElements = () => {
+    setisShowingComponents(!isShowingComponents);
+  }
+
   return (
     <main>
       <Navbar />
@@ -51,6 +57,10 @@ export default function Software() {
         </div>
 
       <div className="min-h-screen bg-base-100 flex items-center justify-center  flex-col">
+          {/* AGREGAR PACIENTES */}
+          <div>
+            <button>Agregar Pacientes</button>
+            </div>
         {/* search */}
         <div>
         <input
@@ -74,6 +84,7 @@ export default function Software() {
               <tr key={user.id}>
                 <td>{user.name}</td>
                 <td>{user.username}</td>
+                <button className="btn btn-xs mt-2">Ver</button>
               </tr>
             ))}
           </tbody>

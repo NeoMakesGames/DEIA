@@ -1,17 +1,22 @@
 /// <reference path="../pb_data/types.d.ts" />
 migrate((db) => {
+  const dao = new Dao(db);
+  const collection = dao.findCollectionByNameOrId("ei87vyfexjhnr4j");
+
+  return dao.deleteCollection(collection);
+}, (db) => {
   const collection = new Collection({
-    "id": "88g41jj0woddpnz",
-    "created": "2023-09-05 14:41:37.678Z",
-    "updated": "2023-09-05 14:41:37.678Z",
-    "name": "Espirometrias",
+    "id": "ei87vyfexjhnr4j",
+    "created": "2023-08-29 14:34:34.519Z",
+    "updated": "2023-08-29 14:34:34.519Z",
+    "name": "espirometrias",
     "type": "base",
     "system": false,
     "schema": [
       {
         "system": false,
-        "id": "4leaojlb",
-        "name": "field",
+        "id": "xxv1vuwp",
+        "name": "user",
         "type": "text",
         "required": false,
         "presentable": false,
@@ -24,24 +29,27 @@ migrate((db) => {
       },
       {
         "system": false,
-        "id": "7blqptwl",
-        "name": "data",
-        "type": "json",
+        "id": "sjpgzs0c",
+        "name": "date",
+        "type": "date",
         "required": false,
         "presentable": false,
         "unique": false,
-        "options": {}
+        "options": {
+          "min": "",
+          "max": ""
+        }
       },
       {
         "system": false,
-        "id": "w9v2sfor",
-        "name": "analisis",
+        "id": "jc7tqgs5",
+        "name": "data",
         "type": "file",
         "required": false,
         "presentable": false,
         "unique": false,
         "options": {
-          "maxSelect": 1,
+          "maxSelect": 99,
           "maxSize": 5242880,
           "mimeTypes": [],
           "thumbs": [],
@@ -50,15 +58,28 @@ migrate((db) => {
       },
       {
         "system": false,
-        "id": "vpet08bu",
-        "name": "fecha",
-        "type": "date",
+        "id": "nsqcr80u",
+        "name": "dataJson",
+        "type": "json",
+        "required": false,
+        "presentable": false,
+        "unique": false,
+        "options": {}
+      },
+      {
+        "system": false,
+        "id": "ylmcdejy",
+        "name": "field",
+        "type": "relation",
         "required": false,
         "presentable": false,
         "unique": false,
         "options": {
-          "min": "",
-          "max": ""
+          "collectionId": "_pb_users_auth_",
+          "cascadeDelete": false,
+          "minSelect": null,
+          "maxSelect": 1,
+          "displayFields": []
         }
       }
     ],
@@ -72,9 +93,4 @@ migrate((db) => {
   });
 
   return Dao(db).saveCollection(collection);
-}, (db) => {
-  const dao = new Dao(db);
-  const collection = dao.findCollectionByNameOrId("88g41jj0woddpnz");
-
-  return dao.deleteCollection(collection);
 })

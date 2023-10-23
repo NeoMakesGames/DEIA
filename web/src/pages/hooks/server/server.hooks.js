@@ -1,13 +1,24 @@
+import { user, sessionToken } from "../../../../public/lib/pocketbase";
 import pb from  "@/../public/lib/pocketbase.js";
-import { stringify } from "postcss";
 
 //Funciones del AUTH.
 
+function inSession() {
+    console.log(sessionToken);
+    if(sessionToken !== "")
+    {
+        console.log("esta en sesion");
+        return true;
+    }
+    console.log("no esta en sesion");
+    return false;
+}
+
 async function reGister(userdata) {
     try{
-        await pb.collection('adm').create(userdata);
+        await pb.collection('med').create(userdata);
         //Crea un nuevo registro.
-        await pb.collection("adm").authWithPassword(userdata.username, userdata.password);
+        await pb.collection("med").authWithPassword(userdata.username, userdata.password);
         //Logea y devuelve el usuario en conjunto con un token de auth.
     }catch(e)
     {
@@ -18,7 +29,7 @@ async function reGister(userdata) {
 
 async function logIn (userdata) {
     try{
-        await pb.collection("adm").authWithPassword(userdata.username, userdata.password); 
+        await pb.collection("med").authWithPassword(userdata.username, userdata.password); 
         //Logea y devuelve el usuario en conjunto con un token de auth.
     }
     catch(e)
@@ -67,4 +78,4 @@ async function searchFor(about, username) {
     return records
 }
 
-export {reGister, logIn, oAuth, logOut, deleteAccount, searchFor};
+export {reGister, logIn, oAuth, logOut, deleteAccount, searchFor, inSession};

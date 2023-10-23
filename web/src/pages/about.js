@@ -3,7 +3,7 @@ export default function About(){
     return(
         <main>
             <Navbar/>
-            <div className="hero min-h-screen bg-gradient-to-r from-blue-100 via-white-500 to-base-500  background-animate flex justify-center">
+            <div className="hero min-h-screen bg-base-300 flex justify-center">
                     {/*PRIMER SCREEN */}
             <div>
                 <div className="hero-content text-center">

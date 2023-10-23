@@ -16,9 +16,9 @@ export default function Navbar(){
       <div className="flex-none hidden lg:block">
         <ul className= "menu menu-horizontal mr-30 text-neutral-600 font-bold">
         
-          <li><Link href="/software">Software</Link></li>
-          <li><Link href="/about">About</Link></li>
-          <li><Link href="/perfil">perfil</Link></li>
+          <li><Link href="/software">Perfil</Link></li>
+          <li><Link href="/about">Quienes Somos</Link></li>
+          <li><Link href="/perfil">Informacion</Link></li>
           <li><Link href="/login">Log in</Link></li>
 
         </ul>
