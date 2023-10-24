@@ -51,16 +51,16 @@ export default function Software() {
     <main>
       <Navbar />
         {/* avatar */}
-        <div className="avatar flex items-center justify-center">
+        <div className="avatar flex items-center justify-center flex-col">
           <div className="w-24 rounded-full bg-amber-700 mt-8"></div>
           <h1 className="font-bold text-2xl text-center text-secondary mx-4">Nombre del medico</h1>
+          {/* AGREGAR PACIENTES */}
+          <div className="py-1">
+            <button>Agregar Pacientes</button>
+            </div>
         </div>
 
       <div className="min-h-screen bg-base-100 flex items-center justify-center  flex-col">
-          {/* AGREGAR PACIENTES */}
-          <div>
-            <button>Agregar Pacientes</button>
-            </div>
         {/* search */}
         <div>
         <input
@@ -68,8 +68,9 @@ export default function Software() {
           onChange={searcher}
           type="text"
           placeholder="Search"
-          className="input m-5"
+          className="px-10 py-2 m-5"
           ></input>
+          <button className="btn btn-wide bg-accent">Agregar pacientes</button>
           </div>
           {/* lista de pacientes */}
         <table className="table table-zebra w-2/3 my-5 mx-8">

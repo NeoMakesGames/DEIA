@@ -1,8 +1,9 @@
 import Navbar from "@/components/navbar";
 import { useForm } from "react-hook-form";
-import { logIn, oAuth } from "@/pages/hooks/server/server.hooks";
-import { inSession } from "@/pages/hooks/server/server.hooks";
+import { logIn, oAuth, inSession } from "@/pages/hooks/server/server.hooks";
 import { useState } from "react";
+import Historial from "@/components/historialPaciantes";
+import { sessionToken } from "../../public/lib/pocketbase";
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
@@ -11,12 +12,14 @@ export default function Login() {
     logIn(data);
   };
 
+  const [show, setShow] = useState(false)
+  const [session, setSession] = useState(false)
 
   return (
     <main>
-      {/* <Navbar /> */}
+       {/* <Navbar />  */}
       <section className="min-h-screen bg-base-300 flex items-center justify-center">
-        <h1> ESTA ES UNA PRUEBA</h1>
+        
         {/*     login container*/}
         <div className="bg-base-100 flex max-w-6xl shadow-lg">
           {/*     form container*/}
@@ -51,9 +54,14 @@ export default function Login() {
               <button
                 type="submit"
                 className="btn bg-secondary border-none text-base-100"
+                onClick={() => setSession(inSession())}
               >
-                Login
+                Login {session ? 'div 1' : 'div 2'}
               </button>
+              {!session ? (
+                <div className="bg-red-200">div 2</div>
+              ) : (<div className="bg-blue-400">div 1</div>)
+            }
             </form>
           </div>
           {/*     image container*/}
