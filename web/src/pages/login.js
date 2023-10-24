@@ -4,6 +4,7 @@ import { logIn, oAuth, inSession } from "@/pages/hooks/server/server.hooks";
 import { useState } from "react";
 import Historial from "@/components/historialPaciantes";
 import { sessionToken } from "../../public/lib/pocketbase";
+import { Router, useRouter } from "next/router";
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
@@ -14,6 +15,8 @@ export default function Login() {
 
   const [show, setShow] = useState(false)
   const [session, setSession] = useState(false)
+
+  const router = useRouter();
 
   return (
     <main>
@@ -54,13 +57,18 @@ export default function Login() {
               <button
                 type="submit"
                 className="btn bg-secondary border-none text-base-100"
-                onClick={() => setSession(inSession())}
+                onClick={() => setSession(inSession() && router.push('/'))}
               >
                 Login {session ? 'div 1' : 'div 2'}
               </button>
               {!session ? (
-                <div className="bg-red-200">div 2</div>
-              ) : (<div className="bg-blue-400">div 1</div>)
+                <div className="bg-red-200">div 2
+                <h1>no esta en sesion</h1>
+                </div>
+              ) : (<div className="bg-blue-400">div 1
+              <h1>estas en sesion</h1>
+              </div>)
+              // router.push('/');
             }
             </form>
           </div>
@@ -73,7 +81,7 @@ export default function Login() {
           </div>
         </div>
 
-        <button onClick={inSession}>sessionTokenprueba</button>
+        <button className="btn" onClick={inSession}>sessionTokenprueba</button>
       </section>
     </main>
   );
