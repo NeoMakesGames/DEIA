@@ -20,7 +20,13 @@ export default function Login() {
 
   return (
     <main>
-       {/* <Navbar />  */}
+      {session ? 'div 1' : <Navbar />  }
+      {!session ? (
+                <Navbar/>
+              ) : (<div className="bg-blue-400">div 1
+              <h1>estas en sesion</h1>
+              </div>)}
+        
       <section className="min-h-screen bg-base-300 flex items-center justify-center">
         
         {/*     login container*/}
