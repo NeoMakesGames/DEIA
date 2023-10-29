@@ -3,17 +3,20 @@ import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import Navbar from '@/components/navbar'
 import {useEffect, useState} from 'react';
+import NavbarSinsesion from '@/components/navbarSinsesion';
+
 const inter = Inter({ subsets: ['latin'] });
 export default function Home() {
+
+  const [session, setSession] = useState(false)
+
   return (
     <main>
-      <Navbar/>
-  
+{!session ? (
+                <NavbarSinsesion/>
+              ) : (<Navbar/>)}
       <div className="hero min-h-screen h-screen
-    bg-gradient-to-r
-    from-blue-100
-    via-white-500
-    to-base-500
+    bg-[#DBE3FF]
     background-animate flex justify-center">
 
         <div className="hero-content text-left">

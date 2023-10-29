@@ -1,5 +1,6 @@
 import Navbar from "@/components/navbar";
 import { useState, useEffect } from "react";
+import NavbarSinsesion from "@/components/navbarSinsesion";
 
 export default function Software() {
   //setear hooks
@@ -49,7 +50,7 @@ export default function Software() {
 
   return (
     <main>
-      <Navbar />
+
       <div>
         {/* avatar */}
         <div className="avatar flex items-center justify-center flex-col">

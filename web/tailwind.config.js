@@ -16,6 +16,25 @@ module.exports = {
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["winter"],
+    themes: [{
+          
+      "primary": "#4189B6",
+               
+      "secondary": "#f9a620",
+               
+      "accent": "#f43f5e",
+               
+      "neutral": "#0C0E15",
+               
+      "base-100": "#dbe3ff",
+               
+      "info": "#93e6fb",
+               
+      "success": "#80ced1",
+               
+      "warning": "#efd8bd",
+               
+      "error": "#e58b8b",
+               },],
   },
 }
