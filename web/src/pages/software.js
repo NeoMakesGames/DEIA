@@ -1,6 +1,8 @@
 import Navbar from "@/components/navbar";
 import { useState, useEffect } from "react";
 import NavbarSinsesion from "@/components/navbarSinsesion";
+import Historial from "@/components/historialPaciantes";
+import { Router } from "next/router";
 
 export default function Software() {
   //setear hooks
@@ -46,25 +48,67 @@ export default function Software() {
 
   const toggleElements = () => {
     setisShowingComponents(!isShowingComponents);
-  }
+  };
+
+
 
   return (
     <main>
-
-      <div>
+      <Navbar />
+      <div className="bg-[#DBE3FF]">
         {/* avatar */}
         <div className="avatar flex items-center justify-center flex-col">
           <div className="w-24 rounded-full bg-amber-700 mt-8"></div>
-          <h1 className="font-bold text-2xl text-center text-secondary mx-4 my-8">Perro Salchicha</h1>
+          <h1 className="font-bold text-2xl text-center text-secondary mx-4 my-8">
+            Perro Salchicha
+          </h1>
           {/* AGREGAR PACIENTES */}
           <div className="py-1">
             {/* <button className="btn btn-wide ">Agregar Pacientes</button> */}
-            </div>
+          </div>
         </div>
 
-      <div className="min-h-screen bg-base-100 flex items-center justify-center  flex-col">
-        {/* search */}
-        <div>
+        <div className="h-full bg-base-100 flex items-center flex-col">
+          {/* search */}
+          <input
+            type="text"
+            placeholder="Search"
+            className="w-6/12 h-10 py-4 px-4 rounded"
+            value={search}
+            onChange={searcher}
+          ></input>
+            {/* lista de pacientes */}
+            <table className="table table-zebra w-2/3 my-1 mx-8 h-[400px] overflow-y-auto ">
+          <thead>
+            <tr className="bg-curso text-black text-center">
+              <th>Nombre</th>
+              <th>User Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {results.map((user) => (
+              <tr key={user.id}>
+                <td>{user.name}</td>
+                <td>{user.username}</td>
+                <button className="btn btn-xs mt-2" onClick={toggleHistorial} >Ver</button>
+                
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        </div>
+        {/* agregar paciente boton */}
+        <div className="flex justify-center">
+          <button className="w-2/12 h-10 rounded  bg-amber-300">
+            Agregar pacientes
+          </button>
+        </div>
+      </div>
+    </main>
+  );
+}
+{
+  /* <div>
         <input
           value={search}
           onChange={searcher}
@@ -72,12 +116,12 @@ export default function Software() {
           placeholder="Search"
           className="px-10 py-3 mt-4 mx-2 border border-accent rounded-lg"
           ></input>
-          <button className="px-10 py-3 rounded-lg mx-2 bg-accent">Agregar pacientes</button>
+          <button className="px-10 py-3 rounded-lg mx-2 bg-red-500">Agregar pacientes</button>
           </div>
-          {/* lista de pacientes */}
+          {/* lista de pacientes --> luego volver a comentar 
         <table className="table table-zebra w-2/3 my-1 mx-8">
           <thead>
-            <tr className="bg-curso text-white text-center">
+            <tr className="bg-curso text-black text-center">
               <th>Nombre</th>
               <th>User Name</th>
             </tr>
@@ -92,8 +136,5 @@ export default function Software() {
             ))}
           </tbody>
         </table>
-      </div>
-      </div>
-    </main>
-  );
+      </div> */
 }

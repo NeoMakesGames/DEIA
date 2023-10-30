@@ -85,7 +85,7 @@ export default function Login() {
           </div>
         </div>
 
-        <button className="btn" onClick={inSession}>sessionTokenprueba</button>
+        {/* <button className="btn" onClick={inSession}>sessionTokenprueba</button> */}
       </section>
     </main>
   );

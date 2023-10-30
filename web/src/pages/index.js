@@ -21,17 +21,16 @@ export default function Home() {
 
         <div className="hero-content text-left">
           <div className="w-full px-4">
-            <h1 className="text-5xl font-bold">DEIA</h1>
+            <h1 className="text-5xl font-bold">D E I A</h1>
             <p className="py-6 ">Continuamos generando este proyecto, pero en unos meses va a ser mejor.</p>
-            <button className="btn btn-primary"><Link href="/login">Get Started</Link></button>
-            <button className="btn bg-accent">Enviar/Login con auth</button>
-            <input type="date" className="btn"/>
+            <Link className="btn bg-sky-700" href="/login">Get Started</Link>
+        
 
           </div>
         </div>
-        <div className="avatar p-4">
+        <div className="w-[500px] rounded-full overflow-hidden ">
             {/* ACA DEBE IR EL LOGO */}
-        {/*<img src="/logoMinimalista.jpg" className="w-40 h-40" alt=""/>*/}
+        <img src="/logoMinimalista.jpg"   alt=""/>
         </div>
       </div>
 

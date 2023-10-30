@@ -49,14 +49,14 @@ export default function NavbarSinsesion() {
           <li>
             <Link href="/">Info</Link>
           </li>
-          <li>
+          {/* <li>
             <Link href="/login">Login</Link>
-          </li>
+          </li> */}
 
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn bg-[#F9A620] border-none"><Link href="/login">Login</Link></a>
+        <Link className="btn" href="/login">Login</Link>
       </div>
     </div>
   );

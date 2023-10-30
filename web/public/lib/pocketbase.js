@@ -1,3 +1,5 @@
+//user: benjadbf@gmail.com pass:1234567890
+
 import PocketBase from 'pocketbase';
 //import de module
 
