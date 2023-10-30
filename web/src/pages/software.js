@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import NavbarSinsesion from "@/components/navbarSinsesion";
 import Historial from "@/components/historialPaciantes";
 import { Router } from "next/router";
+import Link from "next/link";
 
 export default function Software() {
   //setear hooks
@@ -44,13 +45,7 @@ export default function Software() {
   }, []);
   //rederizamos la vista
 
-  const [isShowingComponents, setisShowingComponents] = useState(false);
-
-  const toggleElements = () => {
-    setisShowingComponents(!isShowingComponents);
-  };
-
-
+ 
 
   return (
     <main>
@@ -88,10 +83,11 @@ export default function Software() {
           <tbody>
             {results.map((user) => (
               <tr key={user.id}>
+                <Link href={'/user/${user.id}'}>
                 <td>{user.name}</td>
                 <td>{user.username}</td>
-                <button className="btn btn-xs mt-2" onClick={toggleHistorial} >Ver</button>
-                
+                <button className="btn btn-xs mt-2">Ver</button>
+                </Link>
               </tr>
             ))}
           </tbody>

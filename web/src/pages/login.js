@@ -62,7 +62,7 @@ export default function Login() {
               <button
                 type="submit"
                 className="btn btn-secondary border-none text-base-100"
-                onClick={() => setSession(inSession() && router.push('/'))}
+                onClick={() => setSession(inSession() /*&& router.push('/')*/)}
               >
                 Login
                 {/* Login {session ? 'div 1' : 'div 2'} */}

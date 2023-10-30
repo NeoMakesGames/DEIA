@@ -42,7 +42,8 @@ export default function Navbar(){
         </ul>
       </div>
       <div className="navbar-end">
-        <button className="btn bg-[#F9A620] border-none"><Link href="/login">Login</Link></button>
+        
+        {/* <button className="btn bg-[#F9A620] border-none"><Link href="/login">Login</Link></button> */}
       </div>
     </div>
     )
