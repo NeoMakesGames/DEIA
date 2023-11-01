@@ -45,12 +45,10 @@ export default function Software() {
   }, []);
   //rederizamos la vista
 
- 
-
   return (
     <main>
       <Navbar />
-      <div className="bg-[#DBE3FF]">
+      <div className="bg-[#DBE3FF] h-full overflow-y-auto">
         {/* avatar */}
         <div className="avatar flex items-center justify-center flex-col">
           <div className="w-24 rounded-full bg-amber-700 mt-8"></div>
@@ -72,29 +70,28 @@ export default function Software() {
             value={search}
             onChange={searcher}
           ></input>
-            {/* lista de pacientes */}
-            <table className="table table-zebra w-2/3 my-1 mx-8 h-[400px] overflow-y-auto ">
-          <thead>
-            <tr className="bg-curso text-black text-center">
-              <th>Nombre</th>
-              <th>User Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {results.map((user) => (
-              <tr key={user.id}>
-                <Link href={'/user/${user.id}'}>
-                <td>{user.name}</td>
-                <td>{user.username}</td>
-                <button className="btn btn-xs mt-2">Ver</button>
-                </Link>
+          {/* lista de pacientes */}
+          <table className="table table-zebra w-2/3 my-1 mt-3 mx-8 h-[400px] overflow-y-auto ">
+            <thead>
+              <tr className="bg-curso text-black text-center">
+                <th>Nombre</th>
+                <th>User Name</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {results.map((user) => (
+                <tr key={user.id}>
+                  <Link href={`/espirometrias/${user.id}`}>
+                  <td>{user.name}</td>
+                  <td>{user.username}</td>
+                    </Link>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
         {/* agregar paciente boton */}
-        <div className="flex justify-center">
+        <div className="flex justify-center my-8">
           <button className="w-2/12 h-10 rounded  bg-amber-300">
             Agregar pacientes
           </button>
