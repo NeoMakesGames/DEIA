@@ -28,7 +28,7 @@ export default function Navbar(){
            <li><Link href="/software">Perfil</Link></li>
            <li><Link href="/about">Quienes Somos</Link></li>
            <li><Link href="/perfil">Informacion</Link></li>
-           <li><Link href="/login">Log in</Link></li>
+           {/* <li><Link href="/login">Log in</Link></li> */}
           </ul>
         </div>
         <a className="btn btn-ghost normal-case text-xl">DEIA</a>
@@ -37,7 +37,7 @@ export default function Navbar(){
         <ul className="menu menu-horizontal px-1">
            <li><Link href="/software">Perfil</Link></li>
            <li><Link href="/perfil">Informacion</Link></li>
-           <li><Link href="/login">Log in</Link></li>
+           {/* <li><Link href="/login">Log in</Link></li> */}
            <li><Link href="/about">Quienes Somos</Link></li>
         </ul>
       </div>
