@@ -4,12 +4,13 @@ import NavbarSinsesion from "@/components/navbarSinsesion";
 import Historial from "@/components/historialPaciantes";
 import { Router } from "next/router";
 import Link from "next/link";
-import { searchFor } from "./hooks/server/server.hooks";
+import { lookForEsp } from "./hooks/server/server.hooks";
+import Modal from "@/components/Modal";
 
 export default function Software() {
 
-  // const espirometrias = ()  => {searchFor();}
-  // console.log(espirometrias);
+ const espirometrias = () => {lookForEsp()};
+  console.log(espirometrias);
 
   //setear hooks
 
@@ -50,6 +51,23 @@ export default function Software() {
     showData();
   }, []);
   //rederizamos la vista
+
+  //AGREGAR ´PACIENTES
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
+    closeModal();
+  };
 
   return (
     <main>
@@ -99,10 +117,12 @@ export default function Software() {
         </div>
         {/* agregar paciente boton */}
         <div className="flex justify-center my-8">
-          <button className="w-2/12 h-10 rounded  bg-amber-300">
+          <button onClick={openModal} className="w-2/12 h-10 rounded  bg-amber-300">
             Agregar pacientes
           </button>
+          <Modal show={showModal} onClose={closeModal} onSubmit={handleSubmit} />
         </div>
+        <p>{espirometrias}</p>
       </div>
     </main>
   );
