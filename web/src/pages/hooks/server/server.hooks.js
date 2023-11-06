@@ -1,7 +1,9 @@
 import { user, sessionToken } from "../../../../public/lib/pocketbase";
 import pb from  "@/../public/lib/pocketbase.js";
 
+//
 //Funciones del AUTH.
+//
 
 function inSession() {
     console.log(sessionToken);
@@ -52,7 +54,7 @@ async function oAuth (providers)
 
 async function logOut() {
     await pb.authStore.clear();
-    //Limpia/Borra el token de auth.
+    //Elimina el token de auth del browser.
 };
 
 async function deleteAccount() {
@@ -67,17 +69,16 @@ async function deleteAccount() {
     }
 };
 
+//
+// Busquda de datos en las tablas.
+//
 
-//------------------->
-
-// Busquda de datos en las tablas
-
-async function searchFor(about, username) {
-    const records = await pb.collection('esp').getFullList({
-       // sort: 'medico = ' + toString({username})
-    });
-    console.log(records)
+async function lookForEsp() {
+    const records = await pb.collection('esp').getFullList();
+    //Devuelve todos los registros de la tabla de espirometrias.
+    //La API de PB la modifique para que unicamente devuelva records que correspondan al id del medico logeado.
     return records
 }
 
-export {reGister, logIn, oAuth, logOut, deleteAccount, searchFor, inSession};
+export {reGister, logIn, oAuth, logOut, deleteAccount, lookForEsp, inSession};
+//Exporto todas las fuciones anteriores.
