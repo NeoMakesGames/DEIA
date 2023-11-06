@@ -13,6 +13,7 @@ function inSession() {
     console.log("no esta en sesion");
     return false;
 }
+//es recontra inseguro y funciona. Por ahora no se rompe.
 
 async function reGister(userdata) {
     try{
@@ -66,13 +67,14 @@ async function deleteAccount() {
     }
 };
 
+
 //------------------->
 
 // Busquda de datos en las tablas
 
 async function searchFor(about, username) {
-    const records = await pb.collection(about).getFullList({
-        sort: 'medico = ' + toString({username})
+    const records = await pb.collection('esp').getFullList({
+       // sort: 'medico = ' + toString({username})
     });
     console.log(records)
     return records
