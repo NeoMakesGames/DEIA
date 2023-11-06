@@ -4,8 +4,13 @@ import NavbarSinsesion from "@/components/navbarSinsesion";
 import Historial from "@/components/historialPaciantes";
 import { Router } from "next/router";
 import Link from "next/link";
+import { searchFor } from "./hooks/server/server.hooks";
 
 export default function Software() {
+
+  // const espirometrias = ()  => {searchFor();}
+  // console.log(espirometrias);
+
   //setear hooks
 
   const [users, setUsers] = useState([]);
@@ -14,6 +19,7 @@ export default function Software() {
   // funcion para traer los datos de la api
 
   //convertir la lista en un objeto json
+  //  PONER ACA EL JSON DE LOS PACIENTES
   const url = "https://jsonplaceholder.typicode.com/users";
 
   const showData = async () => {
@@ -50,6 +56,7 @@ export default function Software() {
       <Navbar />
       <div className="bg-[#DBE3FF] h-full overflow-y-auto">
         {/* avatar */}
+        {/* PONER ACA EL NOMBRE DEL MEDICO */}
         <div className="avatar flex items-center justify-center flex-col">
           <div className="w-24 rounded-full bg-amber-700 mt-8"></div>
           <h1 className="font-bold text-2xl text-center text-secondary mx-4 my-8">

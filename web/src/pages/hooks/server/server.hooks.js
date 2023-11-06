@@ -75,6 +75,7 @@ async function deleteAccount() {
 
 async function lookForEsp() {
     const records = await pb.collection('esp').getFullList();
+    console.log(records);
     //Devuelve todos los registros de la tabla de espirometrias.
     //La API de PB la modifique para que unicamente devuelva records que correspondan al id del medico logeado.
     return records

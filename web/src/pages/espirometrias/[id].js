@@ -4,7 +4,7 @@ import Navbar from "@/components/navbar";
 
 const entradaPaciente = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const { id, name, username } = router.query;
 
   return (
     <main>
@@ -23,7 +23,7 @@ const entradaPaciente = () => {
             </h1>
           </div>
 
-          <DetallesPaciente id={id} />
+          <DetallesPaciente infoPaciente={id, name, username} />
           <div className="w-11/12 bg-slate-800 h-px"></div>
           <div className=" w-full flex justify-start items-start flex-col">
             <h1 className="text-black text-[20px] font-bold my-[15px]  px-8">

@@ -3,8 +3,6 @@
 import PocketBase from 'pocketbase';
 //import de module
 
-console.log(123);
-
 const pb = new PocketBase('http://127.0.0.1:8090');
 //conexion a la db
 
