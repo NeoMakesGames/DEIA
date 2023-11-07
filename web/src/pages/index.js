@@ -4,7 +4,6 @@ import Link from 'next/link'
 import Navbar from '@/components/navbar'
 import {useEffect, useState} from 'react';
 import NavbarSinsesion from '@/components/navbarSinsesion';
-import {searchFor} from '@/pages/hooks/server/server.hooks';
 
 const inter = Inter({ subsets: ['latin'] });
 export default function Home() {
@@ -25,7 +24,7 @@ export default function Home() {
             <h1 className="text-5xl font-bold">D E I A</h1>
             <p className="py-6 ">Continuamos generando este proyecto, pero en unos meses va a ser mejor.</p>
             <Link className="btn bg-sky-700" href="/login">Get Started</Link>
-          </div>
+            </div>
         </div>
         <div className="w-[500px] rounded-full overflow-hidden ">
             {/* ACA DEBE IR EL LOGO */}

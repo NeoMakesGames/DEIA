@@ -4,7 +4,7 @@ import NavbarSinsesion from "@/components/navbarSinsesion";
 import Historial from "@/components/historialPaciantes";
 import { Router } from "next/router";
 import Link from "next/link";
-import { lookForEsp } from "./hooks/server/server.hooks";
+import { lookForEsp } from "./hooks/server.hooks";
 import Modal from "@/components/Modal";
 
 export default function Software() {

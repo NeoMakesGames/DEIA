@@ -1,6 +1,6 @@
 import Navbar from "@/components/navbar"
 import NavbarSinsesion from "@/components/navbarSinsesion"
-import { inSession } from "./hooks/server/server.hooks"
+import { inSession } from "./hooks/server.hooks"
 import { useState } from "react"
 
 export default function About(){

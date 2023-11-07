@@ -1,6 +1,6 @@
 import Navbar from "@/components/navbar";
 import React, { useEffect, useState } from "react";
-import { lookForEsp } from "./hooks/server/server.hooks";
+import { lookForEsp } from "./hooks/server.hooks";
 
 export default function formPacientes() {
   const espirometrias = () => {

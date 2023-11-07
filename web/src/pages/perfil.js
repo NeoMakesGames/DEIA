@@ -2,7 +2,7 @@ import Navbar from "@/components/navbar";
 import { Alice } from "next/font/google";
 import React, { useState, createElement } from "react";
 import { user } from "@/../public/lib/pocketbase";
-import { searchFor } from "./hooks/server/server.hooks";
+import { searchFor } from "./hooks/server.hooks";
 import Login from "./login";
 
  /* console.log("render boton");

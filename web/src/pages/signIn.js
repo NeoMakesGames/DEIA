@@ -1,6 +1,6 @@
 import Navbar from "@/components/navbar"
 import { useForm } from "react-hook-form";
-import { reGister } from "@/pages/hooks/server/server.hooks";
+import { reGister } from "./hooks/server.hooks";
 
 export default function Login(){
 

@@ -1,9 +1,8 @@
 import Navbar from "@/components/navbar";
 import { useForm } from "react-hook-form";
-import { logIn, oAuth, inSession } from "@/pages/hooks/server/server.hooks";
+import { logIn, oAuth, inSession } from "./hooks/server.hooks";
 import { useState } from "react";
 import Historial from "@/components/historialPaciantes";
-import { sessionToken } from "../../public/lib/pocketbase";
 import { Router, useRouter } from "next/router";
 import NavbarSinsesion from "@/components/navbarSinsesion";
 
@@ -95,7 +94,7 @@ export default function Login() {
               <button
                 type="submit"
                 className="btn btn-secondary border-none text-base-100"
-                onClick={() => setSession(inSession() /*&& router.push('/')*/)}
+                // onClick={() => setSession(inSession() /*&& router.push('/')*/)}
               >
                 Login
                 {/* Login {session ? 'div 1' : 'div 2'} */}
