@@ -23,16 +23,16 @@ export default function Login() {
       {/* {session ? 'div 1' : <Navbar />  } */}
       {!session ? <NavbarSinsesion /> : <Navbar />}
 
-      <section className="min-h-screen bg-[#DBE3FF] flex items-center justify-center overflow-y-auto">
+      <section className="min-h-screen bg-white flex items-center justify-center overflow-y-auto">
         {/*     login container*/}
-        <div className="bg-white flex w-screen h-screen shadow-lg rounded-lg ">
+        {/* <div className="bg-white flex w-screen  shadow-lg rounded-lg "> */}
           {/*     form container*/}
-          <div className="sm:w-1/2 p-5 px-16 mt-6 ">
+          <div className="sm:w-1/2 p-5 px-10 mx-6 border-4 h-screen">
             <h2 className="font-bold text-2xl text-center text-secondary mt-4 mb-6">
               Login
             </h2>
 
-            <form onSubmit={handleSubmit(reg)} className="flex justify-start items-start flex-col gap-5">
+            <form onSubmit={handleSubmit(reg)} className="flex justify-center items-center flex-col gap-5">
               {/* <label htmlFor="logIn-name">
                 <h1>Email</h1>
                 <input
@@ -45,40 +45,28 @@ export default function Login() {
                 />
               </label> */}
                 {/* EMAIL */}
-              <div className="flex items-center justify-center">
-                <div class="relative ">
-                  <input
-                    {...register("username")}
-                    name="username"
-                    type="text"
-                    className="mt-1 text-md border-b border-gray-300 py-1 focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
-                  />
-                  <label
-                    for="logIn-name"
-                    className="absolute  left-0 top-1  cursor-text text-xs peer-focus:-top-4 transition-all peer-focus:text-blue-700"
-                  >
-                    Email
-                  </label>
-                </div>
-              </div>
+                <div className="py-4 form-control">
+              <label className=" label">
+                <span className="label-text">Email</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Ingrese email"
+                className=" input w-full p-2 border-b border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
+              ></input>
+            </div>
 
               {/*   PASSWORD */}
-              <div className="flex items-center justify-center">
-                <div className="relative">
-                  <input
-                    {...register("password")}
-                    name="password"
-                    type="password"
-                    className="mt-1 border-b border-gray-300 py-1 focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
-                  />
-                  <label
-                    for="logIn-pass"
-                    className="absolute left-0 top-1 cursor-text text-xs peer-focus:-top-4 transition-all peer-focus:text-blue-700"
-                  >
-                    Contraseña
-                  </label>
-                </div>
-              </div>
+              <div className="py-4 form-control">
+              <label className=" label">
+                <span className="label-text">Contraseña</span>
+              </label>
+              <input
+                type="password"
+                placeholder="Ingrese contraseña"
+                className=" input w-full   p-2  border-b border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
+              ></input>
+            </div>
               {/* <label htmlFor="logIn-pass">
                 <h1>Contraseña</h1>
                 <input
@@ -93,13 +81,18 @@ export default function Login() {
 
               <button
                 type="submit"
+<<<<<<< Updated upstream
                 className="btn btn-secondary border-none text-base-100"
                 // onClick={() => setSession(inSession() /*&& router.push('/')*/)}
+=======
+                className="btn px-[128px] bg-blue-700 border-none text-base-100"
+                onClick={() => setSession(inSession() /*&& router.push('/')*/)}
+>>>>>>> Stashed changes
               >
                 Login
                 {/* Login {session ? 'div 1' : 'div 2'} */}
               </button>
-              {
+              {/* {
                 !session ? (
                   <div className="bg-red-200">
                     div 2<h1>no esta en sesion</h1>
@@ -110,13 +103,13 @@ export default function Login() {
                   </div>
                 )
                 // router.push('/');
-              }
+              } */}
             </form>
           </div>
           {/*     image container*/}
           <div className="w-1/2 sm:block hidden flex justify-center items-center relative">
             <img
-              className="object-scale-down w-[400px] px-4 py-2 z-10"
+              className="object-scale-down w-[500px] px-4 py-2 z-10"
               src="/imgLOGINnueva.png"
               alt="ola"
             />
@@ -127,7 +120,7 @@ export default function Login() {
               Diagnostico de Estirometria con Inteligencia Artificial
             </h1>
           </div>
-        </div>
+        {/* </div> */}
 
         {/* <button className="btn" onClick={inSession}>sessionTokenprueba</button> */}
       </section>

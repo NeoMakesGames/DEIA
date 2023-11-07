@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export default function Navbar(){
     return(
-      <div className="navbar bg-base-100 ">
-      <div className="navbar-start shadow-xl">
+      <div className="navbar bg-base-100 shadow-3xl">
+      <div className="navbar-start ">
         <div className="dropdown">
           <label tabindex="0" className="btn btn-ghost lg:hidden">
             <svg
