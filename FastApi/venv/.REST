@@ -2,8 +2,8 @@ POST http://localhost:8000/predict HTTP/1.1
 Content-Type: application/json
 
 {  
-    "FEV1Value": 3.32,
-    "FEV1Pred": 77,
-    "FVCValue": 4.07,
-    "FVCPred": 80
+    "FEV1Value": 1.41,
+    "FEV1Pred": 70,
+    "FVCValue": 2,
+    "FVCPred": 83
 }
