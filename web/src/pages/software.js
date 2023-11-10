@@ -7,16 +7,14 @@ import Link from "next/link";
 import { lookForEsp } from "./hooks/server.hooks";
 import Modal from "@/components/Modal";
 
+
 export default function Software() {
-
- const espirometrias = () => {lookForEsp()};
-  console.log(espirometrias);
-
   //setear hooks
 
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
-
+  const [esp, setEsp] = useState(async() => await lookForEsp());
+  
   // funcion para traer los datos de la api
 
   //convertir la lista en un objeto json
@@ -122,7 +120,7 @@ export default function Software() {
           </button>
           <Modal show={showModal} onClose={closeModal} onSubmit={handleSubmit} />
         </div>
-        <p>{espirometrias}</p>
+        <p>{esp}</p>
       </div>
     </main>
   );

@@ -52,6 +52,7 @@ export default function Login() {
               <input
                 type="text"
                 placeholder="Ingrese email"
+                {...register("username")}
                 className=" input w-full p-2 border-b border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
               ></input>
             </div>
@@ -64,6 +65,7 @@ export default function Login() {
               <input
                 type="password"
                 placeholder="Ingrese contraseña"
+                {...register("password")}
                 className=" input w-full   p-2  border-b border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
               ></input>
             </div>
@@ -81,13 +83,8 @@ export default function Login() {
 
               <button
                 type="submit"
-<<<<<<< Updated upstream
-                className="btn btn-secondary border-none text-base-100"
-                // onClick={() => setSession(inSession() /*&& router.push('/')*/)}
-=======
                 className="btn px-[128px] bg-blue-700 border-none text-base-100"
                 onClick={() => setSession(inSession() /*&& router.push('/')*/)}
->>>>>>> Stashed changes
               >
                 Login
                 {/* Login {session ? 'div 1' : 'div 2'} */}

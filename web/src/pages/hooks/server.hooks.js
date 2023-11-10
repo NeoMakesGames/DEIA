@@ -42,7 +42,7 @@ async function logIn (userdata) {
     if(userdata.password !== "" && userdata.username !== "")
     {
         //user_existance = await pb.collection('med').getFirstListItem('username' == userdata.username);
-        if(user_existance === 200)
+        //if(user_existance === 200)
         {       
             try{
                 await pb.collection("med").authWithPassword(userdata.username, userdata.password); 
@@ -55,12 +55,12 @@ async function logIn (userdata) {
                 //catchea el error, devuelve al front algo para transmitir al usuario.
             }
         }
-        else
-        {
-            console.log("El usuario no existe.");
-            //catchea el error, devuelve al front algo para transmitir al usuario.
-            return "El usuario no existe.";
-        }
+        // else
+        // {
+        //     console.log("El usuario no existe.");
+        //     //catchea el error, devuelve al front algo para transmitir al usuario.
+        //     return "El usuario no existe.";
+        // }
     }
     else
     {
@@ -95,6 +95,7 @@ async function deleteAccount(medico) {
     catch(e)
     {
         console.error(e);
+        return "No se ha logrado eliminar el registro correctamente"
     }
 };
 
