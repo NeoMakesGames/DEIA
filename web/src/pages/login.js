@@ -1,6 +1,6 @@
 import Navbar from "@/components/navbar";
 import { useForm } from "react-hook-form";
-import { logIn, oAuth, inSession } from "./hooks/server.hooks";
+import { logIn, oAuth} from "./hooks/server.hooks";
 import { useState } from "react";
 import Historial from "@/components/historialPaciantes";
 import { Router, useRouter } from "next/router";
@@ -15,6 +15,7 @@ export default function Login() {
 
   const [show, setShow] = useState(false);
   const [session, setSession] = useState(false);
+  const [logInState, setState] = useState(""); //la idea con esto juli es que ñe asignes el valor de la funcion logIn(). devuelve ["ok", y diferentes "err_"], en base a eso deberia mandarte a la home, etc.
 
   const router = useRouter();
 
@@ -84,7 +85,6 @@ export default function Login() {
               <button
                 type="submit"
                 className="btn px-[128px] bg-blue-700 border-none text-base-100"
-                onClick={() => setSession(inSession() /*&& router.push('/')*/)}
               >
                 Login
                 {/* Login {session ? 'div 1' : 'div 2'} */}

@@ -6,15 +6,46 @@ import { Router } from "next/router";
 import Link from "next/link";
 import { lookForEsp } from "./hooks/server.hooks";
 import Modal from "@/components/Modal";
+const axios = require ('axios');
 
+
+
+const instance = axios.create({
+    headers: {
+      'Access-Control-Allow-Origin': 'http://localhost:3000',
+    },
+  });
+  
+async function ai() {
+    const formData= {  
+        "FEV1Value": 1.41,
+        "FEV1Pred": 70,
+        "FVCValue": 2,
+        "FVCPred": 83
+    }
+    instance.post('http://localhost:8000/predict', formData)
+    .then((response) => {
+      console.log('Successfully submitted data:', response.data);
+    })
+    .catch((error) => {
+      console.error('Error submitting data:', error);
+    });
+  }
+
+const espirometrias = await lookForEsp();
 
 export default function Software() {
   //setear hooks
 
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
-  const [esp, setEsp] = useState(async() => await lookForEsp());
-  
+  const [esp, setEsp] = useState(espirometrias);
+
+  esp.forEach(espirometria => {
+    //console.log(espirometria)
+    
+  });
+
   // funcion para traer los datos de la api
 
   //convertir la lista en un objeto json
@@ -120,7 +151,7 @@ export default function Software() {
           </button>
           <Modal show={showModal} onClose={closeModal} onSubmit={handleSubmit} />
         </div>
-        <p>{esp}</p>
+        <h1>{esp}</h1>
       </div>
     </main>
   );
