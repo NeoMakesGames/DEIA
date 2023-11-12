@@ -12,7 +12,9 @@ async def root(data: InputData):
     model = ModeloIA(ruta_modelo_hdf5)
     try:
         input_features = np.array([[data.FEV1Value, data.FEV1Pred, data.FVCValue, data.FVCPred]])
-        result = model.predecir(input_features).tolist()
+        result = model.predecir(input_features)
+        threshold = 0.5
+        result = 1 if result > threshold else 0
         return {"result": result}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
