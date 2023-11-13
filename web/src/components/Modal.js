@@ -1,4 +1,16 @@
+import { postAI } from "@/pages/hooks/server.hooks";
+import { useForm } from "react-hook-form";
+
 const Modal = ({ show, onClose, onSubmit }) => {
+  
+  const { register, handleSubmit } = useForm();
+
+  const ai = async(data) => {
+    const res = await postAI(data);
+    console.log(res);
+    return null;
+  };
+
   const modalClasses = show
     ? "fixed inset-0 flex items-start justify-center z-50 overflow-y-auto max-h-[400px] mt-[150px]  "
     : "hidden";
@@ -8,7 +20,7 @@ const Modal = ({ show, onClose, onSubmit }) => {
       <div className="absolute bg-white p-8 min-w-[700px] rounded-md shadow-lg  ">
         <h2 className="text-black text-[30px] font-bold my-2">Agregar Paciente</h2>
         <span className="text-black text-[20px] font-thin my-1">Completa el siguiente formulario</span>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit(ai)}>
           {/* <div className="flex items-start justify-center flex-col mt-8"> */}
             {/*nombre y apellido - text  */}
             <div className="py-4 form-control">
@@ -19,6 +31,7 @@ const Modal = ({ show, onClose, onSubmit }) => {
                 type="text"
                 placeholder="nombre y apellido"
                 className=" input w-full p-2 border-b border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
+                {...("name")}
               ></input>
             </div>
             {/* fecha nac - num */}
@@ -29,6 +42,7 @@ const Modal = ({ show, onClose, onSubmit }) => {
               <input
                 type="date"
                 className="input w-full p-2 border-b border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
+                {...register("birthday")}
               ></input>
             </div>
             {/* genero - select */}
@@ -36,7 +50,8 @@ const Modal = ({ show, onClose, onSubmit }) => {
             <label className="my-2 text-md label">
               <span className="">Seleccione genero</span>
             </label>
-              <select className="input w-full p-2 border-b border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit">
+              <select className="input w-full p-2 border-b border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
+              {...register("gender")}>
                 <option value="F">Femenino</option>
                 <option value="M">Masculino</option>
                 <option value="O">Otro</option>
@@ -51,6 +66,7 @@ const Modal = ({ show, onClose, onSubmit }) => {
                 <input
                   type="number"
                   className="input w-1/2 p-2 border-b border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
+                  {...register("FEV1Value")}
                 ></input>
               </div>
               <div className="label">
@@ -58,6 +74,7 @@ const Modal = ({ show, onClose, onSubmit }) => {
                 <input
                   type="number"
                   className="input w-1/2 p-2 border-b border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
+                  {...register("FEV1Pred")}
                 ></input>
               </div>
               <div className="label">
@@ -65,6 +82,7 @@ const Modal = ({ show, onClose, onSubmit }) => {
                 <input
                   type="number"
                   className="input w-1/2 p-2 border-b border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
+                  {...register("FVCValue")}
                 ></input>
               </div>
               <div className="label">
@@ -72,6 +90,7 @@ const Modal = ({ show, onClose, onSubmit }) => {
                 <input
                   type="number"
                   className="input w-1/2 p-2 border-b border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
+                  {...register("FVCPred")}
                 ></input>
               </div>
               </div>
@@ -81,6 +100,7 @@ const Modal = ({ show, onClose, onSubmit }) => {
               <textarea
                 type="text"
                 className="w-full textarea p-2 border-b border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
+                {...register("extraData")}
               ></textarea>
             </label>
             {/*submit */}

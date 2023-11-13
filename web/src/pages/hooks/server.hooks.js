@@ -1,5 +1,5 @@
-import { user, sessionToken } from "../../../public/lib/pocketbase";
-import pb from  "@/../public/lib/pocketbase.js";
+import pb, {user} from  "@/../public/lib/pocketbase.js";
+const axios = require ('axios');
 
 //
 //Funciones del AUTH.
@@ -118,34 +118,62 @@ async function lookForEsp() {
 
 
 //
-// Conexión con el server de IA
+// Conexión con el server de IA.
 //
 
-async function getAI(input){
+
+
+async function postAI(input){
+
+    const instance = axios.create({
+        headers: {
+            'Access-Control-Allow-Origin': 'http://localhost:3000',
+            //Le otorga a la url del servidor el permiso de acceder al de ia (cors).
+        },
+    });
+            
+    const prompts = {
+        "FEV1Value": input.FEV1Value,
+        "FEV1Pred": input.FEV1Pred,
+        "FVCValue": input.FVCValue,
+        "FVCPred": input.FVCPred,
+    }
+    //establece los valores del prompt.
+
+    //Método POST al server de ia.
+    const res = await instance.post('http://localhost:8000/predict', prompts).then(
+        (response) => {
+            return response.data
+            //Devuelve los resultados.
+        }).catch((e) => {
+            console.log(e)   
+            return "err_post";
+            //Devuelve si ocurre un error al 'enviar' los datos.
+        });
+
+    console.log(res);  
+    const espirometria_data= {
+    
+        "sexo": input.gender,
+        "datos_personales": input.extraData,
+        "nacimiento": input.birthday,
+        "medico": user.id,
+        "IA_res": res,
+        "nombre_y_apellido": "aleeee",
+        "FEV1_Value": input.FEV1Value,
+        "FEV1_Pred": input.FEV1Pred,
+        "FVC_Value": input.FVCValue,
+        "FVC_Pred": input.FVCPred,
+
+    }   
     try{
-        console.log(123)
-        const resAI = $http.send({
-            url:     "http://localhost:8000/predict",
-            method:  "POST",
-            body:
-            {
-                "FEV1Value": 1.41,
-                "FEV1Pred": 70,
-                "FVCValue": 2,
-                "FVCPred": 83
-            },
-            headers: {"content-type": "application/json"},
-            timeout: 5, 
-        })
-        console.log(resAI)
-        return resAI;
-    }
-    catch(e)
-    {
-        console.log(e)
-        return "err_AI";
-    }
+        await pb.collection('esp').create(espirometria_data);
+    console.log("yipiee")}catch(e){console.log(e)}
+    //crea el registro de la espirometria en la db
+
+    return res;
+    //devuelve los resultados al front
 }
 
-export {register, logIn, logOut, deleteAccount, lookForEsp, getAI};
+export {register, logIn, logOut, deleteAccount, lookForEsp, postAI};
 //Exporto todas las fuciones anteriores.

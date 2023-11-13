@@ -4,33 +4,9 @@ import NavbarSinsesion from "@/components/navbarSinsesion";
 import Historial from "@/components/historialPaciantes";
 import { Router } from "next/router";
 import Link from "next/link";
-import { lookForEsp } from "./hooks/server.hooks";
+import { lookForEsp, postAI } from "./hooks/server.hooks";
 import Modal from "@/components/Modal";
-const axios = require ('axios');
-
-
-
-const instance = axios.create({
-    headers: {
-      'Access-Control-Allow-Origin': 'http://localhost:3000',
-    },
-  });
-  
-async function ai() {
-    const formData= {  
-        "FEV1Value": 1.41,
-        "FEV1Pred": 70,
-        "FVCValue": 2,
-        "FVCPred": 83
-    }
-    instance.post('http://localhost:8000/predict', formData)
-    .then((response) => {
-      console.log('Successfully submitted data:', response.data);
-    })
-    .catch((error) => {
-      console.error('Error submitting data:', error);
-    });
-  }
+import { useForm } from "react-hook-form";
 
 const espirometrias = await lookForEsp();
 
@@ -41,10 +17,10 @@ export default function Software() {
   const [search, setSearch] = useState("");
   const [esp, setEsp] = useState(espirometrias);
 
-  esp.forEach(espirometria => {
-    //console.log(espirometria)
+  // esp.forEach(espirometria => {
+  //   //console.log(espirometria)
     
-  });
+  // });
 
   // funcion para traer los datos de la api
 
@@ -92,11 +68,12 @@ export default function Software() {
     setShowModal(false);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    closeModal();
-  };
+  // const handleSubmit = (e) => 
+  // {
+  //   se.preventDefault();
+  //   postAI();
+  //   closeModal();
+  // };
 
   return (
     <main>
@@ -149,9 +126,9 @@ export default function Software() {
           <button onClick={openModal} className="w-2/12 h-10 rounded  bg-amber-300">
             Agregar pacientes
           </button>
-          <Modal show={showModal} onClose={closeModal} onSubmit={handleSubmit} />
+          <Modal show={showModal} onClose={closeModal} />
         </div>
-        <h1>{esp}</h1>
+        <h1>{}</h1>
       </div>
     </main>
   );
