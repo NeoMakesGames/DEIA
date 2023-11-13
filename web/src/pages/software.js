@@ -19,11 +19,6 @@ export default function Software() {
 
   const [esp, setEsp] = useState(espirometrias);
 
-  // esp.forEach(espirometria => {
-  //   //console.log(espirometria)
-    
-  // });
-
   // funcion para traer los datos de la api
  const listaMedico = async () => {
   const respuesta = await lookForEsp();

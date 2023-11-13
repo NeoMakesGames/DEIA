@@ -152,24 +152,29 @@ async function postAI(input){
             //Devuelve si ocurre un error al 'enviar' los datos.
         });
 
-    console.log(res);  
     const espirometria_data= {
     
         "sexo": input.gender,
         "datos_personales": input.extraData,
         "nacimiento": input.birthday,
         "medico": user.id,
-        "IA_res": res,
-        "nombre_y_apellido": "aleeee",
+        "res_AI": JSON.stringify(res)[10], //no son las mejores tecnicas de programación, pero funca y como el rtado siempre es {result:x}, debería funcionar en tods lo casos.
+        "nombre_y_apellido": input.name,
         "FEV1_Value": input.FEV1Value,
         "FEV1_Pred": input.FEV1Pred,
         "FVC_Value": input.FVCValue,
         "FVC_Pred": input.FVCPred,
 
     }   
-    try{
-        await pb.collection('esp').create(espirometria_data);
-    console.log("yipiee")}catch(e){console.log(e)}
+    try
+    {
+    console.log(JSON.stringify(res))
+    await pb.collection('esp').create(espirometria_data);
+    }
+    catch(e)
+    {
+        return "err_db";
+    }
     //crea el registro de la espirometria en la db
 
     return res;

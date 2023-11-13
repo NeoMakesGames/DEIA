@@ -7,7 +7,6 @@ const Modal = ({ show, onClose, onSubmit }) => {
 
   const ai = async(data) => {
     const res = await postAI(data);
-    console.log(res);
     return null;
   };
 
@@ -31,7 +30,7 @@ const Modal = ({ show, onClose, onSubmit }) => {
                 type="text"
                 placeholder="nombre y apellido"
                 className=" input w-full p-2 border-b border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
-                {...("name")}
+                {...register("name")}
               ></input>
             </div>
             {/* fecha nac - num */}
