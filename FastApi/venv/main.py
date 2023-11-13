@@ -18,10 +18,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 @app.post("/predict")
 async def root(data: InputData):
-    ruta_modelo_hdf5 = "modelo_no-o.h5"
+    ruta_modelo_hdf5 = "modelo_no-o2.h5"
     model = ModeloIA(ruta_modelo_hdf5)
     try:
         input_features = np.array([[data.FEV1Value, data.FEV1Pred, data.FVCValue, data.FVCPred]])
