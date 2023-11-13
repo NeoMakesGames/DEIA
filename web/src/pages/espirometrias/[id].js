@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import DetallesPaciente from "@/components/detallesPaciente";
-import { id, name, username } from DetallesPaciente;
+//import { id, name, username } from DetallesPaciente;
 import Navbar from "@/components/navbar";
 
 const entradaPaciente = () => {

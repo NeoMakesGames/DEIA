@@ -106,14 +106,13 @@ async function lookForEsp() {
         const list = await pb.collection('esp').getFullList();
 
         //Devuelve todos los registros de la tabla de espirometrias.
-
         //La API de PB la modifique para que unicamente devuelva records que correspondan al id del medico logeado.
 
         return list;
     }catch(e)
 
     {
-        return "err_esp"; //error 404, no se encontró o no existen
+        return "err_esp", e; //error 404, no se encontró o no existen
     }
 }
 
