@@ -1,6 +1,6 @@
 import Navbar from "@/components/navbar";
 import { useForm } from "react-hook-form";
-import { logIn, oAuth, inSession } from "./hooks/server.hooks";
+import { logIn, oAuth, reGister } from "./hooks/server.hooks";
 import { useState } from "react";
 import Historial from "@/components/historialPaciantes";
 import { Router, useRouter } from "next/router";
@@ -23,17 +23,20 @@ export default function Login() {
       {/* {session ? 'div 1' : <Navbar />  } */}
       {!session ? <NavbarSinsesion /> : <Navbar />}
 
-      <section className="min-h-screen bg-white flex items-center justify-center overflow-y-auto">
+      <section className="min-h-fit bg-[#E6F0F4] flex items-center justify-center overflow-y-auto">
         {/*     login container*/}
         {/* <div className="bg-white flex w-screen  shadow-lg rounded-lg "> */}
-          {/*     form container*/}
-          <div className="sm:w-1/2 p-5 px-10 mx-6 border-4 h-screen">
-            <h2 className="font-bold text-2xl text-center text-secondary mt-4 mb-6">
-              Login
-            </h2>
+        {/*     form container*/}
+        <div className="flex items-center justify-start flex-col sm:w-1/2 space-y-8 h-screen py-36">
 
-            <form onSubmit={handleSubmit(reg)} className="flex justify-center items-center flex-col gap-5">
-              {/* <label htmlFor="logIn-name">
+          <h2 className="font-bold text-4xl text-start text-secondary w-8/12">
+            Login
+          </h2>
+          <form
+            onSubmit={handleSubmit(reg)}
+            className="flex justify-center items-center flex-col gap-5 w-8/12"
+          >
+            {/* <label htmlFor="logIn-name">
                 <h1>Email</h1>
                 <input
                   className="p-2 input input-sm px-10 mt-4"
@@ -44,8 +47,8 @@ export default function Login() {
                  
                 />
               </label> */}
-                {/* EMAIL */}
-                <div className="py-4 form-control">
+            {/* EMAIL */}
+            <div className="w-full form-control">
               <label className=" label">
                 <span className="label-text">Email</span>
               </label>
@@ -53,12 +56,12 @@ export default function Login() {
                 type="text"
                 placeholder="Ingrese email"
                 {...register("username")}
-                className=" input w-full p-2 border-b border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
+                className="   w-full p-2 border-b-4 border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
               ></input>
             </div>
 
-              {/*   PASSWORD */}
-              <div className="py-4 form-control">
+            {/*   PASSWORD */}
+            <div className="w-full  form-control">
               <label className=" label">
                 <span className="label-text">Contraseña</span>
               </label>
@@ -66,10 +69,10 @@ export default function Login() {
                 type="password"
                 placeholder="Ingrese contraseña"
                 {...register("password")}
-                className=" input w-full   p-2  border-b border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
+                className="  w-full   p-2  border-b-4 border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
               ></input>
             </div>
-              {/* <label htmlFor="logIn-pass">
+            {/* <label htmlFor="logIn-pass">
                 <h1>Contraseña</h1>
                 <input
                   className="p-2 input input-sm mt-4 px-10"
@@ -81,15 +84,15 @@ export default function Login() {
                 />
               </label> */}
 
-              <button
-                type="submit"
-                className="btn px-[128px] bg-blue-700 border-none text-base-100"
-                onClick={() => setSession(inSession() /*&& router.push('/')*/)}
-              >
-                Login
-                {/* Login {session ? 'div 1' : 'div 2'} */}
-              </button>
-              {/* {
+            <button
+              type="submit"
+              className="btn px-[128px] bg-blue-700 border-none text-base-100"
+              onClick={() => setSession(reGister() /*&& router.push('/')*/)}
+            >
+              Login
+              {/* Login {session ? 'div 1' : 'div 2'} */}
+            </button>
+            {/* {
                 !session ? (
                   <div className="bg-red-200">
                     div 2<h1>no esta en sesion</h1>
@@ -101,22 +104,21 @@ export default function Login() {
                 )
                 // router.push('/');
               } */}
-            </form>
-          </div>
-          {/*     image container*/}
-          <div className="w-1/2 sm:block hidden flex justify-center items-center relative">
+          </form>
+        </div>
+        {/*     image container*/}
+        <div className="w-1/2 sm:block hidden relative">
+          <div className=" flex items-center justify-center p-4 mb-40">
+            <div>
+
             <img
-              className="object-scale-down w-[500px] px-4 py-2 z-10"
-              src="/imgLOGINnueva.png"
-              alt="ola"
-            />
-            <h1 className="absolute top-[290px]   left-[100px] transform -translate-x-1/2 -translate-y-1/2 text-4xl text-blue-500 font-bold  p-4">
-              DEIA
-            </h1>
-            <h1 className="absolute top-[330px]   left-[70px] transform -translate-x-1/2 -translate-y-1/2 text-xs text-blue-500 font-thin  p-4">
-              Diagnostico de Estirometria con Inteligencia Artificial
-            </h1>
+              className="object-scale-down w-[700px] transform translate-x-10 z-10"
+              src="/imgLog.png"
+              alt=""
+              />
+              </div>
           </div>
+        </div>
         {/* </div> */}
 
         {/* <button className="btn" onClick={inSession}>sessionTokenprueba</button> */}

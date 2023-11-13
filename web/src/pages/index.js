@@ -17,7 +17,7 @@ export default function Home() {
                 <NavbarSinsesion/>
               ) : (<Navbar/>)}
       <div className="hero min-h-screen h-screen
-    bg-[#DBE3FF]
+    bg-[#E6F0F4]
     background-animate flex justify-center">
 
         <div className="hero-content text-left">
@@ -32,10 +32,13 @@ export default function Home() {
         <img src="/logoMinimalista.jpg"   alt=""/>
         </div>
       </div>
-
+    {/* ACA VA EL ABOUT */}
       <div>
         <div></div>
+        <img src="/aboutUs.jpg"></img>
+        <img src="/information.jpg"></img>
       </div>
+
     </main>
   )
 }

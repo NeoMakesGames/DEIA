@@ -7,24 +7,15 @@ import Link from "next/link";
 import { lookForEsp } from "./hooks/server.hooks";
 import Modal from "@/components/Modal";
 
-export default function Software() {
+
+export default function Administracion() {
   //setear hooks
 
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
-  const [med, setMed] = useState([]);
-  // const [esp, setEsp] = useState(async () => await lookForEsp());
-
+  const [esp, setEsp] = useState(async() => await lookForEsp());
+  
   // funcion para traer los datos de la api
- const listaMedico = async () => {
-  const respuesta = await lookForEsp();
-  const datos = respuesta.json();
-  console.log(datos);
-  setMed(datos);
- }
-  useEffect(() => {
-    listaMedico();
-  })
 
   //convertir la lista en un objeto json
   //  PONER ACA EL JSON DE LOS PACIENTES
@@ -81,11 +72,11 @@ export default function Software() {
       <Navbar />
       <div className="bg-[#DBE3FF] h-full overflow-y-auto">
         {/* avatar */}
-        {/* PONER ACA EL NOMBRE DEL MEDICO */}
+        {/* PONER ACA EL NOMBRE DEL INSTITUCION */}
         <div className="avatar flex items-center justify-center flex-col">
           <div className="w-24 rounded-full bg-amber-700 mt-8"></div>
           <h1 className="font-bold text-2xl text-center text-secondary mx-4 my-8">
-            Perro Salchicha
+            Institucion
           </h1>
           {/* AGREGAR PACIENTES */}
           <div className="py-1">
@@ -114,9 +105,9 @@ export default function Software() {
               {results.map((user) => (
                 <tr key={user.id}>
                   <Link href={`/espirometrias/${user.id}`}>
-                    <td>{user.name}</td>
-                    <td>{user.username}</td>
-                  </Link>
+                  <td>{user.name}</td>
+                  <td>{user.username}</td>
+                    </Link>
                 </tr>
               ))}
             </tbody>
@@ -124,20 +115,12 @@ export default function Software() {
         </div>
         {/* agregar paciente boton */}
         <div className="flex justify-center my-8">
-          <button
-            onClick={openModal}
-            className="w-2/12 h-10 rounded  bg-amber-300"
-          >
-            Agregar pacientes
+          <button onClick={openModal} className="w-2/12 h-10 rounded  bg-amber-300">
+            Agregar Medicos
           </button>
-          <Modal
-            show={showModal}
-            onClose={closeModal}
-            onSubmit={handleSubmit}
-          />
+          <Modal show={showModal} onClose={closeModal} onSubmit={handleSubmit} />
         </div>
-        <p>{listaMedico}</p>
-        {/* <p>{esp}</p> */}
+        <p>{esp}</p>
       </div>
     </main>
   );

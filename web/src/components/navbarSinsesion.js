@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function NavbarSinsesion() {
   return (
-    <div className="navbar bg-base-100 ">
+    <div className="navbar bg-base-200">
       <div className="navbar-start ">
         <div className="dropdown">
           <label tabindex="0" className="btn btn-ghost lg:hidden">
@@ -49,9 +49,10 @@ export default function NavbarSinsesion() {
           <li>
             <Link href="/">Info</Link>
           </li>
-          {/* <li>
-            <Link href="/login">Login</Link>
-          </li> */}
+           <li>
+            <Link href="/administracionM">Administracion</Link>
+          </li> 
+           
 
         </ul>
       </div>

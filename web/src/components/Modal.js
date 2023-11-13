@@ -45,7 +45,7 @@ const Modal = ({ show, onClose, onSubmit }) => {
             {/* numeros de la espirometria  - num */}
 
               <label className="my-2 text-md form-control">Ingrese datos de la espirometria</label>
-            <div className="mt-2 mb-4 flex items-start justify-start grid-rows-2 grid-flow-col grid">
+            <div className="mt-2 mb-4  items-start justify-start grid-rows-2 grid-flow-col grid">
               <div className="label">
                 <span className="label-text">FEV1</span>
                 <input
