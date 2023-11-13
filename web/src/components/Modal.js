@@ -1,13 +1,15 @@
 import { postAI } from "@/pages/hooks/server.hooks";
 import { useForm } from "react-hook-form";
+import Router from "next/router";
 
 const Modal = ({ show, onClose, onSubmit }) => {
   
   const { register, handleSubmit } = useForm();
 
-  const ai = async(data) => {
-    const res = await postAI(data);
-    return null;
+  const res = async(data) => {
+    const ai = await postAI(data);
+    Router.push(`/software`, ai)
+    return ai
   };
 
   const modalClasses = show

@@ -6,7 +6,7 @@ import { Router } from "next/router";
 import Link from "next/link";
 import { lookForEsp, postAI } from "./hooks/server.hooks";
 import Modal from "@/components/Modal";
-import { useForm } from "react-hook-form";
+import { list } from "postcss";
 
 
 const espirometrias = await lookForEsp();
@@ -33,16 +33,20 @@ const listaMedico = async () => {
     const respuesta = await lookForEsp();
 
     // Verifica si la respuesta es exitosa (código de estado HTTP 200)
-    if (respuesta.status === 200) {
-      // Convierte los datos JSON de la respuesta
-      const datos = await respuesta.json();
-      
-      // Muestra los datos en la consola (esto puede ser eliminado en producción)
-      console.log(datos);
+    if (respuesta !== null || undefined) {
 
+      var lista  = [];
+
+      respuesta.forEach(espirometria => {
+        lista.push([espirometria.nombre_y_apellido, espirometria.created, espirometria.sexo]);
+      })
+      
+      setEsp(lista);
+      console.log(lista, esp)
+      return null;      
       // Actualiza el estado utilizando setEsp
-      setEsp(datos);
-    } else {
+      
+      } else {
       // Si la respuesta no es exitosa, imprime un mensaje de error en la consola
       console.error('Error al obtener datos. Código de estado:', respuesta.status);
     }
@@ -52,11 +56,15 @@ const listaMedico = async () => {
   }
 };
 
+const [datosMed, setDatosMed] = useState([]);
 
-
-  useEffect(() => {
-    listaMedico();
-  })
+   useEffect(() => {
+     const obtenerLista = async () => {
+       const datosM = await listaMedico();
+       setDatosMed(datosM);
+     }
+     obtenerLista();
+   }, [])
 
   //convertir la lista en un objeto json
   //  PONER ACA EL JSON DE LOS PACIENTES
@@ -142,14 +150,23 @@ const listaMedico = async () => {
               </tr>
             </thead>
             <tbody>
-              {results.map((user) => (
-                <tr key={user.id}>
-                  <Link href={`/espirometrias/${user.id}`}>
-                    <td>{user.name}</td>
-                    <td>{user.username}</td>
+              {datosMed.map((medico) => (
+                <tr key={medico.id}>
+                  <Link href={`/espirometrias/${espirometria.id}`}>
+                  <td>{medico.sexo}</td>
                   </Link>
-                </tr>
-              ))}
+                  </tr>
+              ))
+
+              }
+              {/* {esp.forEach(espirometria => {
+                  <tr key={espirometria.id}>
+                    <Link href={`/espirometrias/${espirometria.id}`}>
+                      <td>{espirometria.name}</td>
+                      <td>{espirometria.username}</td>
+                    </Link>
+                  </tr>
+            })} */}
             </tbody>
           </table>
         </div>

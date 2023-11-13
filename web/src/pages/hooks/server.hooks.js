@@ -35,7 +35,7 @@ async function logIn (userdata) {
         //if(user_existance === 200 || true)
         {       
             try{
-                await pb.collection("med").authWithPassword(userdata.username, userdata.password);
+                const record = await pb.collection("med").authWithPassword(userdata.username, userdata.password);
                 return "ok";
                 //Logea y devuelve el usuario en conjunto con un token de auth.
             }
@@ -53,7 +53,7 @@ async function logIn (userdata) {
     }
     else
     {
-        console.log("No se ingreso usuario o contraseña.");
+        // console.log("No se ingreso usuario o contraseña.");
         //catchea el error, devuelve al front algo para transmitir al usuario.
         return "err_input";
     }
@@ -152,7 +152,7 @@ async function postAI(input){
             //Devuelve si ocurre un error al 'enviar' los datos.
         });
 
-    const espirometria_data= {
+    const espirometria_data = {
     
         "sexo": input.gender,
         "datos_personales": input.extraData,
@@ -177,7 +177,7 @@ async function postAI(input){
     }
     //crea el registro de la espirometria en la db
 
-    return res;
+    return espirometria_data;
     //devuelve los resultados al front
 }
 

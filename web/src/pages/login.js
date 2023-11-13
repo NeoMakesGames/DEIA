@@ -8,11 +8,20 @@ import NavbarSinsesion from "@/components/navbarSinsesion";
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
+  //variable usestate,
 
-  const reg = (data) => {
-    logIn(data);
-    
-    console.log(logIn(data));
+  // const errorClasses = show
+  // ? "w-full p-2 border-b-4 border-gray-300  border-inherit focus:border-b-2 focus:border-red-700 transition-colors focus:outline-none peer bg-inherit"
+  // : "hidden";
+
+
+  const reg = async(data) => {
+    const res = await logIn(data);
+    if(res === "ok")
+    {
+      router.push('/software');
+    }
+    setState(res);
   };
 
   const [show, setShow] = useState(false);
@@ -103,7 +112,17 @@ else {
             <button
               type="submit"
               className="btn px-[128px] bg-blue-700 border-none text-base-100"
-              onClick={() => setSession(handleLogin() /*&& router.push('/')*/)}
+              onClick={
+                () => {if ("err" || ""){
+                  console.log("completar");
+
+                }
+                else{
+                  console.log("esta ok");
+                  router.push('/software');
+                }
+              }}
+              // {() => setSession(handleLogin() /*&& router.push('/')*/)}
               >
               Login
               {/* Login {session ? 'div 1' : 'div 2'} */}
