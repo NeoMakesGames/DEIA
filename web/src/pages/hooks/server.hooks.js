@@ -101,7 +101,7 @@ async function deleteAccount(medico) {
 // Busquda de datos en las tablas.
 //
 
-async function lookForEsp() {
+async function lista_esp() {
     try{
         const list = await pb.collection('esp').getFullList();
 
@@ -167,18 +167,19 @@ async function postAI(input){
     }   
     try
     {
-    console.log(JSON.stringify(res))
-    await pb.collection('esp').create(espirometria_data);
+        console.log(JSON.stringify(res))
+        const espiro = await pb.collection('esp').create(espirometria_data);
+        //crea el registro de la espirometria en la db
+        
+        return espiro;
+        //devuelve los resultados al front
     }
     catch(e)
     {
         return "err_db";
     }
-    //crea el registro de la espirometria en la db
 
-    return espirometria_data;
-    //devuelve los resultados al front
 }
 
-export {register, logIn, logOut, deleteAccount, lookForEsp, postAI};
+export {register, logIn, logOut, deleteAccount, lista_esp, postAI};
 //Exporto todas las fuciones anteriores.

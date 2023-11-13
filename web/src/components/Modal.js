@@ -8,8 +8,8 @@ const Modal = ({ show, onClose }) => {
 
   const res = async(data) => {
     const ai = await postAI(data);
-    Router.push(`/software`, ai)
-    return ai
+    Router.push(`/espirometrias/${ai.id}`)
+    return null;
   };
 
   const modalClasses = show

@@ -4,13 +4,13 @@ import NavbarSinsesion from "@/components/navbarSinsesion";
 import Historial from "@/components/historialPaciantes";
 import { Router } from "next/router";
 import Link from "next/link";
-import { lookForEsp, postAI } from "./hooks/server.hooks";
+import { lista_esp } from "./hooks/server.hooks";
 import Modal from "@/components/Modal";
 import { list } from "postcss";
 import { useForm } from "react-hook-form";
 import { user } from "../../public/lib/pocketbase";
 
-const respuesta = await lookForEsp();
+const respuesta = await lista_esp();
 
 export default function Software() {
   //setear hooks

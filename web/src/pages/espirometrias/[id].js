@@ -1,11 +1,19 @@
 import { useRouter } from "next/router";
 import DetallesPaciente from "@/components/detallesPaciente";
+import Diagnostico from "@/components/diagnosticoIA";
+import { lookForEsp } from "../hooks/server.hooks";
 //import { id, name, username } from DetallesPaciente;
 import Navbar from "@/components/navbar";
+import { useEffect } from "react";
 
 const entradaPaciente = () => {
   const router = useRouter();
   const { id, name, username } = router.query;
+
+  useEffect(async() =>{
+    //lookForEsp(id) --> data completa de 1 espirometria {id}
+    
+  });
 
   return (
     <main>
@@ -26,22 +34,7 @@ const entradaPaciente = () => {
 
           <DetallesPaciente infoPaciente={[id, name, username]} />
           <div className="w-11/12 bg-slate-800 h-px"></div>
-          <div className=" w-full flex justify-start items-start flex-col">
-            <h1 className="text-black text-[20px] font-bold my-[15px]  px-8">
-              Diagnostico con IA
-            </h1>
-            <div className="flex justify-center items-center ">
-              <h1 className="text-black text-[16px]  my-[15px]  px-8">
-                Estamos procesando tu diagnóstico
-              </h1>
-              {/*  AÑADIR ANIMACION DE CARGA */}
-              <div class="flex flex-row gap-2">
-                <div class="w-2 h-2 rounded-full bg-blue-700 animate-bounce"></div>
-                <div class="w-2 h-2 rounded-full bg-blue-700 animate-bounce [animation-delay:-.3s]"></div>
-                <div class="w-2 h-2 rounded-full bg-blue-700 animate-bounce [animation-delay:-.5s]"></div>
-              </div>
-            </div>
-          </div>
+          <Diagnostico/>
           {/* info paciente y diagnositco IA */}
           <div></div>
           {/* imagenes espirometria */}
