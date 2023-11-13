@@ -9,8 +9,7 @@ export const user = pb.authStore.model;
 
 export const inSession = pb.authStore.isValid;
 //"inSession" checkea la existencia y validez del token de auth.
-
-//checkeo de que todo ok
+// -> la función de validación que falta en server.hooks.
 
 export default pb;
 //Export de la conexión a la db.

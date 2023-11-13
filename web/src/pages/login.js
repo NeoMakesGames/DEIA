@@ -15,6 +15,7 @@ export default function Login() {
 
   const [show, setShow] = useState(false);
   const [session, setSession] = useState(false);
+  const [logInState, setState] = useState(""); //la idea con esto juli es que ñe asignes el valor de la funcion logIn(). devuelve ["ok", y diferentes "err_"], en base a eso deberia mandarte a la home, etc.
 
   const router = useRouter();
 
@@ -93,6 +94,7 @@ export default function Login() {
               {/* Login {session ? 'div 1' : 'div 2'} */}
             </button>
             {/* {
+
                 !session ? (
                   <div className="bg-red-200">
                     div 2<h1>no esta en sesion</h1>
