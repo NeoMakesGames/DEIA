@@ -19,34 +19,62 @@ export default function Software() {
 
   const [esp, setEsp] = useState(espirometrias);
 
-  // funcion para traer los datos de la api
- const listaMedico = async () => {
-  const respuesta = await lookForEsp();
-  const datos = respuesta.json();
-  console.log(datos);
-  setMed(datos);
- }
+
+
+  // esp.forEach(espirometria => {
+  //   console.log(espirometria)
+    
+  //  });
+
+// función para traer los datos de la API
+const listaMedico = async () => {
+  try {
+    // Espera la respuesta de la función lookForEsp
+    const respuesta = await lookForEsp();
+
+    // Verifica si la respuesta es exitosa (código de estado HTTP 200)
+    if (respuesta.status === 200) {
+      // Convierte los datos JSON de la respuesta
+      const datos = await respuesta.json();
+      
+      // Muestra los datos en la consola (esto puede ser eliminado en producción)
+      console.log(datos);
+
+      // Actualiza el estado utilizando setEsp
+      setEsp(datos);
+    } else {
+      // Si la respuesta no es exitosa, imprime un mensaje de error en la consola
+      console.error('Error al obtener datos. Código de estado:', respuesta.status);
+    }
+  } catch (error) {
+    // Si hay un error en la operación asincrónica, imprime un mensaje de error en la consola
+    console.error('Error en listaMedico:', error);
+  }
+};
+
+
+
   useEffect(() => {
     listaMedico();
   })
 
   //convertir la lista en un objeto json
   //  PONER ACA EL JSON DE LOS PACIENTES
-  const url = "https://jsonplaceholder.typicode.com/users";
+  // const url = "https://jsonplaceholder.typicode.com/users";
 
-  const showData = async () => {
-    const response = await fetch(url);
-    const data = await response.json();
-    // console.log(data);
-    setUsers(data);
-  };
+  // const showData = async () => {
+  //   const response = await fetch(url);
+  //   const data = await response.json;
+  //   // console.log(data);
+  //   setUsers(data);
+  // };
   // showData();
 
   //funcion de busqueda
 
   const searcher = (e) => {
     setSearch(e.target.value);
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
   //metodo de filtrado
 
@@ -58,9 +86,7 @@ export default function Software() {
           .includes(search.toLocaleLowerCase(), console.log(dato, search))
       );
 
-  useEffect(() => {
-    showData();
-  }, []);
+
   //rederizamos la vista
 
   //AGREGAR ´PACIENTES

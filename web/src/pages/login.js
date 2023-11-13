@@ -11,12 +11,27 @@ export default function Login() {
 
   const reg = (data) => {
     logIn(data);
+    
+    console.log(logIn(data));
   };
 
   const [show, setShow] = useState(false);
   const [session, setSession] = useState(false);
   const [logInState, setState] = useState(""); //la idea con esto juli es que ñe asignes el valor de la funcion logIn(). devuelve ["ok", y diferentes "err_"], en base a eso deberia mandarte a la home, etc.
 
+async function handleLogin(){
+  const result = await logIn("nombre_usuario", "contraseña");
+
+//manejar el resultado
+if (result[0] === "ok"){
+  console.log("error en el inicio de sesion"+result);
+}
+else {
+  console.log("inicio de sesion exitoso "+result[0]);
+}
+
+}
+  
   const router = useRouter();
 
   return (
@@ -88,8 +103,8 @@ export default function Login() {
             <button
               type="submit"
               className="btn px-[128px] bg-blue-700 border-none text-base-100"
-              onClick={() => setSession(reGister() /*&& router.push('/')*/)}
-            >
+              onClick={() => setSession(handleLogin() /*&& router.push('/')*/)}
+              >
               Login
               {/* Login {session ? 'div 1' : 'div 2'} */}
             </button>

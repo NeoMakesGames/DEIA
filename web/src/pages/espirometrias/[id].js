@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import DetallesPaciente from "@/components/detallesPaciente";
+import { id, name, username } from DetallesPaciente;
 import Navbar from "@/components/navbar";
 
 const entradaPaciente = () => {
@@ -19,11 +20,11 @@ const entradaPaciente = () => {
           <div className="w-11/12 bg-slate-800 h-px"></div>
           <div className=" w-full flex justify-start items-start flex-col">
             <h1 className="text-black text-[20px] font-bold my-[15px] px-8">
-              Paciente
+              Paciente {name} {username}
             </h1>
           </div>
 
-          <DetallesPaciente infoPaciente={id, name, username} />
+          <DetallesPaciente infoPaciente={[id, name, username]} />
           <div className="w-11/12 bg-slate-800 h-px"></div>
           <div className=" w-full flex justify-start items-start flex-col">
             <h1 className="text-black text-[20px] font-bold my-[15px]  px-8">
