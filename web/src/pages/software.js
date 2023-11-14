@@ -44,9 +44,7 @@ const [datosMed, setDatosMed] = useState([]);
     
     useEffect(() => {
       const a = localStorage .getItem("username")
-      console.log(a)
       setU(a)
-      console.log(u)
 
       const obtenerLista = async () => {
       const datosM = await listaMedico();

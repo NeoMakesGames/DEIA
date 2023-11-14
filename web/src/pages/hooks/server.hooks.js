@@ -46,7 +46,6 @@ async function logIn (userdata) {
                 const record = await pb.collection("med").authWithPassword(userdata.username, userdata.password)
                 const lal = record.record.id;
                 const lol = record.record.username;
-                sessionStorage.setItem( "id", lal);
                 localStorage.setItem("username", lol);
                 return "ok"
                 //Logea y devuelve el usuario en conjunto con un token de auth.
@@ -86,7 +85,8 @@ async function logIn (userdata) {
 async function logOut() {
     try{
         await pb.authStore.clear();
-        //Elimina el token de auth del browser.
+        localStorage.removeItem("username"); 
+        //Elimina el token de auth y el local storage en genearl del browser.
         
         return "ok";
     }
