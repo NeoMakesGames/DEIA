@@ -43,6 +43,7 @@ const listaMedico = async () => {
 };
 
 const [datosMed, setDatosMed] = useState([]); 
+
     useEffect(() => {
      const obtenerLista = async () => {
       const datosM = await listaMedico();

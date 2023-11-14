@@ -1,9 +1,4 @@
-import { postAI } from "@/pages/hooks/server.hooks"
-export default function Diagnostico(){
-    //  const res_AI = espirometria_data;
-    //console.log(res_AI);
-
-    
+export default function Diagnostico({diagnostico}){
     return(
         <main>
         <div className=" w-full flex justify-start items-start flex-col">

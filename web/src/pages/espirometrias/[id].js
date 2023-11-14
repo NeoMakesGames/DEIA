@@ -1,34 +1,30 @@
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import DetallesPaciente from "@/components/detallesPaciente";
 import Diagnostico from "@/components/diagnosticoIA";
 import { lookEsp } from "../hooks/server.hooks";
 import Navbar from "@/components/navbar";
 import { useEffect, useState } from "react";
-import { Routes, useSearchParams, useParams } from 'react-router-dom';
-import { user } from "../../../public/lib/pocketbase";
 
 const entradaPaciente = () => {
   const router = useRouter();
   const {id} = router.query;
 
-  console.log(id)
+  const [esp, setEsp] = useState({});
 
-  const [esp, setEsp] = useState();
-
-  const espirometriaSeteo = async () => {
+  const espirometriaSeteo = async() => {
     try 
     {
-      console.log(id)
-      const record = await lookEsp(id)
+      const rec = await lookEsp(id).then(async(record)=>{
+        const val = await record
+        console.log(val, id)
+        return val;
       
-      if (record === null || record === undefined)
-      {
-        setEsp(["error: 404", "Registro No encontrado"])
-      }
-      console.log(record);
+      }).catch((e)=>{
+        console.log(e);
+      })
 
-      return await setEsp(record);
-      
+      setEsp(rec);
+      console.log(esp, rec);
     }
     catch (error)
     {
@@ -37,13 +33,17 @@ const entradaPaciente = () => {
     }
   } 
 
-
   useEffect(() =>{
     espirometriaSeteo();
-
   }, []);
 
-  return (
+  function out() {
+    Router.push('/espirometrias');
+  }
+
+  if(id !== undefined)
+  {
+    return (
     <main>
       <Navbar />
       <div className="bg-[#DBE3FF] h-screen overflow-y-auto">
@@ -56,13 +56,13 @@ const entradaPaciente = () => {
           <div className="w-11/12 bg-slate-800 h-px"></div>
           <div className=" w-full flex justify-start items-start flex-col">
             <h1 className="text-black text-[20px] font-bold my-[15px] px-8">
-              Paciente {esp?.nombre_y_apellido}
+              Paciente
             </h1>
           </div>
 
-          {/* <DetallesPaciente infoPaciente={[id, name, username]} /> */}
+          <DetallesPaciente name={esp?.nombre_y_apellido} birthday={esp?.nacimiento} gender={esp?.sexo}/>
           <div className="w-11/12 bg-slate-800 h-px"></div>
-          <Diagnostico/>
+          <Diagnostico diagnostico={esp?.res_IA}/>
           {/* info paciente y diagnositco IA */}
           <div></div>
           {/* imagenes espirometria */}
@@ -71,5 +71,11 @@ const entradaPaciente = () => {
       </div>
     </main>
   );
-};
+  }
+  else
+  {
+    out();
+  };
+}
+
 export default entradaPaciente;
