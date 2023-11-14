@@ -17,9 +17,9 @@ export default function Login() {
 
   const reg = async(data) => {
     const res = await logIn(data);
-    if(res === "ok")
+    if("ok" === res)
     {
-      router.push('/software');
+      router.push({pathname:"/software"});
     }
     setState(res);
   };

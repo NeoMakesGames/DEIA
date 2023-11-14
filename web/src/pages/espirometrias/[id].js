@@ -1,47 +1,65 @@
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import DetallesPaciente from "@/components/detallesPaciente";
-import { id, name, username } from DetallesPaciente;
+import Diagnostico from "@/components/diagnosticoIA";
+import { lookEsp } from "../hooks/server.hooks";
 import Navbar from "@/components/navbar";
+import { useEffect, useState } from "react";
 
 const entradaPaciente = () => {
   const router = useRouter();
-  const { id, name, username } = router.query;
+  const {id} = router.query;
 
-  return (
+  const [esp, setEsp] = useState({});
+
+  const espirometriaSeteo = async() => {
+    try 
+    {
+      const rec = await lookEsp(id).then(async(record)=>{
+        const val = await record
+        console.log(val, id)
+        return val;
+      
+      }).catch((e)=>{
+        console.log(e);
+      })
+
+      setEsp(rec);
+      console.log(esp, rec);
+    }
+    catch (error)
+    {
+      console.error('Error en espirometriaSeteo:', error);
+      return null;
+    }
+  } 
+
+  useEffect(() =>{
+    espirometriaSeteo();
+    if(id === undefined)
+    {
+      Router.push("/software")
+    }
+  }, []);
+    return (
     <main>
       <Navbar />
       <div className="bg-[#DBE3FF] h-screen overflow-y-auto">
         <div className="flex justify-center items-center flex-col">
           {/* titulo y divisor */}
           <h1 className="text-black text-[30px] font-extrabold my-[30px]">
-            Espirometría n° {id}
+            Espirometría n° {esp?.id}
           </h1>
 
           <div className="w-11/12 bg-slate-800 h-px"></div>
           <div className=" w-full flex justify-start items-start flex-col">
             <h1 className="text-black text-[20px] font-bold my-[15px] px-8">
-              Paciente {name} {username}
+              Paciente
             </h1>
           </div>
 
-          <DetallesPaciente infoPaciente={[id, name, username]} />
+          <DetallesPaciente name={esp?.nombre_y_apellido} birthday={esp?.nacimiento} gender={esp?.sexo}/>
           <div className="w-11/12 bg-slate-800 h-px"></div>
-          <div className=" w-full flex justify-start items-start flex-col">
-            <h1 className="text-black text-[20px] font-bold my-[15px]  px-8">
-              Diagnostico con IA
-            </h1>
-            <div className="flex justify-center items-center ">
-              <h1 className="text-black text-[16px]  my-[15px]  px-8">
-                Estamos procesando tu diagnóstico
-              </h1>
-              {/*  AÑADIR ANIMACION DE CARGA */}
-              <div class="flex flex-row gap-2">
-                <div class="w-2 h-2 rounded-full bg-blue-700 animate-bounce"></div>
-                <div class="w-2 h-2 rounded-full bg-blue-700 animate-bounce [animation-delay:-.3s]"></div>
-                <div class="w-2 h-2 rounded-full bg-blue-700 animate-bounce [animation-delay:-.5s]"></div>
-              </div>
-            </div>
-          </div>
+          <Diagnostico diagnostico={esp?.res_AI}/>
           {/* info paciente y diagnositco IA */}
           <div></div>
           {/* imagenes espirometria */}
@@ -50,5 +68,6 @@ const entradaPaciente = () => {
       </div>
     </main>
   );
-};
+  }
+
 export default entradaPaciente;

@@ -1,23 +1,21 @@
-import pb, {user} from  "@/../public/lib/pocketbase.js";
-const axios = require ('axios');
-
+import pb, {user} from '../../../public/lib/pocketbase';
+const axios = require ('axios')
 //
 //Funciones del AUTH.
 //
-
+var abc = "";
 async function register(userdata) {
         try{
-            user_existance = await pb.collection('med').getFirstListItem("username= '${userdata.username}'");
+//            user_existance = await pb.collection('med').getFirstListItem(username= '${userdata.username}'");
             //Busca si ya existe un registro con el mismo username.
             
-            if(!user_existance.status) //checkea
+//          if(!user_existance.status) //checkea
             {
                 await pb.collection('med').create(userdata);
                 //Crea un nuevo registro.
                 
                 await pb.collection("med").authWithPassword(userdata.username, userdata.password);
                 //Logea y devuelve el usuario en conjunto con un token de auth.
-
                 return "ok";
             }
         }
@@ -27,6 +25,16 @@ async function register(userdata) {
             //catchea el error, devuelve al front algo para transmitir al usuario.
         } 
 }
+async function getUser(id)
+{
+    try{
+        const record = await pb.collection('med').getOne(id);
+        return user;
+    }
+    catch{
+        return null;
+    }
+}
 
 async function logIn (userdata) {
     if(userdata.password !== "" && userdata.username !== "")
@@ -35,12 +43,17 @@ async function logIn (userdata) {
         //if(user_existance === 200 || true)
         {       
             try{
-                const record = await pb.collection("med").authWithPassword(userdata.username, userdata.password);
-                return "ok";
+                const record = await pb.collection("med").authWithPassword(userdata.username, userdata.password)
+                const lal = record.record.id;
+                const lol = record.record.username;
+                sessionStorage.setItem( "id", lal);
+                localStorage.setItem("username", lol);
+                return "ok"
                 //Logea y devuelve el usuario en conjunto con un token de auth.
             }
-            catch
+            catch (e)
             {
+                console.log(e);
                 return "err_pass"
                 //catchea el error, devuelve al front algo para transmitir al usuario.
             }
@@ -101,19 +114,33 @@ async function deleteAccount(medico) {
 // Busquda de datos en las tablas.
 //
 
-async function lookForEsp() {
+async function lista_esp() {
     try{
-        const list = await pb.collection('esp').getFullList();
+        const list = await pb.collection('esp').getFullList({
+            sort: '-created',
+        });
 
         //Devuelve todos los registros de la tabla de espirometrias.
-
         //La API de PB la modifique para que unicamente devuelva records que correspondan al id del medico logeado.
 
         return list;
     }catch(e)
 
     {
-        return "err_esp"; //error 404, no se encontró o no existen
+        return "err_esp", e; //error 404, no se encontró o no existen
+    }
+}
+
+async function lookEsp(id) {
+    try{
+        console.log(id)
+        const record = await pb.collection('esp').getOne(id);
+        return record;
+    }
+    catch(e)
+    {
+        console.log(e);
+        return
     }
 }
 
@@ -157,7 +184,7 @@ async function postAI(input){
         "sexo": input.gender,
         "datos_personales": input.extraData,
         "nacimiento": input.birthday,
-        "medico": user.id,
+        "medico": user.id,//localStorage .getItem("id"),
         "res_AI": JSON.stringify(res)[10], //no son las mejores tecnicas de programación, pero funca y como el rtado siempre es {result:x}, debería funcionar en tods lo casos.
         "nombre_y_apellido": input.name,
         "FEV1_Value": input.FEV1Value,
@@ -168,18 +195,18 @@ async function postAI(input){
     }   
     try
     {
-    console.log(JSON.stringify(res))
-    await pb.collection('esp').create(espirometria_data);
+        const espiro = await pb.collection('esp').create(espirometria_data);
+        //crea el registro de la espirometria en la db
+        
+        return espiro;
+        //devuelve los resultados al front
     }
     catch(e)
     {
         return "err_db";
     }
-    //crea el registro de la espirometria en la db
 
-    return espirometria_data;
-    //devuelve los resultados al front
 }
 
-export {register, logIn, logOut, deleteAccount, lookForEsp, postAI};
+export {register, logIn, logOut, deleteAccount, lista_esp, postAI, lookEsp, getUser, abc};
 //Exporto todas las fuciones anteriores.

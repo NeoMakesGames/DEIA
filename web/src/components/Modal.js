@@ -1,15 +1,16 @@
 import { postAI } from "@/pages/hooks/server.hooks";
-import { useForm } from "react-hook-form";
 import Router from "next/router";
+import { useForm } from "react-hook-form";
 
-const Modal = ({ show, onClose, onSubmit }) => {
+const Modal = ({ show, onClose }) => {
   
   const { register, handleSubmit } = useForm();
 
   const res = async(data) => {
     const ai = await postAI(data);
-    Router.push(`/software`, ai)
-    return ai
+    console.log(ai);
+    Router.push({pathname:`/espirometrias/${ai.id}`, query:{espirometria:ai}})
+    return null;
   };
 
   const modalClasses = show
@@ -21,7 +22,7 @@ const Modal = ({ show, onClose, onSubmit }) => {
       <div className="absolute bg-white p-8 min-w-[700px] rounded-md shadow-lg  ">
         <h2 className="text-black text-[30px] font-bold my-2">Agregar Paciente</h2>
         <span className="text-black text-[20px] font-thin my-1">Completa el siguiente formulario</span>
-        <form onSubmit={handleSubmit(ai)}>
+        <form onSubmit={handleSubmit(res)}>
           {/* <div className="flex items-start justify-center flex-col mt-8"> */}
             {/*nombre y apellido - text  */}
             <div className="py-4 form-control">

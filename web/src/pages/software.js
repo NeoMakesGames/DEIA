@@ -2,65 +2,54 @@ import Navbar from "@/components/navbar";
 import { useState, useEffect } from "react";
 import NavbarSinsesion from "@/components/navbarSinsesion";
 import Historial from "@/components/historialPaciantes";
-import { Router } from "next/router";
+import Router, {useRouter} from "next/router";
 import Link from "next/link";
-import { lookForEsp, postAI } from "./hooks/server.hooks";
+import { lista_esp } from "./hooks/server.hooks";
 import Modal from "@/components/Modal";
-import { list } from "postcss";
 
-
-const espirometrias = await lookForEsp();
+const respuesta = await lista_esp();
 
 export default function Software() {
-  //setear hooks
 
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
-
-  const [esp, setEsp] = useState(espirometrias);
-
-
-
-  // esp.forEach(espirometria => {
-  //   console.log(espirometria)
-    
-  //  });
-
+  const [list, setList] = useState([]);
+  const [u, setU] = useState("");
+  
 // función para traer los datos de la API
 const listaMedico = async () => {
   try {
-    // Espera la respuesta de la función lookForEsp
-    const respuesta = await lookForEsp();
+      // Verifica si la respuesta es exitosa (código de estado HTTP 200)
+      if (respuesta === null || undefined) {
+        setList(["error: 404", "Registro No encontrado"])
+        console.error('Error al obtener datos. Código de estado:', respuesta.status);
+        // Si la respuesta no es exitosa, imprime un mensaje de error en la consola
+      }
 
-    // Verifica si la respuesta es exitosa (código de estado HTTP 200)
-    if (respuesta !== null || undefined) {
-
-      var lista  = [];
-
-      respuesta.forEach(espirometria => {
-        lista.push([espirometria.nombre_y_apellido, espirometria.created, espirometria.sexo]);
-      })
-      
-      setEsp(lista);
-      console.log(lista, esp)
-      return null;      
+      setList(respuesta);
       // Actualiza el estado utilizando setEsp
       
-      } else {
-      // Si la respuesta no es exitosa, imprime un mensaje de error en la consola
-      console.error('Error al obtener datos. Código de estado:', respuesta.status);
-    }
-  } catch (error) {
-    // Si hay un error en la operación asincrónica, imprime un mensaje de error en la consola
+      return null;
+      }
+  catch (error) {
     console.error('Error en listaMedico:', error);
-  }
+    // Si hay un error en la operación asincrónica, imprime un mensaje de error en la consola
+  
+    return null;
+  } 
 };
 
-const [datosMed, setDatosMed] = useState([]);
 
-   useEffect(() => {
-     const obtenerLista = async () => {
-       const datosM = await listaMedico();
+const [datosMed, setDatosMed] = useState([]); 
+    
+    useEffect(() => {
+      const a = localStorage .getItem("username")
+      console.log(a)
+      setU(a)
+      console.log(u)
+
+      const obtenerLista = async () => {
+      const datosM = await listaMedico();
        setDatosMed(datosM);
      }
      obtenerLista();
@@ -124,7 +113,7 @@ const [datosMed, setDatosMed] = useState([]);
         <div className="avatar flex items-center justify-center flex-col">
           <div className="w-24 rounded-full bg-amber-700 mt-8"></div>
           <h1 className="font-bold text-2xl text-center text-secondary mx-4 my-8">
-            Perro Salchicha
+          {u}
           </h1>
           {/* AGREGAR PACIENTES */}
           <div className="py-1">
@@ -144,13 +133,13 @@ const [datosMed, setDatosMed] = useState([]);
           {/* lista de pacientes */}
           <table className="table table-zebra w-2/3 my-1 mt-3 mx-8 h-[400px] overflow-y-auto ">
             <thead>
-              <tr className="bg-curso text-black text-center">
+              <tr className="bg-curso text-black text-md text-center">
                 <th>Nombre</th>
-                <th>User Name</th>
+                <th>Fecha</th>
               </tr>
             </thead>
             <tbody>
-              {datosMed.map((medico) => (
+              {/* {datosMed.map((medico) => (
                 <tr key={medico.id}>
                   <Link href={`/espirometrias/${espirometria.id}`}>
                   <td>{medico.sexo}</td>
@@ -158,15 +147,25 @@ const [datosMed, setDatosMed] = useState([]);
                   </tr>
               ))
 
-              }
-              {/* {esp.forEach(espirometria => {
+              } */}
+               {results ? results.map(espirometria => (
                   <tr key={espirometria.id}>
                     <Link href={`/espirometrias/${espirometria.id}`}>
-                      <td>{espirometria.name}</td>
-                      <td>{espirometria.username}</td>
+                      <td>{espirometria.nombre_y_apellido}</td>
+                      <td>{espirometria.created}</td>
                     </Link>
                   </tr>
-            })} */}
+               )) : <></>
+              }
+                {/* {esp ? esp.map(espirometria => (
+                  <tr key={espirometria.id}>
+                    <Link href={`/espirometrias/${espirometria.id}`}>
+                      <td>{espirometria.nombre_y_apellido}</td>
+                      <td>{espirometria.created}</td>
+                    </Link>
+                  </tr>
+               )) : <></>
+              } */}
             </tbody>
           </table>
         </div>
