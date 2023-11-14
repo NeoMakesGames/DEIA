@@ -2,23 +2,21 @@ import Navbar from "@/components/navbar";
 import { useState, useEffect } from "react";
 import NavbarSinsesion from "@/components/navbarSinsesion";
 import Historial from "@/components/historialPaciantes";
-import { Router } from "next/router";
+import Router, {useRouter} from "next/router";
 import Link from "next/link";
-import { lista_esp } from "./hooks/server.hooks";
+import { lista_esp, getUser, abc } from "./hooks/server.hooks";
 import Modal from "@/components/Modal";
-import { list } from "postcss";
-import { useForm } from "react-hook-form";
-import { user } from "../../public/lib/pocketbase";
 
 const respuesta = await lista_esp();
 
 export default function Software() {
-  //setear hooks
 
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
   const [list, setList] = useState([]);
-
+  const [u, setU] = useState(abc);
+  
+console.log(abc);  
 // función para traer los datos de la API
 const listaMedico = async () => {
   try {
@@ -42,10 +40,14 @@ const listaMedico = async () => {
   } 
 };
 
-const [datosMed, setDatosMed] = useState([]); 
 
+const [datosMed, setDatosMed] = useState([]); 
+    
     useEffect(() => {
-     const obtenerLista = async () => {
+      const a = sessionStorage.getItem("id")
+      console.log(a)
+
+      const obtenerLista = async () => {
       const datosM = await listaMedico();
        setDatosMed(datosM);
      }
@@ -110,7 +112,7 @@ const [datosMed, setDatosMed] = useState([]);
         <div className="avatar flex items-center justify-center flex-col">
           <div className="w-24 rounded-full bg-amber-700 mt-8"></div>
           <h1 className="font-bold text-2xl text-center text-secondary mx-4 my-8">
-            llaalla
+          {u}
           </h1>
           {/* AGREGAR PACIENTES */}
           <div className="py-1">

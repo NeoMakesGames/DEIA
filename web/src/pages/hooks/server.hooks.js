@@ -1,16 +1,15 @@
-import pb, {user} from  "@/../public/lib/pocketbase.js";
-const axios = require ('axios');
-
+import pb from '../../../public/lib/pocketbase';
+const axios = require ('axios')
 //
 //Funciones del AUTH.
 //
-
+var abc = "";
 async function register(userdata) {
         try{
-            user_existance = await pb.collection('med').getFirstListItem("username= '${userdata.username}'");
+//            user_existance = await pb.collection('med').getFirstListItem(username= '${userdata.username}'");
             //Busca si ya existe un registro con el mismo username.
             
-            if(!user_existance.status) //checkea
+//          if(!user_existance.status) //checkea
             {
                 await pb.collection('med').create(userdata);
                 //Crea un nuevo registro.
@@ -27,6 +26,16 @@ async function register(userdata) {
             //catchea el error, devuelve al front algo para transmitir al usuario.
         } 
 }
+async function getUser(id)
+{
+    try{
+        const record = await pb.collection('med').getOne(id);
+        return user;
+    }
+    catch{
+        return null;
+    }
+}
 
 async function logIn (userdata) {
     if(userdata.password !== "" && userdata.username !== "")
@@ -35,12 +44,15 @@ async function logIn (userdata) {
         //if(user_existance === 200 || true)
         {       
             try{
-                const record = await pb.collection("med").authWithPassword(userdata.username, userdata.password);
-                return "ok";
+                const record = await pb.collection("med").authWithPassword(userdata.username, userdata.password)
+                sessionStorage.setItem( "id", record.record.id);
+                abc= record.record.username;
+                return "ok"
                 //Logea y devuelve el usuario en conjunto con un token de auth.
             }
-            catch
+            catch (e)
             {
+                console.log(e);
                 return "err_pass"
                 //catchea el error, devuelve al front algo para transmitir al usuario.
             }
@@ -195,5 +207,5 @@ async function postAI(input){
 
 }
 
-export {register, logIn, logOut, deleteAccount, lista_esp, postAI, lookEsp};
+export {register, logIn, logOut, deleteAccount, lista_esp, postAI, lookEsp, getUser, abc};
 //Exporto todas las fuciones anteriores.

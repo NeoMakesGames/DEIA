@@ -35,14 +35,11 @@ const entradaPaciente = () => {
 
   useEffect(() =>{
     espirometriaSeteo();
+    if(id === undefined)
+    {
+      Router.push("/software")
+    }
   }, []);
-
-  function out() {
-    Router.push('/espirometrias');
-  }
-
-  if(id !== undefined)
-  {
     return (
     <main>
       <Navbar />
@@ -72,10 +69,5 @@ const entradaPaciente = () => {
     </main>
   );
   }
-  else
-  {
-    out();
-  };
-}
 
 export default entradaPaciente;
