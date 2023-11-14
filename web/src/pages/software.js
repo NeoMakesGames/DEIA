@@ -17,21 +17,21 @@ export default function Software() {
 
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
-  const [esp, setEsp] = useState([]);
+  const [list, setList] = useState([]);
 
 // función para traer los datos de la API
 const listaMedico = async () => {
   try {
-      // Espera la respuesta de la función lookForEsp      
-      setEsp(respuesta);
-      // Actualiza el estado utilizando setEsp
-
       // Verifica si la respuesta es exitosa (código de estado HTTP 200)
       if (respuesta === null || undefined) {
-        setEsp(["error: 404", "Registro No encontrado"])
+        setList(["error: 404", "Registro No encontrado"])
         console.error('Error al obtener datos. Código de estado:', respuesta.status);
         // Si la respuesta no es exitosa, imprime un mensaje de error en la consola
-      }      
+      }
+
+      setList(respuesta);
+      // Actualiza el estado utilizando setEsp
+      
       return null;
       }
   catch (error) {
@@ -144,7 +144,7 @@ const [datosMed, setDatosMed] = useState([]);
               ))
 
               } */}
-               {esp ? esp.map(espirometria => (
+               {list ? list.map(espirometria => (
                   <tr key={espirometria.id}>
                     <Link href={`/espirometrias/${espirometria.id}`}>
                       <td>{espirometria.nombre_y_apellido}</td>

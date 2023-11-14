@@ -103,7 +103,9 @@ async function deleteAccount(medico) {
 
 async function lista_esp() {
     try{
-        const list = await pb.collection('esp').getFullList();
+        const list = await pb.collection('esp').getFullList({
+            sort: '-created',
+        });
 
         //Devuelve todos los registros de la tabla de espirometrias.
         //La API de PB la modifique para que unicamente devuelva records que correspondan al id del medico logeado.
@@ -113,6 +115,19 @@ async function lista_esp() {
 
     {
         return "err_esp", e; //error 404, no se encontró o no existen
+    }
+}
+
+async function lookEsp(id) {
+    try{
+        console.log(id)
+        const record = await pb.collection('esp').getOne(id);
+        return record;
+    }
+    catch(e)
+    {
+        console.log(e);
+        return
     }
 }
 
@@ -181,5 +196,5 @@ async function postAI(input){
 
 }
 
-export {register, logIn, logOut, deleteAccount, lista_esp, postAI};
+export {register, logIn, logOut, deleteAccount, lista_esp, postAI, lookEsp};
 //Exporto todas las fuciones anteriores.
