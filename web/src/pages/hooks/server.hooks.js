@@ -182,7 +182,6 @@ async function postAI(input){
     }   
     try
     {
-        console.log(JSON.stringify(res))
         const espiro = await pb.collection('esp').create(espirometria_data);
         //crea el registro de la espirometria en la db
         

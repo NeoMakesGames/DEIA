@@ -4,21 +4,22 @@ import Diagnostico from "@/components/diagnosticoIA";
 import { lookEsp } from "../hooks/server.hooks";
 import Navbar from "@/components/navbar";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Routes, useSearchParams, useParams } from 'react-router-dom';
+import { user } from "../../../public/lib/pocketbase";
 
 const entradaPaciente = () => {
   const router = useRouter();
-  const { id, name, username } = router.query;
-  
+  const {id} = router.query;
+
+  console.log(id)
+
   const [esp, setEsp] = useState();
-  const location = useLocation(); 
-  const idsss = new URLSearchParams(location.search).get("my")
 
   const espirometriaSeteo = async () => {
     try 
     {
       console.log(id)
-      const record = await lookEsp("wy7zd6uxownh9y0")
+      const record = await lookEsp(id)
       
       if (record === null || record === undefined)
       {
@@ -59,7 +60,7 @@ const entradaPaciente = () => {
             </h1>
           </div>
 
-          <DetallesPaciente infoPaciente={[id, name, username]} />
+          {/* <DetallesPaciente infoPaciente={[id, name, username]} /> */}
           <div className="w-11/12 bg-slate-800 h-px"></div>
           <Diagnostico/>
           {/* info paciente y diagnositco IA */}
