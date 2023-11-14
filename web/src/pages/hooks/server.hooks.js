@@ -178,7 +178,11 @@ async function postAI(input){
             return "err_post";
             //Devuelve si ocurre un error al 'enviar' los datos.
         });
-
+    if(res === "err_post")
+    {
+        return res;
+    }
+    
     const espirometria_data = {
     
         "sexo": input.gender,

@@ -35,7 +35,7 @@ const entradaPaciente = () => {
 
   useEffect(() =>{
     espirometriaSeteo();
-    if(id === undefined)
+    if(id === undefined |id === "err_post" || id === "err_db")
     {
       Router.push("/software")
     }
