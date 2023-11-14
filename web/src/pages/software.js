@@ -76,8 +76,8 @@ const [datosMed, setDatosMed] = useState([]);
   //metodo de filtrado
 
   const results = !search
-    ? users
-    : users.filter((dato) =>
+    ? list
+    : list.filter((dato) =>
         dato.name
           .toLowerCase()
           .includes(search.toLocaleLowerCase(), console.log(dato, search))
