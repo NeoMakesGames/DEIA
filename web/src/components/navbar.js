@@ -1,6 +1,17 @@
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Navbar(){
+
+  const [u, setU] = useState("");
+
+  
+  useEffect(() => {
+    const a = localStorage  .getItem("username")
+      console.log(a)
+      setU(a)
+      console.log(u)
+  });
     return(
       <div className="navbar bg-base-100 shadow-3xl">
       <div className="navbar-start ">
@@ -42,7 +53,7 @@ export default function Navbar(){
         </ul>
       </div>
       <div className="navbar-end">
-        <button>Dr Arrollo</button>
+        <button>{u}</button>
         {/* <button className="btn bg-[#F9A620] border-none"><Link href="/login">Login</Link></button> */}
       </div>
     </div>

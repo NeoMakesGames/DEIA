@@ -1,4 +1,4 @@
-import pb from '../../../public/lib/pocketbase';
+import pb, {user} from '../../../public/lib/pocketbase';
 const axios = require ('axios')
 //
 //Funciones del AUTH.
@@ -16,7 +16,6 @@ async function register(userdata) {
                 
                 await pb.collection("med").authWithPassword(userdata.username, userdata.password);
                 //Logea y devuelve el usuario en conjunto con un token de auth.
-
                 return "ok";
             }
         }
@@ -45,8 +44,10 @@ async function logIn (userdata) {
         {       
             try{
                 const record = await pb.collection("med").authWithPassword(userdata.username, userdata.password)
-                sessionStorage.setItem( "id", record.record.id);
-                abc= record.record.username;
+                const lal = record.record.id;
+                const lol = record.record.username;
+                sessionStorage.setItem( "id", lal);
+                localStorage.setItem("username", lol);
                 return "ok"
                 //Logea y devuelve el usuario en conjunto con un token de auth.
             }
@@ -183,7 +184,7 @@ async function postAI(input){
         "sexo": input.gender,
         "datos_personales": input.extraData,
         "nacimiento": input.birthday,
-        "medico": user.id,
+        "medico": user.id,//localStorage .getItem("id"),
         "res_AI": JSON.stringify(res)[10], //no son las mejores tecnicas de programación, pero funca y como el rtado siempre es {result:x}, debería funcionar en tods lo casos.
         "nombre_y_apellido": input.name,
         "FEV1_Value": input.FEV1Value,

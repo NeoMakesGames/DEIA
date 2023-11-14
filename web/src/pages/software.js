@@ -4,7 +4,7 @@ import NavbarSinsesion from "@/components/navbarSinsesion";
 import Historial from "@/components/historialPaciantes";
 import Router, {useRouter} from "next/router";
 import Link from "next/link";
-import { lista_esp, getUser, abc } from "./hooks/server.hooks";
+import { lista_esp } from "./hooks/server.hooks";
 import Modal from "@/components/Modal";
 
 const respuesta = await lista_esp();
@@ -14,9 +14,8 @@ export default function Software() {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
   const [list, setList] = useState([]);
-  const [u, setU] = useState(abc);
+  const [u, setU] = useState("");
   
-console.log(abc);  
 // función para traer los datos de la API
 const listaMedico = async () => {
   try {
@@ -44,8 +43,10 @@ const listaMedico = async () => {
 const [datosMed, setDatosMed] = useState([]); 
     
     useEffect(() => {
-      const a = sessionStorage.getItem("id")
+      const a = localStorage .getItem("username")
       console.log(a)
+      setU(a)
+      console.log(u)
 
       const obtenerLista = async () => {
       const datosM = await listaMedico();
