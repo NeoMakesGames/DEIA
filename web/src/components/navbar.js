@@ -42,7 +42,7 @@ export default function Navbar(){
         </ul>
       </div>
       <div className="navbar-end">
-        <button>nombre del medico</button>
+        <button>Dr Arrollo</button>
         {/* <button className="btn bg-[#F9A620] border-none"><Link href="/login">Login</Link></button> */}
       </div>
     </div>
