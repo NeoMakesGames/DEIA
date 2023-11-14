@@ -73,9 +73,9 @@ const [datosMed, setDatosMed] = useState([]);
   //metodo de filtrado
 
   const results = !search
-    ? users
-    : users.filter((dato) =>
-        dato.name
+    ? list
+    : list.filter((dato) =>
+        dato.nombre_y_apellido
           .toLowerCase()
           .includes(search.toLocaleLowerCase(), console.log(dato, search))
       );
@@ -110,7 +110,7 @@ const [datosMed, setDatosMed] = useState([]);
         <div className="avatar flex items-center justify-center flex-col">
           <div className="w-24 rounded-full bg-amber-700 mt-8"></div>
           <h1 className="font-bold text-2xl text-center text-secondary mx-4 my-8">
-            llaalla
+            Dr. Arrollo
           </h1>
           {/* AGREGAR PACIENTES */}
           <div className="py-1">
@@ -128,25 +128,17 @@ const [datosMed, setDatosMed] = useState([]);
             onChange={searcher}
           ></input>
           {/* lista de pacientes */}
-          <table className="table table-zebra w-2/3 my-1 mt-3 mx-8 h-[400px] overflow-y-auto ">
+          <table className="table table-auto table-zebra w-2/3 my-1 mt-3 mx-8 h-[400px] overflow-y-auto ">
             <thead>
               <tr className="bg-curso text-black text-md text-center">
                 <th>Nombre</th>
                 <th>Fecha</th>
               </tr>
             </thead>
-            <tbody>
-              {/* {datosMed.map((medico) => (
-                <tr key={medico.id}>
-                  <Link href={`/espirometrias/${espirometria.id}`}>
-                  <td>{medico.sexo}</td>
-                  </Link>
-                  </tr>
-              ))
-
-              } */}
-               {list ? list.map(espirometria => (
-                  <tr key={espirometria.id}>
+            <tbody >
+            
+               {results ? results.map(espirometria => (
+                  <tr key={espirometria.id} className="w-full ">
                     <Link href={`/espirometrias/${espirometria.id}`}>
                       <td>{espirometria.nombre_y_apellido}</td>
                       <td>{espirometria.created}</td>
@@ -154,15 +146,7 @@ const [datosMed, setDatosMed] = useState([]);
                   </tr>
                )) : <></>
               }
-                {/* {esp ? esp.map(espirometria => (
-                  <tr key={espirometria.id}>
-                    <Link href={`/espirometrias/${espirometria.id}`}>
-                      <td>{espirometria.nombre_y_apellido}</td>
-                      <td>{espirometria.created}</td>
-                    </Link>
-                  </tr>
-               )) : <></>
-              } */}
+                
             </tbody>
           </table>
         </div>
@@ -183,6 +167,15 @@ const [datosMed, setDatosMed] = useState([]);
   );
 }
 {
+  {/* {esp ? esp.map(espirometria => (
+                  <tr key={espirometria.id}>
+                    <Link href={`/espirometrias/${espirometria.id}`}>
+                      <td>{espirometria.nombre_y_apellido}</td>
+                      <td>{espirometria.created}</td>
+                    </Link>
+                  </tr>
+               )) : <></>
+              } */}
   /* <div>
         <input
           value={search}

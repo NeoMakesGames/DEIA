@@ -41,6 +41,15 @@ const entradaPaciente = () => {
     Router.push('/espirometrias');
   }
 
+  
+  const [espiro,setEspiro] = useState(0);
+  
+  // const cambiarValor = () => {
+  //   setEspiro(espiro + 1);
+  //   console.log("a");
+  // };
+  const colorDelDiv = espiro === 0 ? 'red' : 'green';
+
   if(id !== undefined)
   {
     return (
@@ -60,13 +69,16 @@ const entradaPaciente = () => {
             </h1>
           </div>
 
-          <DetallesPaciente name={esp?.nombre_y_apellido} birthday={esp?.nacimiento} gender={esp?.sexo}/>
+          <DetallesPaciente name={esp?.nombre_y_apellido} birthday={esp?.nacimiento} gender={esp?.sexo} />
           <div className="w-11/12 bg-slate-800 h-px"></div>
-          <Diagnostico diagnostico={esp?.res_IA}/>
+          <Diagnostico diagnostico={esp?.res_AI}/>
+          
+             {esp?.res_AI === 0 && setEspiro(espiro+1)}
+          
+          <p>Valor espirometria: {espiro}</p>
           {/* info paciente y diagnositco IA */}
           <div></div>
-          {/* imagenes espirometria */}
-          <div></div>
+        
         </div>
       </div>
     </main>
