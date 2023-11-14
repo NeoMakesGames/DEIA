@@ -147,7 +147,7 @@ const [datosMed, setDatosMed] = useState([]);
               ))
 
               } */}
-               {list ? list.map(espirometria => (
+               {results ? results.map(espirometria => (
                   <tr key={espirometria.id}>
                     <Link href={`/espirometrias/${espirometria.id}`}>
                       <td>{espirometria.nombre_y_apellido}</td>

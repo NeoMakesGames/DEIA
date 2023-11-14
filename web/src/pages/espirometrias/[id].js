@@ -59,7 +59,7 @@ const entradaPaciente = () => {
 
           <DetallesPaciente name={esp?.nombre_y_apellido} birthday={esp?.nacimiento} gender={esp?.sexo}/>
           <div className="w-11/12 bg-slate-800 h-px"></div>
-          <Diagnostico diagnostico={esp?.res_IA}/>
+          <Diagnostico diagnostico={esp?.res_AI}/>
           {/* info paciente y diagnositco IA */}
           <div></div>
           {/* imagenes espirometria */}
