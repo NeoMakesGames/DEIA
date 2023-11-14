@@ -186,7 +186,7 @@ const [datosMed, setDatosMed] = useState([]);
 
           <Modal show={showModal} onClose={closeModal} />
         </div>
-        <h1>{}</h1>
+        {/* <h1>{}</h1> */}
       </div>
     </main>
   );
