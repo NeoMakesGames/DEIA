@@ -167,7 +167,7 @@ async function postAI(input){
         "FVCPred": input.FVCPred,
     }
     //establece los valores del prompt.
-
+    console.log(prompts);
     //Método POST al server de ia.
     const res = await instance.post('http://localhost:8000/predict', prompts).then(
         (response) => {
@@ -182,7 +182,7 @@ async function postAI(input){
     {
         return res;
     }
-    
+
     const espirometria_data = {
     
         "sexo": input.gender,

@@ -8,9 +8,7 @@ export default function Navbar(){
   
   useEffect(() => {
     const a = localStorage  .getItem("username")
-      console.log(a)
       setU(a)
-      console.log(u)
   });
     return(
       <div className="navbar bg-base-100 shadow-3xl">

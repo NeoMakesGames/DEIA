@@ -5,7 +5,9 @@ import numpy as np
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
+
 app = FastAPI()
+
 
 origins = [
     "http://localhost:3000",
@@ -25,8 +27,8 @@ async def root(data: InputData):
     try:
         input_features = np.array([[data.FEV1Value, data.FEV1Pred, data.FVCValue, data.FVCPred]])
         result = model.predecir(input_features)
-        #threshold = 0.5
-        #result = 1 if result > threshold else 0
+        threshold = 0.5
+        result = 1 if result > threshold else 0
         return {"result": result}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
