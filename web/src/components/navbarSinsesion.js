@@ -29,7 +29,7 @@ export default function NavbarSinsesion() {
               <Link href="/">Home</Link>
             </li>
             <li>
-              <Link href="/about">Quienes somos</Link>
+              {/* <Link href="/about">Quienes somos</Link> */}
             </li>
             <li>
               <Link href="/">Info</Link>
@@ -44,7 +44,7 @@ export default function NavbarSinsesion() {
             <Link href="/">Home</Link>
           </li>
           <li>
-            <Link href="/about">Quienes somos</Link>
+            {/* <Link href="/about">Quienes somos</Link> */}
           </li>
           <li>
             <Link href="/">Info</Link>

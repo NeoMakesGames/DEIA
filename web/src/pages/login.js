@@ -52,7 +52,7 @@ else {
         {/*     login container*/}
         {/* <div className="bg-white flex w-screen  shadow-lg rounded-lg "> */}
         {/*     form container*/}
-        <div className="flex items-center justify-start flex-col sm:w-1/2 space-y-8 h-screen py-36">
+        <div className="flex items-center justify-start flex-col sm:w-1/2 space-y-8 h-screen py-32">
 
           <h2 className="font-bold text-4xl text-start text-secondary w-8/12">
             Login

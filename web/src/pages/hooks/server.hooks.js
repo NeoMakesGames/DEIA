@@ -188,7 +188,7 @@ async function postAI(input){
         "sexo": input.gender,
         "datos_personales": input.extraData,
         "nacimiento": input.birthday,
-        "medico": user.id,//localStorage .getItem("id"),
+        "medico": user.id, //localStorage .getItem("id"),
         "res_AI": JSON.stringify(res)[10], //no son las mejores tecnicas de programación, pero funca y como el rtado siempre es {result:x}, debería funcionar en tods lo casos.
         "nombre_y_apellido": input.name,
         "FEV1_Value": input.FEV1Value,

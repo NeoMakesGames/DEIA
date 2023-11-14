@@ -76,11 +76,17 @@ const [datosMed, setDatosMed] = useState([]);
   //metodo de filtrado
 
   const results = !search
+
     ? list
-    : list.filter((dato) =>
-        dato.name
-          .toLowerCase()
-          .includes(search.toLocaleLowerCase(), console.log(dato, search))
+    : list.filter((dato) => {
+
+      
+      const Includeres = dato.name.toLowerCase().includes(search.toLocaleLowerCase());
+      console.log(dato,Includeres);
+        return Includeres;
+        
+        
+      }
       );
 
 

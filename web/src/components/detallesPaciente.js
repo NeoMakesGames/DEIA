@@ -1,4 +1,4 @@
-export default function DetallesPaciente({ birthday, name, gender }) {
+export default function DetallesPaciente({ birthday, name, gender, extraData }) {
   
   //transforma las variables a algo que se pueda entender
   
@@ -22,10 +22,11 @@ export default function DetallesPaciente({ birthday, name, gender }) {
     <main>
       <section>
         
-          <div className=" my-4 flex justify-items-center justify-center gap-40 w-full">
+          <div className=" my-4 mx-8 items-start justify-start grid-rows-2 grid-flow-col grid w-screen gap-x-40 gap-y-10 ">
             <h1>Nombre: {name}</h1>
             <h1>Fecha de Nacimiento: {birthday}</h1>
             <h1>Genero: {gender}</h1>
+            <p>Datos Extra:{extraData}</p>
           </div>
       </section>
     </main>

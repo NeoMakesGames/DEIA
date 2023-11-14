@@ -1,4 +1,6 @@
-export default function Diagnostico({diagnostico}){
+import { postAI } from "@/pages/hooks/server.hooks"
+
+export default function Diagnostico({diagnostico}){  
 
     return(
         <main>
@@ -6,7 +8,7 @@ export default function Diagnostico({diagnostico}){
             <h1 className="text-black text-[20px] font-bold my-[15px]  px-8">
               Diagnostico con IA
             </h1>
-            <h2>{diagnostico? 0 : 1}</h2>
+            <h2>{diagnostico? <h1>No es obstructivo</h1> : <h1>Es obstructivo</h1>}</h2>
             <div className="flex justify-center items-center ">
               {/* <h1 className="text-black text-[16px]  my-[15px]  px-8">
                 Estamos procesando tu diagnóstico
@@ -18,8 +20,10 @@ export default function Diagnostico({diagnostico}){
                 <div class="w-2 h-2 rounded-full bg-blue-700 animate-bounce [animation-delay:-.5s]"></div>
               </div> */}
             </div>
+            <div className="">
             <h3>DEIA es un modelo de ineligencia artficial en estado de desarrollo. Como proyecto estudiantil se asegura un error del 12%.</h3>
             <h3>DEIA no es un proyecto con certificados medicos abalados por ninguna organizacion. Coherencia por favor.</h3>
+            </div>
           </div>
           </main>
     )
