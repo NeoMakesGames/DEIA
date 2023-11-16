@@ -1,9 +1,8 @@
 import Navbar from "@/components/navbar";
 import { useForm } from "react-hook-form";
-import { logIn, oAuth, reGister } from "./hooks/server.hooks";
+import { logIn } from "./hooks/server.hooks";
 import { useState } from "react";
-import Historial from "@/components/historialPaciantes";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import NavbarSinsesion from "@/components/navbarSinsesion";
 
 export default function Login() {

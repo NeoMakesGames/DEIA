@@ -106,7 +106,7 @@ async function deleteAccount(medico) {
     }
     catch
     {
-                return "err_del"
+        return "err_del"
     }
 };
 
@@ -133,7 +133,6 @@ async function lista_esp() {
 
 async function lookEsp(id) {
     try{
-        console.log(id)
         const record = await pb.collection('esp').getOne(id);
         return record;
     }
@@ -167,7 +166,6 @@ async function postAI(input){
         "FVCPred": input.FVCPred,
     }
     //establece los valores del prompt.
-    console.log(prompts);
     //Método POST al server de ia.
     
     const res = await instance.post('http://localhost:8000/predict', prompts).then(

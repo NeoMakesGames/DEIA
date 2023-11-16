@@ -2,9 +2,8 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import Navbar from '@/components/navbar'
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import NavbarSinsesion from '@/components/navbarSinsesion';
-import { lookForEsp } from './hooks/server.hooks';
 
 const inter = Inter({ subsets: ['latin'] });
 export default function Home() {

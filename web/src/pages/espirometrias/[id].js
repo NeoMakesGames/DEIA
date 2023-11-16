@@ -16,7 +16,6 @@ const entradaPaciente = () => {
     {
       const rec = await lookEsp(id).then(async(record)=>{
         const val = await record
-        console.log(val, id)
         return val;
       
       }).catch((e)=>{
@@ -24,8 +23,7 @@ const entradaPaciente = () => {
       })
 
       setEsp(rec);
-      console.log(esp, rec);
-    }
+        }
     catch (error)
     {
       console.error('Error en espirometriaSeteo:', error);

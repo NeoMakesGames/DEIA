@@ -69,10 +69,9 @@ const [datosMed, setDatosMed] = useState([]);
 
   const searcher = (e) => {
     setSearch(e.target.value);
-    // console.log(e.target.value);
   };
+  
   //metodo de filtrado
-
   const results = !search
 
     ? list
