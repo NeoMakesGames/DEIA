@@ -20,9 +20,9 @@ export default function DetallesPaciente({ birthday, name, gender, extraData }) 
 
   return (
     <main>
-      <section>
+      <section className="w-full px-10">
         
-          <div className=" my-4 mx-8 items-start justify-start grid-rows-2 grid-flow-col grid w-screen gap-x-40 gap-y-10 ">
+          <div className="  my-4 mx-8 items-start justify-start grid-rows-2 grid-flow-col grid w-full gap-x-40 gap-y-10 ">
             <h1>Nombre: {name}</h1>
             <h1>Fecha de Nacimiento: {birthday}</h1>
             <h1>Genero: {gender}</h1>

@@ -52,22 +52,27 @@ const entradaPaciente = () => {
     <main>
       <Navbar />
       <div className="bg-[#DBE3FF] h-screen overflow-y-auto">
-        <div className="flex justify-center items-center flex-col">
+        <div className="flex justify-center items-center flex-col ">
           {/* titulo y divisor */}
           <h1 className="text-black text-[30px] font-extrabold my-[30px]">
-            Espirometría n° {esp?.id}
+            Institucion
+            {/* Espirometría n° {esp?.id} */}
           </h1>
 
-          <div className="w-11/12 bg-slate-800 h-px"></div>
-          <div className=" w-full flex justify-start items-start flex-col">
-            <h1 className="text-black text-[20px] font-bold my-[15px] px-8">
+          <div className="w-10/12 bg-slate-800 h-px"></div>
+          <div className=" w-full flex justify-start items-start flex-col w-10/12">
+            <h1 className="text-black text-[20px] font-bold my-[15px] ">
               Paciente
             </h1>
-          </div>
 
           <DetallesPaciente name={esp?.nombre_y_apellido} birthday={esp?.nacimiento} gender={esp?.sexo} extraData={esp?.datos_personales}/>
-          <div className="w-11/12 bg-slate-800 h-px"></div>
-           <Diagnostico diagnostico={esp?.res_AI}/> 
+          <div className="w-full bg-slate-800 h-px"></div>
+          <h1 className="text-black text-[20px] font-bold my-[15px]  ">
+              Diagnostico con IA
+            </h1>
+           <Diagnostico diagnostico={esp?.res_AI}/>
+          </div>
+
           {/*   PRUEBA PONER DIRECT */}
 
 

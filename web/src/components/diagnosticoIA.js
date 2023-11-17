@@ -4,11 +4,9 @@ export default function Diagnostico({diagnostico}){
 
     return(
         <main>
-        <div className=" w-full flex justify-start items-start flex-col">
-            <h1 className="text-black text-[20px] font-bold my-[15px]  px-8">
-              Diagnostico con IA
-            </h1>
-            <h2>{diagnostico? <h1>No es obstructivo</h1> : <h1>Es obstructivo</h1>}</h2>
+        <div >
+            
+            <h2>{diagnostico? <h1>es obstructivo</h1> : <h1>no es obstructivo</h1>}</h2>
             <div className="flex justify-center items-center ">
               {/* <h1 className="text-black text-[16px]  my-[15px]  px-8">
                 Estamos procesando tu diagnóstico
