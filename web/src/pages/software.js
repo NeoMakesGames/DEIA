@@ -44,9 +44,7 @@ const [datosMed, setDatosMed] = useState([]);
     
     useEffect(() => {
       const a = localStorage .getItem("username")
-      console.log(a)
       setU(a)
-      console.log(u)
 
       const obtenerLista = async () => {
       const datosM = await listaMedico();
@@ -71,10 +69,9 @@ const [datosMed, setDatosMed] = useState([]);
 
   const searcher = (e) => {
     setSearch(e.target.value);
-    // console.log(e.target.value);
   };
+  
   //metodo de filtrado
-
   const results = !search
 
     ? list

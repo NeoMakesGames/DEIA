@@ -5,7 +5,9 @@ import numpy as np
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
+
 app = FastAPI()
+
 
 origins = [
     "http://localhost:3000",
@@ -18,6 +20,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 @app.post("/predict")
 async def root(data: InputData):
     ruta_modelo_hdf5 = "modelo_no-o2.h5"

@@ -46,7 +46,6 @@ async function logIn (userdata) {
                 const record = await pb.collection("med").authWithPassword(userdata.username, userdata.password)
                 const lal = record.record.id;
                 const lol = record.record.username;
-                sessionStorage.setItem( "id", lal);
                 localStorage.setItem("username", lol);
                 return "ok"
                 //Logea y devuelve el usuario en conjunto con un token de auth.
@@ -86,7 +85,8 @@ async function logIn (userdata) {
 async function logOut() {
     try{
         await pb.authStore.clear();
-        //Elimina el token de auth del browser.
+        localStorage.removeItem("username"); 
+        //Elimina el token de auth y el local storage en genearl del browser.
         
         return "ok";
     }
@@ -106,7 +106,7 @@ async function deleteAccount(medico) {
     }
     catch
     {
-                return "err_del"
+        return "err_del"
     }
 };
 
@@ -133,7 +133,6 @@ async function lista_esp() {
 
 async function lookEsp(id) {
     try{
-        console.log(id)
         const record = await pb.collection('esp').getOne(id);
         return record;
     }
@@ -167,8 +166,8 @@ async function postAI(input){
         "FVCPred": input.FVCPred,
     }
     //establece los valores del prompt.
-
     //Método POST al server de ia.
+    
     const res = await instance.post('http://localhost:8000/predict', prompts).then(
         (response) => {
             return response.data
@@ -182,13 +181,13 @@ async function postAI(input){
     {
         return res;
     }
-    
+
     const espirometria_data = {
     
         "sexo": input.gender,
         "datos_personales": input.extraData,
         "nacimiento": input.birthday,
-        "medico": user.id, //localStorage .getItem("id"),
+        "medico": user.id,//localStorage .getItem("id"),
         "res_AI": JSON.stringify(res)[10], //no son las mejores tecnicas de programación, pero funca y como el rtado siempre es {result:x}, debería funcionar en tods lo casos.
         "nombre_y_apellido": input.name,
         "FEV1_Value": input.FEV1Value,

@@ -20,10 +20,8 @@ export default function Navbar() {
 
   const router = useRouter();
   useEffect(() => {
-    const a = localStorage.getItem("username");
-    console.log(a);
-    setU(a);
-    console.log(u);
+    const a = localStorage  .getItem("username")
+      setU(a)
   });
   return (
     <div className="navbar bg-base-100 shadow-3xl">
@@ -38,8 +36,8 @@ export default function Navbar() {
               stroke="currentColor"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 strokeWidth="2"
                 d="M4 6h16M4 12h8m-8 6h16"
               />
@@ -84,8 +82,8 @@ export default function Navbar() {
         <div className="dropdown dropdown-end">
   <label tabIndex="0" className=" m-1">{u}</label>
   <ul tabIndex="0" className="dropdown-content z-[1] menu p-2 shadow bg-white rounded-box  w-52">
-    <li><button onClick={logOut}>Cerrar Sesion</button></li>
-    {inSession ? 'usuario logueado'  : 'usuario sin logear' } 
+    {/* <li><button onClick={logOut}>Cerrar Sesion</button></li>
+    {inSession ? 'usuario logueado'  : 'usuario sin logear' }  */}
     {/* onClick={logOut? inSession == true : inSession == false }*/}
   </ul>
 </div>
