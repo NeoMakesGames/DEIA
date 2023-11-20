@@ -25,16 +25,17 @@ async function register(userdata) {
             //catchea el error, devuelve al front algo para transmitir al usuario.
         } 
 }
-async function getUser(id)
-{
-    try{
-        const record = await pb.collection('med').getOne(id);
-        return user;
-    }
-    catch{
-        return null;
-    }
-}
+
+// async function getUser(id)
+// {
+//     try{
+//         const record = await pb.collection('med').getOne(id);
+//         return user;
+//     }
+//     catch{
+//         return null;
+//     }
+// } no lo uso
 
 async function logIn (userdata) {
     if(userdata.password !== "" && userdata.username !== "")
@@ -44,9 +45,8 @@ async function logIn (userdata) {
         {       
             try{
                 const record = await pb.collection("med").authWithPassword(userdata.username, userdata.password)
-                const lal = record.record.id;
-                const lol = record.record.username;
-                localStorage.setItem("username", lol);
+                const username = record.record.username;
+                localStorage.setItem("username", username);
                 return "ok"
                 //Logea y devuelve el usuario en conjunto con un token de auth.
             }
@@ -114,7 +114,7 @@ async function deleteAccount(medico) {
 // Busquda de datos en las tablas.
 //
 
-async function lista_esp() {
+const lista_esp = async() => {
     try{
         const list = await pb.collection('esp').getFullList({
             sort: '-created',
@@ -211,5 +211,5 @@ async function postAI(input){
 
 }
 
-export {register, logIn, logOut, deleteAccount, lista_esp, postAI, lookEsp, getUser, abc};
+export {register, logIn, logOut, deleteAccount, lista_esp, postAI, lookEsp};
 //Exporto todas las fuciones anteriores.

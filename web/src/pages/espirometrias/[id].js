@@ -7,9 +7,21 @@ import { useEffect, useState } from "react";
 
 const entradaPaciente = () => {
   const router = useRouter();
-  const {id} = router.query;
+  let {id} = router.query;
 
   const [esp, setEsp] = useState({});
+
+  useEffect(() =>{
+    if(id===undefined){
+        id = sessionStorage.getItem("lastId");
+    }
+    espirometriaSeteo();
+    // if(id === undefined |id === "err_post" || id === "err_db")
+    // {
+    //   Router.push("/software")
+    // }
+    sessionStorage.setItem("lastId", id)
+  }, []);
 
   const espirometriaSeteo = async() => {
     try 
@@ -30,14 +42,6 @@ const entradaPaciente = () => {
       return null;
     }
   } 
-
-  useEffect(() =>{
-    espirometriaSeteo();
-    if(id === undefined |id === "err_post" || id === "err_db")
-    {
-      Router.push("/software")
-    }
-  }, []);
 
   const [espiro,setEspiro] = useState(0);
   

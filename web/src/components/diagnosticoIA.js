@@ -1,12 +1,14 @@
-import { postAI } from "@/pages/hooks/server.hooks"
+import { useState } from "react"
 
-export default function Diagnostico({diagnostico}){  
+export default function Diagnostico({diagnostico}){ 
+  
+  const [rtado, setRtado] = useState(diagnostico);
 
     return(
         <main>
         <div >
             
-            <h2>{diagnostico? <h1>es obstructivo</h1> : <h1>no es obstructivo</h1>}</h2>
+            {rtado? <h1>es obstructivo</h1> : <h1>no es obstructivo</h1>}
             <div className="flex justify-center items-center ">
               {/* <h1 className="text-black text-[16px]  my-[15px]  px-8">
                 Estamos procesando tu diagnóstico

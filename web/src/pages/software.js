@@ -1,7 +1,6 @@
-  "use client"
+  "use client";
   import Navbar from "@/components/navbar";
   import { useState, useEffect } from "react";
-  import NavbarSinsesion from "@/components/navbarSinsesion";
   import Historial from "@/components/historialPaciantes";
   import Link from "next/link";
   import { lista_esp } from "./hooks/server.hooks";
@@ -13,39 +12,52 @@
 
     const [user, setUser] = useState("");
     const [search, setSearch] = useState("");
-    const [list, setList] = useState({});
+    const [list, setList] = useState(["error", 404]);
+    const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    setUser(localStorage.getItem("username"));
+    listaMedico();
+  },[])
 
   async function listaMedico() {
     try {
-        const respuesta = await lista_esp();  
-        // Verifica si la respuesta es exitosa (código de estado HTTP 200)
-        if (respuesta === null || undefined) {
-          setList(["error: 404", "Registro No encontrado"])
-          console.error('Error al obtener datos. Código de estado:', respuesta.status);
-          // Si la respuesta no es exitosa, imprime un mensaje de error en la consola
-        }
-        console.log(respuesta);
-        await setList(respuesta);
-        // Actualiza el estado utilizando setEsp      
-        return null;
-        }
-    catch (error) {
-      console.error('Error en listaMedico:', error);
-      // Si hay un error en la operación asincrónica, imprime un mensaje de error en la consola
-    
+
+      const respuesta = await lista_esp();  
+      console.log(respuesta, loading);
+
+      if (Array.isArray(respuesta)) {
+        
+        const results = 
+        !search
+        ? respuesta
+        : respuesta.filter((dato) => {
+            const Includeres = dato.name.toLowerCase().includes(search.toLocaleLowerCase());
+            console.log(dato,Includeres);
+            return Includeres;
+          }
+          );
+
+        console.log(results); 
+        
+        setList(results);
+        setLoading(false);
+        console.log(list, loading); 
+
+      } 
+      else {
+        setList(["error", 404]);
+        console.error('Error: lista_esp did not return an array');
+      }
+
+      return null;
+    } 
+    catch(e) {
+      console.error('Error en listaMedico:', e);
       return null;
     } 
   };
-
-    useEffect(() => {
-      const name = localStorage.getItem("username")
-      setUser(name);
-
-      (async() => {
-        await listaMedico();
-      })();
-      console.log(list);
-    }, [])
 
     //funcion de busqueda
 
@@ -54,15 +66,6 @@
     };
     
     //metodo de filtrado
-    const results = 
-      !search
-      ? list
-      : list.filter((dato) => {
-          const Includeres = dato.name.toLowerCase().includes(search.toLocaleLowerCase());
-          console.log(dato,Includeres);
-          return Includeres;
-        }
-        );
 
 
     //rederizamos la vista
@@ -77,13 +80,6 @@
     const closeModal = () => {
       setShowModal(false);
     };
-
-    // const handleSubmit = (e) => 
-    // {
-    //   se.preventDefault();
-    //   postAI();
-    //   closeModal();
-    // };
 
     return (
       <main>
@@ -120,35 +116,17 @@
                 </tr>
               </thead>
               <tbody>
-                {/* {datosMed.map((medico) => (
-                  <tr key={medico.id}>
-                    <Link href={`/espirometrias/${espirometria.id}`}>
-                    <td>{medico.sexo}</td>
-                    </Link>
-                    </tr>
-                ))
-
-                } */}
-                {results ? results.map(espirometria => 
+                 {loading ? (<>Cargando espirometrias...</>) : Array.isArray(list) ? list.map(espirometria => 
                   (
-                    <tr key={espirometria.id}>
+                    <tr key= {espirometria.id}>
                       <Link href={`/espirometrias/${espirometria.id}`}>
                         <td>{espirometria.nombre_y_apellido}</td>
                         <td>{espirometria.created}</td>
                       </Link>
                     </tr>
                   )
-                ) : <></>
+                ) : <>No tienes espirometrias? Agrega pacientes con el botón inferior.</>
                 }
-                  {/* {esp ? esp.map(espirometria => (
-                    <tr key={espirometria.id}>
-                      <Link href={`/espirometrias/${espirometria.id}`}>
-                        <td>{espirometria.nombre_y_apellido}</td>
-                        <td>{espirometria.created}</td>
-                      </Link>
-                    </tr>
-                )) : <></>
-                } */}
               </tbody>
             </table>
           </div>
