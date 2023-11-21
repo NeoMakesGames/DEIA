@@ -13,14 +13,12 @@ export default function Home() {
 
   useEffect(() => {
     setLogged(inSession);
-  }, [inSession])
+  }, [])
   return (
     <main>
-  {/* Generea un problema de diferntcias entre el server y el cliente. Diria de hacer una sola navbar que con el inSession devuelba  una o la otra 
   
-   {inSession ? 
-  (      <Navbar/> ) 
-  : (<NavbarSinsesion/>)} */}
+   {logged ? (<Navbar/>)   :   (<NavbarSinsesion/>)} 
+   {/* recomiendo hacer este if adentro de un solo archivo */}
       <div className="hero min-h-screen h-screen
     bg-[#E6F0F4]
     background-animate flex justify-center">
@@ -29,8 +27,8 @@ export default function Home() {
           <div className="w-full px-4">
             <h1 className="text-5xl font-bold">D E I A</h1>
             <p className="py-6 ">Continuamos generando este proyecto, pero en unos meses va a ser mejor.</p>
-            {setLogged ? (
-              <Link className="btn bg-sky-700" href= "/software" >Get Started</Link>
+            {logged ? (
+              <Link className="btn bg-sky-700" href="/software" >get Started</Link>
                         ) : (
               <Link className="btn bg-sky-700" href="/login" >Get Started</Link>
             )}
