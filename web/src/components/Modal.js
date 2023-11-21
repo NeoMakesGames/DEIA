@@ -36,6 +36,7 @@ const Modal = ({ show, onClose }) => {
                 type="text"
                 placeholder="nombre y apellido"
                 className=" input w-full p-2 border-b border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
+                required
                 {...register("name")}
               ></input>
             </div>
@@ -47,6 +48,7 @@ const Modal = ({ show, onClose }) => {
               <input
                 type="date"
                 className="input w-full p-2 border-b border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
+                required
                 {...register("birthday")}
               ></input>
             </div>
@@ -55,7 +57,7 @@ const Modal = ({ show, onClose }) => {
             <label className="my-2 text-md label">
               <span className="">Seleccione genero</span>
             </label>
-              <select className="input w-full p-2 border-b border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
+              <select required className="input w-full p-2 border-b border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
               {...register("gender")}>
                 <option value="F">Femenino</option>
                 <option value="M">Masculino</option>
@@ -71,6 +73,7 @@ const Modal = ({ show, onClose }) => {
                 <input
                   type="number"
                   className="input w-1/2 p-2 border-b border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
+                  required
                   {...register("FEV1Value")}
                 ></input>
               </div>
@@ -79,6 +82,7 @@ const Modal = ({ show, onClose }) => {
                 <input
                   type="number"
                   className="input w-1/2 p-2 border-b border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
+                  required
                   {...register("FEV1Pred")}
                 ></input>
               </div>
@@ -87,6 +91,7 @@ const Modal = ({ show, onClose }) => {
                 <input
                   type="number"
                   className="input w-1/2 p-2 border-b border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
+                  required
                   {...register("FVCValue")}
                 ></input>
               </div>
@@ -95,6 +100,7 @@ const Modal = ({ show, onClose }) => {
                 <input
                   type="number"
                   className="input w-1/2 p-2 border-b border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
+                  required
                   {...register("FVCPred")}
                 ></input>
               </div>

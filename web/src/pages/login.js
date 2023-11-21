@@ -1,19 +1,15 @@
 "use client"  
-import Navbar from "@/components/navbar";
 import { useForm } from "react-hook-form";
 import { logIn } from "./hooks/server.hooks";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import NavbarSinsesion from "@/components/navbarSinsesion";
+import { inSession } from "../../public/lib/pocketbase";
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
-  //variable usestate,
-
-  // const errorClasses = show
-  // ? "w-full p-2 border-b-4 border-gray-300  border-inherit focus:border-b-2 focus:border-red-700 transition-colors focus:outline-none peer bg-inherit"
-  // : "hidden";
-
+  const router = useRouter();
+  const [show, setShow] = useState(false);
 
   const reg = async(data) => {
     const res = await logIn(data);
@@ -21,32 +17,27 @@ export default function Login() {
     {
       router.push({pathname:"/software"});
     }
-    setState(res);
   };
 
-  const [show, setShow] = useState(false);
-  const [session, setSession] = useState(false);
-  const [logInState, setState] = useState(""); //la idea con esto juli es que ñe asignes el valor de la funcion logIn(). devuelve ["ok", y diferentes "err_"], en base a eso deberia mandarte a la home, etc.
+  useEffect(() => {
+    if(inSession) { router.push({pathname:"/software"}); }
+  },[])
 
-async function handleLogin(){
-  const result = await logIn("nombre_usuario", "contraseña");
+  async function handleLogin(){
+    const result = await logIn("nombre_usuario", "contraseña");
 
-//manejar el resultado
-if (result[0] === "ok"){
-  console.log("error en el inicio de sesion"+result);
-}
-else {
-  console.log("inicio de sesion exitoso "+result[0]);
-}
-
-}
-  
-  const router = useRouter();
+    //manejar el resultado
+    if (result[0] === "ok"){
+      console.log("error en el inicio de sesion"+ result);
+    }
+    else {
+      console.log("inicio de sesion exitoso "+ result[0]);
+    }
+  }
 
   return (
     <main>
-      {/* {session ? 'div 1' : <Navbar />  } */}
-      {!session ? <NavbarSinsesion /> : <Navbar />}
+      <NavbarSinsesion />
 
       <section className="min-h-fit bg-[#E6F0F4] flex items-center justify-center overflow-y-auto">
         {/*     login container*/}
@@ -80,6 +71,7 @@ else {
               <input
                 type="text"
                 placeholder="Ingrese email"
+                required
                 {...register("username")}
                 className="   w-full p-2 border-b-4 border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
               ></input>
@@ -93,6 +85,7 @@ else {
               <input
                 type="password"
                 placeholder="Ingrese contraseña"
+                required
                 {...register("password")}
                 className="  w-full   p-2  border-b-4 border-gray-300  border-inherit focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit"
               ></input>
@@ -112,16 +105,16 @@ else {
             <button
               type="submit"
               className="btn px-[128px] bg-blue-700 border-none text-base-100"
-              onClick={
-                () => {if ("err" || ""){
-                  console.log("completar");
+              // onClick={
+              //   () => {if ("err" || ""){
+              //     console.log("completar");
 
-                }
-                else{
-                  console.log("esta ok");
-                  router.push('/software');
-                }
-              }}
+              //   }
+              //   else{
+              //     console.log("esta ok");
+              //     router.push('/software');
+              //   }
+              // }}
               // {() => setSession(handleLogin() /*&& router.push('/')*/)}
               >
               Login
