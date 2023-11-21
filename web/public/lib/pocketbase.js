@@ -5,6 +5,7 @@ const pb = new PocketBase('http://127.0.0.1:8090');
 //conexion a la db
 
 export const user = pb.authStore.model;
+export const userId = user.id
 //agarra el modelo de usuario --> no lo uso pq pb no tiene una funcion para eso y pq es ás facil setear otras cosas
 
 export const inSession = pb.authStore.isValid;

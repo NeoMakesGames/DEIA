@@ -1,4 +1,4 @@
-import pb, {user} from '../../../public/lib/pocketbase';
+import pb, {user, userId} from '../../../public/lib/pocketbase';
 const axios = require ('axios')
 //
 //Funciones del AUTH.
@@ -181,13 +181,14 @@ async function postAI(input){
     {
         return res;
     }
+    console.log("id:", userId);
 
     const espirometria_data = {
     
         "sexo": input.gender,
         "datos_personales": input.extraData,
         "nacimiento": input.birthday,
-        "medico": user.id,//localStorage .getItem("id"),
+        "medico": userId,//localStorage .getItem("id"),
         "res_AI": JSON.stringify(res)[10], //no son las mejores tecnicas de programación, pero funca y como el rtado siempre es {result:x}, debería funcionar en tods lo casos.
         "nombre_y_apellido": input.name,
         "FEV1_Value": input.FEV1Value,

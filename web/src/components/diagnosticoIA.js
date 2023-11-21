@@ -8,7 +8,7 @@ export default function Diagnostico({diagnostico}){
         <main>
         <div >
             
-            {rtado? <h1>es obstructivo</h1> : <h1>no es obstructivo</h1>}
+            {rtado? <h1>Es obstructivo</h1> : <h1>No es obstructivo</h1>}
             <div className="flex justify-center items-center ">
               {/* <h1 className="text-black text-[16px]  my-[15px]  px-8">
                 Estamos procesando tu diagnóstico
