@@ -45,8 +45,9 @@ async function logIn (userdata) {
         {       
             try{
                 const record = await pb.collection("med").authWithPassword(userdata.username, userdata.password)
-                const username = record.record.username;
-                localStorage.setItem("username", username);
+                //const username = record.record.username;
+                localStorage.setItem("username", record.record.username);
+                localStorage.setItem("id", record.record.id);
                 return "ok"
                 //Logea y devuelve el usuario en conjunto con un token de auth.
             }
@@ -188,7 +189,7 @@ async function postAI(input){
         "sexo": input.gender,
         "datos_personales": input.extraData,
         "nacimiento": input.birthday,
-        "medico": userId,//localStorage .getItem("id"),
+        "medico": localStorage.getItem("id"),
         "res_AI": JSON.stringify(res)[10], //no son las mejores tecnicas de programación, pero funca y como el rtado siempre es {result:x}, debería funcionar en tods lo casos.
         "nombre_y_apellido": input.name,
         "FEV1_Value": input.FEV1Value,
