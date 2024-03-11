@@ -168,7 +168,7 @@ async function postAI(input){
     }
     //establece los valores del prompt.
     //Método POST al server de ia.
-    
+    console.log("123");
     const res = await instance.post('http://localhost:8000/predict', prompts).then(
         (response) => {
             return response.data
@@ -182,7 +182,6 @@ async function postAI(input){
     {
         return res;
     }
-    console.log("id:", userId);
 
     const espirometria_data = {
     
@@ -200,6 +199,7 @@ async function postAI(input){
     }   
     try
     {
+        console.log("id2:", userId);
         const espiro = await pb.collection('esp').create(espirometria_data);
         //crea el registro de la espirometria en la db
         
@@ -208,6 +208,7 @@ async function postAI(input){
     }
     catch(e)
     {
+        console.log("id3:", userId);
         return "err_db";
     }
 
