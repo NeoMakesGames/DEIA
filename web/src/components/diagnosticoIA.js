@@ -21,7 +21,7 @@ export default function Diagnostico({diagnostico}){
               </div> */}
             </div>
             <div className="">
-            <h3>DEIA es un modelo de ineligencia artficial en estado de desarrollo. Como proyecto estudiantil se asegura un error del 12%, con respecto a las espirometrias de entreno.</h3>
+            <h3>DEIA es un modelo de inteligencia artficial en estado de desarrollo. Como proyecto estudiantil se asegura un error del 12%, con respecto a las espirometrias de entreno.</h3>
             <h3>DEIA no es un proyecto con certificados medicos abalados por ninguna organizacion. DEIA no tiene poder desición luego del diagnostico.s Coherencia por favor.</h3>
             </div>
           </div>

@@ -7,13 +7,13 @@ import { useEffect, useState } from "react";
 
 const entradaPaciente = () => {
   const router = useRouter();
-  let {id} = router.query;
+  let { id } = router.query;
 
   const [esp, setEsp] = useState({});
 
-  useEffect(() =>{
-    if(id===undefined){
-        id = sessionStorage.getItem("lastId");
+  useEffect(() => {
+    if (id === undefined) {
+      id = sessionStorage.getItem("lastId");
     }
     espirometriaSeteo();
     // if(id === undefined |id === "err_post" || id === "err_db")
@@ -23,28 +23,26 @@ const entradaPaciente = () => {
     sessionStorage.setItem("lastId", id)
   }, []);
 
-  const espirometriaSeteo = async() => {
-    try 
-    {
-      const rec = await lookEsp(id).then(async(record)=>{
+  const espirometriaSeteo = async () => {
+    try {
+      const rec = await lookEsp(id).then(async (record) => {
         const val = await record
         return val;
-      
-      }).catch((e)=>{
+
+      }).catch((e) => {
         console.log(e);
       })
 
       setEsp(rec);
-        }
-    catch (error)
-    {
+    }
+    catch (error) {
       console.error('Error en espirometriaSeteo:', error);
       return null;
     }
-  } 
+  }
 
-  const [espiro,setEspiro] = useState(0);
-  
+  const [espiro, setEspiro] = useState(0);
+
   // const cambiarValor = () => {
   //   setEspiro(espiro + 1);
   //   console.log("a");
@@ -52,7 +50,7 @@ const entradaPaciente = () => {
   const colorDelDiv = espiro === 0 ? 'red' : 'green';
 
 
-    return (
+  return (
     <main>
       <Navbar />
       <div className="bg-[#DBE3FF] h-screen overflow-y-auto">
@@ -64,32 +62,36 @@ const entradaPaciente = () => {
           </h1>
 
           <div className="w-10/12 bg-slate-800 h-px"></div>
-          <div className=" w-full flex justify-start items-start flex-col w-10/12">
+          <div className=" w-full flex justify-center items-center flex-col w-10/12">
             <h1 className="text-black text-[20px] font-bold my-[15px] ">
               Paciente
             </h1>
+          </div>
 
-          <DetallesPaciente name={esp?.nombre_y_apellido} birthday={esp?.nacimiento} gender={esp?.sexo} extraData={esp?.datos_personales}/>
-          <div className="w-full bg-slate-800 h-px"></div>
-          <h1 className="text-black text-[20px] font-bold my-[15px]  ">
+            <DetallesPaciente name={esp?.nombre_y_apellido} birthday={esp?.nacimiento} gender={esp?.sexo} extraData={esp?.datos_personales} />
+            <div className="w-10/12 bg-slate-800 h-px flex justify-center items-center"></div>
+            <div>
+
+            <h1 className="text-black text-[20px] font-bold my-[15px]  ">
               Diagnostico con IA
             </h1>
-           <Diagnostico diagnostico={esp?.res_AI}/>
-          </div>
+            </div>
+
+            <Diagnostico diagnostico={esp?.res_AI} />
 
           {/*   PRUEBA PONER DIRECT */}
 
 
-          
-          {esp?.res_AI === 0 && setEspiro(espiro+1)}
-       
-       {/* <p>Valor espirometria: {espiro}</p> */}
+
+          {esp?.res_AI === 0 && setEspiro(espiro + 1)}
+
+          {/* <p>Valor espirometria: {espiro}</p> */}
           {/* imagenes espirometria */}
           <div></div>
         </div>
       </div>
     </main>
   );
-  }
+}
 
 export default entradaPaciente;
