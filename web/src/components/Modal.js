@@ -8,8 +8,7 @@ const Modal = ({ show, onClose }) => {
 
   const res = async(data) => {
     const ai = await postAI(data);
-    console.log(ai);
-    if(ai !== "err_db" || ai !== "err_post")
+    if(ai != "err_db" || ai != "err_post" || ai != undefined)
     {
       Router.push({pathname:`/espirometrias/${ai.id}`, query:{espirometria:ai}})
     }

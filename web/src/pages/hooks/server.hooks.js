@@ -1,8 +1,10 @@
 import pb, {user, userId} from '../../../public/lib/pocketbase';
 const axios = require ('axios')
+
 //
 //Funciones del AUTH.
 //
+
 var abc = "";
 async function register(userdata) {
         try{
@@ -156,6 +158,7 @@ async function postAI(input){
     const instance = axios.create({
         headers: {
             'Access-Control-Allow-Origin': 'http://localhost:3000',
+
             //Le otorga a la url del servidor el permiso de acceder al de ia (cors).
         },
     });
@@ -166,30 +169,39 @@ async function postAI(input){
         "FVCValue": input.FVCValue,
         "FVCPred": input.FVCPred,
     }
+
     //establece los valores del prompt.
     //Método POST al server de ia.
+
     console.log("123");
     const res = await instance.post('http://localhost:8000/predict', prompts).then(
         (response) => {
             return response.data
+
             //Devuelve los resultados.
+
         }).catch((e) => {
             console.log(e)   
             return "err_post";
+
             //Devuelve si ocurre un error al 'enviar' los datos.
+
         });
     if(res === "err_post")
     {
         return res;
     }
-
+    else {
     const espirometria_data = {
     
         "sexo": input.gender,
         "datos_personales": input.extraData,
         "nacimiento": input.birthday,
         "medico": localStorage.getItem("id"),
-        "res_AI": JSON.stringify(res)[10], //no son las mejores tecnicas de programación, pero funca y como el rtado siempre es {result:x}, debería funcionar en tods lo casos.
+        "res_AI": JSON.stringify(res)[10], 
+
+        //no son las mejores tecnicas de programación, pero funca y como el rtado siempre es {result:x}, debería funcionar en tods lo casos.
+
         "nombre_y_apellido": input.name,
         "FEV1_Value": input.FEV1Value,
         "FEV1_Pred": input.FEV1Pred,
@@ -199,11 +211,12 @@ async function postAI(input){
     }   
     try
     {
-        console.log("id2:", userId);
         const espiro = await pb.collection('esp').create(espirometria_data);
+
         //crea el registro de la espirometria en la db
         
         return espiro;
+
         //devuelve los resultados al front
     }
     catch(e)
@@ -211,8 +224,10 @@ async function postAI(input){
         console.log("id3:", userId);
         return "err_db";
     }
+    }
 
 }
 
 export {register, logIn, logOut, deleteAccount, lista_esp, postAI, lookEsp};
+
 //Exporto todas las fuciones anteriores.

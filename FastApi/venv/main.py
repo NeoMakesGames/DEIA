@@ -8,10 +8,6 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-cors = require('cors')
-
-app.use(cors())
-
 origins = [
     "http://localhost:3000",
 ]

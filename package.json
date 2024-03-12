@@ -2,6 +2,7 @@
   "dependencies": {
     "axios": "^1.6.1",
     "cors": "^2.8.5",
+    "pandas": "^0.0.3",
     "pocketbase": "^0.19.0"
   }
 }
