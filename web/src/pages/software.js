@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 export default function Software() {
 
   const [user, setUser] = useState("");
+  const [pfp, setPfp] = useState("");
   const [search, setSearch] = useState("");
   const [list, setList] = useState(["error", 404]);
   const [loading, setLoading] = useState(true);
@@ -22,6 +23,7 @@ export default function Software() {
 useEffect(() => {
   //if(!inSession) { router.push({pathname:"/login"}); }
   setUser(localStorage.getItem("username"));
+  setPfp(localStorage.getItem("pfp"));
   listaMedico();
 },[])
 
@@ -106,7 +108,7 @@ return (
                 <tr key= {espirometria.id}>
                   <Link href={`/espirometrias/${espirometria.id}`}>
                     <td>{espirometria.nombre_y_apellido}</td>
-                    <td>{espirometria.created}</td>
+                    <td>{espirometria.updated}</td>
                   </Link>
                 </tr>)) : (<h1>No tienes espirometrias? Agrega pacientes con el botón inferior.</h1>)} 
           </tbody>

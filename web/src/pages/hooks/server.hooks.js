@@ -49,6 +49,7 @@ async function logIn (userdata) {
                 const record = await pb.collection("med").authWithPassword(userdata.username, userdata.password)
                 //const username = record.record.username;
                 localStorage.setItem("username", record.record.username);
+                localStorage.setItem("pfp", record.record.pfp);
                 localStorage.setItem("id", record.record.id);
                 return "ok"
                 //Logea y devuelve el usuario en conjunto con un token de auth.
@@ -122,6 +123,7 @@ const lista_esp = async() => {
         const list = await pb.collection('esp').getFullList({
             sort: '-created',
         });
+        console.log(list);
 
         //Devuelve todos los registros de la tabla de espirometrias.
         //La API de PB la modifique para que unicamente devuelva records que correspondan al id del medico logeado.
@@ -192,6 +194,7 @@ async function postAI(input){
         return res;
     }
     else {
+    console.log(res);
     const espirometria_data = {
     
         "sexo": input.gender,
