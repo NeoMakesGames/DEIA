@@ -1,14 +1,12 @@
 import { useState } from "react"
 
 export default function Diagnostico({diagnostico}){ 
-  
-  const [rtado, setRtado] = useState(diagnostico);
-
+  console.log(diagnostico);
+  const rtado = (diagnostico);
     return(
         <main>
         <div >
-            
-            {rtado? <h1>Es obstructivo</h1> : <h1>No es obstructivo</h1>}
+            {diagnostico === "1"? <h1>Es obstructivo</h1> : <h1>No es obstructivo</h1>}
             <div className="flex justify-center items-center ">
               {/* <h1 className="text-black text-[16px]  my-[15px]  px-8">
                 Estamos procesando tu diagnóstico

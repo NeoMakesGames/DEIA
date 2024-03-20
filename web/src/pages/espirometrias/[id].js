@@ -26,14 +26,15 @@ const entradaPaciente = () => {
   const espirometriaSeteo = async () => {
     try {
       const rec = await lookEsp(id).then(async (record) => {
-        const val = await record
+        const val = record
+        console.log(record);
         return val;
 
       }).catch((e) => {
         console.log(e);
       })
-
       setEsp(rec);
+      console.log(rec);
     }
     catch (error) {
       console.error('Error en espirometriaSeteo:', error);
@@ -49,6 +50,7 @@ const entradaPaciente = () => {
   // };
   const colorDelDiv = espiro === 0 ? 'red' : 'green';
 
+  console.log(esp?.res_AI);
 
   return (
     <main>
